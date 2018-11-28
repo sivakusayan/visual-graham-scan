@@ -19,14 +19,16 @@ const getAngle = (vertex, firstPoint, secondPoint) => {
   if (secondVector[0] === 0 && secondVector[1] === 0) return undefined;
   // Dot product is 0 precisely when vectors are perpendicular
   if (getDotProduct(firstVector, secondVector) === 0) return 90;
-  const angle = Math.acos(getDotProduct(firstVector, secondVector) / (getLength(firstVector) * getLength(secondVector))) * 180 / Math.PI;
+  const angle = Math.acos(
+    getDotProduct(firstVector, secondVector) / (getLength(firstVector) * getLength(secondVector)),
+  ) * 180 / Math.PI;
   // Return 180 if almost collinear
   if (180 - TOLERANCE <= angle && angle <= 180 + TOLERANCE) return 180;
 
   return angle;
 };
 const vertex = [0, 0];
-const firstPoint = [-1, 0.001 ];
+const firstPoint = [-1, 0.001];
 const secondPoint = [1, 0.001];
 getAngle(vertex, firstPoint, secondPoint);
 
