@@ -27,9 +27,5 @@ const getAngle = (vertex, firstPoint, secondPoint) => {
 
   return angle;
 };
-const vertex = [0, 0];
-const firstPoint = [-1, 0.001];
-const secondPoint = [1, 0.001];
-getAngle(vertex, firstPoint, secondPoint);
 
 module.exports = getAngle;
