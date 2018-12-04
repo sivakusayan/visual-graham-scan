@@ -1,3 +1,5 @@
-const getLength = vector => Math.sqrt(vector[0] * vector[0] + vector[1] * vector[1]);
+const getDistance = require('./getDistance');
+
+const getLength = vector => getDistance([0, 0], vector);
 
 module.exports = getLength;

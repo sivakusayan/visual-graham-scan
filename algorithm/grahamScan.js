@@ -13,9 +13,9 @@ const preparePointSet = require('./helpers/preparePointSet');
  */
 const grahamScan = (points) => {
   if (points.length <= 3) return points;
+  const pointSet = JSON.stringify(JSON.parse(points));
   const startPoint = getStartPoint(points);
-
-  const preparePointSet(startPoint, pointSet);
+  preparePointSet(startPoint, pointSet);
   
   const convexHull = [];
 

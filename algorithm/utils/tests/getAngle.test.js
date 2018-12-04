@@ -19,10 +19,10 @@ describe('getAngle', () => {
     const secondPoint = [1, 0.001];
     expect(getAngle(vertex, firstPoint, secondPoint)).toBe(180);
   });
-  it('should return undefined if the vertex is repeated', () => {
+  it('should return 0 if the vertex is repeated', () => {
     const vertex = [0, 0];
     const firstPoint = [0, 0];
     const secondPoint = [1, 0.0001];
-    expect(getAngle(vertex, firstPoint, secondPoint)).toBe(undefined);
+    expect(getAngle(vertex, firstPoint, secondPoint)).toBe(0);
   });
 });

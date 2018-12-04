@@ -15,8 +15,8 @@ const getAngle = (vertex, firstPoint, secondPoint) => {
   const firstVector = [firstPoint[0] - vertex[0], firstPoint[1] - vertex[1]];
   const secondVector = [secondPoint[0] - vertex[0], secondPoint[1] - vertex[1]];
   // Check if the firstPoint or secondPoint is equal to the vertex
-  if (firstVector[0] === 0 && firstVector[1] === 0) return undefined;
-  if (secondVector[0] === 0 && secondVector[1] === 0) return undefined;
+  if (firstVector[0] === 0 && firstVector[1] === 0) return 0;
+  if (secondVector[0] === 0 && secondVector[1] === 0) return 0;
   // Dot product is 0 precisely when vectors are perpendicular
   if (getDotProduct(firstVector, secondVector) === 0) return 90;
   const angle = Math.acos(
