@@ -1,5 +1,6 @@
 const getAngle = require('./utils/getAngle');
 const getStartPoint = require('./helpers/getStartPoint');
+const preparePointSet = require('./helpers/preparePointSet');
 
 /**
  * Takes in a pointset, and returns the points that
@@ -14,7 +15,7 @@ const grahamScan = (points) => {
   if (points.length <= 3) return points;
   const startPoint = getStartPoint(points);
 
-  points.sort((a,b) => getAngle(startPoint, [startPoint[0] + 1, startPoint[1]], a) - getAngle(startPoint, [startPoint[0] + 1, startPoint[1]], b));
+  const preparePointSet(startPoint, pointSet);
   
   const convexHull = [];
 
