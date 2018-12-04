@@ -2,7 +2,7 @@
  * Obtains the starting point for the graham scan. We
  * adopt the convention to start at the bottom-most,
  * right-most point.
- * 
+ *
  * @param {[Number, Number][]} points
  *  The pointset to scan.
  * @return {[Number, Number]}
