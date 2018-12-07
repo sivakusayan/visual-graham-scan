@@ -48,18 +48,7 @@ const comparator = (startPoint, firstPoint, secondPoint) => {
 };
 
 const preparePointSet = (startPoint, pointSet) => {
-  pointSet.sort((a, b) => -comparator(startPoint, a, b));
+  pointSet.sort((a, b) => comparator(startPoint, a, b));
 };
-
-const startingPoint = [0, 0];
-const pointSet = [
-  [0, 0],
-  [-1, 0],
-  [-3, 2],
-  [1, 1],
-];
-preparePointSet(startingPoint, pointSet);
-
-console.log(pointSet);
 
 module.exports = preparePointSet;

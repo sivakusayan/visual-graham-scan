@@ -15,8 +15,8 @@ describe('getAngle', () => {
   });
   it('should return 180 for "almost collinear" points', () => {
     const vertex = [0, 0];
-    const firstPoint = [-1, 0.001];
-    const secondPoint = [1, 0.001];
+    const firstPoint = [-1, 0.00001];
+    const secondPoint = [1, 0.00001];
     expect(getAngle(vertex, firstPoint, secondPoint)).toBe(180);
   });
   it('should return 0 if the vertex is repeated', () => {

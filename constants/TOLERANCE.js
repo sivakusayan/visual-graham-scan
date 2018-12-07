@@ -5,4 +5,4 @@
  * for.
  */
 
-module.exports = 0.5;
+module.exports = 0.05;
