@@ -21,7 +21,6 @@ const grahamScan = (points) => {
 
   while (pointSet.length !== 0) {
     convexHull.push(pointSet.pop());
-    // console.log(convexHull);
     while (convexHull.length >= 3 && hasRightTurn(convexHull)) {
       // Fix right turn by removing intermediary point
       convexHull.splice(convexHull.length - 2, 1);
@@ -29,7 +28,5 @@ const grahamScan = (points) => {
   }
   return convexHull;
 };
-
-grahamScan([[-1, -5], [34, 100], [-100, 26], [5, 26], [3, -53], [-3, -7], [-7, -9], [-2, 1], [-2, 20], [-2, 30]]);
 
 module.exports = grahamScan;
