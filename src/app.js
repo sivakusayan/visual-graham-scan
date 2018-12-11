@@ -1,14 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
 
-import ResponsiveStage from './utils/ResponsiveStage';
+import GrahamScanVisualizer from './components/GrahamScanVisualizer';
 
-class App extends Component {
-  render() {
-    return (
-      <ResponsiveStage />
-    );
-  }
-}
-
-render(<App />, document.getElementById('app'));
+render(<GrahamScanVisualizer />, document.getElementById('app'));
