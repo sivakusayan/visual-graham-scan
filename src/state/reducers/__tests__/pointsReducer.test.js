@@ -7,12 +7,18 @@ import {
 } from '../../actionTypes/pointActionTypes';
 
 describe('Points Reducer', () => {
-  it('should handle ADD_POINT', () => {
-    const point = {
+  let pointID;
+  let point;
+
+  beforeEach(() => {
+    pointID = 914901481;
+    point = {
       x: 10,
       y: 20,
-      id: 914901481,
+      id: pointID,
     };
+  });
+  it('should handle ADD_POINT', () => {
     const action = {
       type: ADD_POINT,
       point,
@@ -23,15 +29,9 @@ describe('Points Reducer', () => {
     expect(reducer(initialState, action)).toEqual(finalState);
   });
   it('should handle ACCEPT_POINT', () => {
-    const id = 914901481;
-    const point = {
-      x: 10,
-      y: 20,
-      id,
-    };
     const action = {
       type: ACCEPT_POINT,
-      id,
+      id: pointID,
     };
     const initialState = [point];
     const finalState = [{ ...point, status: 'accepted' }];
@@ -39,15 +39,9 @@ describe('Points Reducer', () => {
     expect(reducer(initialState, action)).toEqual(finalState);
   });
   it('should handle REJECT_POINT', () => {
-    const id = 914901481;
-    const point = {
-      x: 10,
-      y: 20,
-      id,
-    };
     const action = {
       type: REJECT_POINT,
-      id,
+      id: pointID,
     };
     const initialState = [point];
     const finalState = [{ ...point, status: 'rejected' }];
@@ -55,11 +49,6 @@ describe('Points Reducer', () => {
     expect(reducer(initialState, action)).toEqual(finalState);
   });
   it('should handle CLEAR_POINTS', () => {
-    const point = {
-      x: 10,
-      y: 20,
-      id: 914901481,
-    };
     const action = {
       type: CLEAR_POINTS,
     };
