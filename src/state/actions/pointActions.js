@@ -12,6 +12,8 @@ import {
  *
  * @param {Point} point
  *  The point to add
+ *
+ * @returns {{ type: ADD_POINT, point: Point}}
  */
 export const addPoint = point => ({
   type: ADD_POINT,
@@ -23,6 +25,8 @@ export const addPoint = point => ({
  *
  * @param {Number} id
  *  The ID of the point to search for
+ *
+ * @returns {{ type: FIND_POINT, id: Number}}
  */
 export const findPoint = id => ({
   type: FIND_POINT,
@@ -34,6 +38,8 @@ export const findPoint = id => ({
  *
  * @param {Number} id
  *  The ID of the point to accept
+ *
+ * @returns {{ type: ACCEPT_POINT, id: Number}}
  */
 export const acceptPoint = id => ({
   type: ACCEPT_POINT,
@@ -45,6 +51,8 @@ export const acceptPoint = id => ({
  *
  * @param {Number} id
  *  The ID of the point to reject
+ *
+ * @returns {{ type: REJECT_POINT, id: Number}}
  */
 export const rejectPoint = id => ({
   type: REJECT_POINT,
@@ -53,6 +61,8 @@ export const rejectPoint = id => ({
 
 /**
  * Creates an action to clear every point.
+ *
+ * @returns {{ type: CLEAR_POINTS }}
  */
 export const clearPoints = () => ({
   type: CLEAR_POINTS,

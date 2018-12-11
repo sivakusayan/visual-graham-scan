@@ -13,11 +13,12 @@ import {
   CLEAR_POINTS,
 } from '../../actionTypes/pointActionTypes';
 
-describe('actions', () => {
+describe('Point Action Generators', () => {
   it('should create an action to add a point', () => {
     const point = {
       x: 10,
       y: 20,
+      id: 914901481,
     };
     const expectedAction = {
       type: ADD_POINT,
