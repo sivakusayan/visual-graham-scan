@@ -7,30 +7,53 @@ import {
 } from '../actionTypes/pointActionTypes';
 
 /**
- * Creates a request to add a point. The
- * point should not have a defined status,
- * as we will not be adding any points
- * mid-algorithm.
+ * Creates an action to add a point. The point should not have a
+ * defined status, as we will not be adding any points mid-algorithm.
  *
  * @param {Point} point
+ *  The point to add
  */
 export const addPoint = point => ({
   type: ADD_POINT,
   point,
 });
 
+/**
+ * Creates an action to find a point by ID.
+ *
+ * @param {Number} id
+ *  The ID of the point to search for
+ */
 export const findPoint = id => ({
-
+  type: FIND_POINT,
+  id,
 });
 
+/**
+ * Creates an action to find accept a point by ID.
+ *
+ * @param {Number} id
+ *  The ID of the point to accept
+ */
 export const acceptPoint = id => ({
-
+  type: ACCEPT_POINT,
+  id,
 });
 
+/**
+ * Creates an action to reject a point by ID.
+ *
+ * @param {Number} id
+ *  The ID of the point to reject
+ */
 export const rejectPoint = id => ({
-
+  type: REJECT_POINT,
+  id,
 });
 
-export const clearPoints = id => ({
-
+/**
+ * Creates an action to clear every point.
+ */
+export const clearPoints = () => ({
+  type: CLEAR_POINTS,
 });
