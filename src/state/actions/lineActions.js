@@ -1,6 +1,5 @@
 import {
   ADD_LINE,
-  FIND_LINE,
   REMOVE_LINE,
   CLEAR_LINES,
 } from '../actionTypes/lineActionTypes';

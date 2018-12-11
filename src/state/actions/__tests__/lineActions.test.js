@@ -1,12 +1,10 @@
 import {
   addLine,
-  findLine,
   removeLine,
   clearLines,
 } from '../lineActions';
 import {
   ADD_LINE,
-  FIND_LINE,
   REMOVE_LINE,
   CLEAR_LINES,
 } from '../../actionTypes/lineActionTypes';
@@ -31,14 +29,6 @@ describe('Line Action Generators', () => {
       line,
     };
     expect(addLine(line)).toEqual(expectedAction);
-  });
-  it('should create an action to find a line by ID', () => {
-    const id = 91490;
-    const expectedAction = {
-      type: FIND_LINE,
-      id,
-    };
-    expect(findLine(id)).toEqual(expectedAction);
   });
   it('should create an action to remove a line by ID', () => {
     const id = 91490;

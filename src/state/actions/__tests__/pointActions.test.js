@@ -1,13 +1,11 @@
 import {
   addPoint,
-  findPoint,
   acceptPoint,
   rejectPoint,
   clearPoints,
 } from '../pointActions';
 import {
   ADD_POINT,
-  FIND_POINT,
   ACCEPT_POINT,
   REJECT_POINT,
   CLEAR_POINTS,
@@ -25,14 +23,6 @@ describe('Point Action Generators', () => {
       point,
     };
     expect(addPoint(point)).toEqual(expectedAction);
-  });
-  it('should create an action to find a point by ID', () => {
-    const id = 914901481;
-    const expectedAction = {
-      type: FIND_POINT,
-      id,
-    };
-    expect(findPoint(id)).toEqual(expectedAction);
   });
   it('should create an action to accept a point by ID', () => {
     const id = 914901481;

@@ -1,6 +1,5 @@
 import {
   ADD_POINT,
-  FIND_POINT,
   ACCEPT_POINT,
   REJECT_POINT,
   CLEAR_POINTS,
@@ -18,19 +17,6 @@ import {
 export const addPoint = point => ({
   type: ADD_POINT,
   point,
-});
-
-/**
- * Creates an action to find a point by ID.
- *
- * @param {Number} id
- *  The ID of the point to search for
- *
- * @returns {{ type: FIND_POINT, id: Number}}
- */
-export const findPoint = id => ({
-  type: FIND_POINT,
-  id,
 });
 
 /**
