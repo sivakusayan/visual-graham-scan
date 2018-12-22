@@ -8,9 +8,7 @@ import uuid from 'uuid';
 
 import ResponsiveStage from './ResponsiveStage';
 import PointLayerContainer from '../containers/Layers/PointLayerContainer';
-// import AcceptedPointLayerContainer from '../containers/Layers/AcceptedPointLayerContainer';
-// import RejectedPointLayerContainer from '../containers/Layers/RejectedPointLayerContainer';
-// import LineLayerContainer from '../containers/Layers/LineLayerContainer';
+import LineLayerContainer from '../containers/Layers/LineLayerContainer';
 import rescaleCoordinate from '../utils/rescaleCoordinate';
 
 class ConvexHullStage extends Component {
@@ -35,9 +33,7 @@ class ConvexHullStage extends Component {
         onClick={this.onClick}
       >
         <PointLayerContainer />
-        {/* <AcceptedPointLayerContainer />
-        <RejectedPointLayerContainer />
-        <LineLayerContainer /> */}
+        <LineLayerContainer />
       </ResponsiveStage>
     );
   }

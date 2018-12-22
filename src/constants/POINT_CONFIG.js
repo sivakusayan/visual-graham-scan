@@ -4,6 +4,10 @@
  */
 
 export default {
-  radius: 20,
-  fill: 'blue',
+  RADIUS: 20,
+  GET_FILL: (status) => {
+    if (status === 'ACCEPTED') return 'green';
+    if (status === 'REJECTED') return 'red';
+    return 'blue';
+  },
 };

@@ -1,8 +1,8 @@
-import { connect } from 'react-redux';
 import LineLayer from '../../components/Layers/LineLayer';
+import connectWithStore from '../../state/store/connectWithStore';
 
 const mapStateToProps = state => ({
   lines: state.lines,
 });
 
-export default connect(mapStateToProps)(LineLayer);
+export default connectWithStore(mapStateToProps)(LineLayer);
