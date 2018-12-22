@@ -5,7 +5,8 @@
  */
 
 import React from 'react';
-import { Circle } from 'react-konva';
+import { Layer, Circle } from 'react-konva';
+import POINT_CONFIG from '../../constants/POINT_CONFIG';
 
 const AcceptedPointLayer = ({ points }) => (
 

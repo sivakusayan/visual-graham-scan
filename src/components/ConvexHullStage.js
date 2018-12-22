@@ -7,10 +7,10 @@ import React, { Component } from 'react';
 import uuid from 'uuid';
 
 import ResponsiveStage from './ResponsiveStage';
-import PointLayer from './Layers/PointLayer';
-import AcceptedPointLayer from './Layers/AcceptedPointLayer';
-import RejectedPointLayer from './Layers/RejectedPointLayer';
-import LineLayer from './Layers/LineLayer';
+import PointLayerContainer from '../containers/Layers/PointLayerContainer';
+// import AcceptedPointLayerContainer from '../containers/Layers/AcceptedPointLayerContainer';
+// import RejectedPointLayerContainer from '../containers/Layers/RejectedPointLayerContainer';
+// import LineLayerContainer from '../containers/Layers/LineLayerContainer';
 import rescaleCoordinate from '../utils/rescaleCoordinate';
 
 class ConvexHullStage extends Component {
@@ -23,6 +23,7 @@ class ConvexHullStage extends Component {
       x: rescaleCoordinate(stage, pointerPosition.x),
       y: rescaleCoordinate(stage, pointerPosition.y),
       id: uuid(),
+      status: 'NULL',
     };
 
     addPoint(point);
@@ -33,10 +34,10 @@ class ConvexHullStage extends Component {
       <ResponsiveStage
         onClick={this.onClick}
       >
-        <PointLayer />
-        <AcceptedPointLayer />
-        <RejectedPointLayer />
-        <LineLayer />
+        <PointLayerContainer />
+        {/* <AcceptedPointLayerContainer />
+        <RejectedPointLayerContainer />
+        <LineLayerContainer /> */}
       </ResponsiveStage>
     );
   }
