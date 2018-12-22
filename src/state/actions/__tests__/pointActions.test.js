@@ -16,7 +16,7 @@ describe('Point Action Generators', () => {
     const point = {
       x: 10,
       y: 20,
-      id: 914901481,
+      name: 914901481,
     };
     const expectedAction = {
       type: ADD_POINT,

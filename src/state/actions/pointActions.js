@@ -25,7 +25,7 @@ export const addPoint = point => ({
  * @param {Number} id
  *  The ID of the point to accept
  *
- * @returns {{ type: ACCEPT_POINT, id: Number}}
+ * @returns {{ type: ACCEPT_POINT, name: Number}}
  */
 export const acceptPoint = id => ({
   type: ACCEPT_POINT,
@@ -38,7 +38,7 @@ export const acceptPoint = id => ({
  * @param {Number} id
  *  The ID of the point to reject
  *
- * @returns {{ type: REJECT_POINT, id: Number}}
+ * @returns {{ type: REJECT_POINT, name: Number}}
  */
 export const rejectPoint = id => ({
   type: REJECT_POINT,

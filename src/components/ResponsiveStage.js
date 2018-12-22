@@ -1,7 +1,8 @@
 /**
- * @fileoverview We make the canvas responsive in the sense that the canvas scales to
- * fit the user's screen, rather than simply making the clickable area
- * smaller.
+ * @fileoverview We make the canvas responsive in the sense that the viewbox becomes
+ * smaller to fit the users screen. We do this since if we shrunk the physical canvas,
+ * then preserving aspect ratios would create a large blank space under the canvas on
+ * smaller screens.
  *
  * Modeled after the demo shown here:
  *
@@ -17,7 +18,7 @@ class ResponsiveStage extends Component {
   // calculate new sizes.
   defaultWidth = 1000;
 
-  defaultHeight = 1000;
+  defaultHeight = window.innerHeight;
 
   state = {
     stageWidth: this.defaultWidth,
@@ -33,7 +34,6 @@ class ResponsiveStage extends Component {
 
     this.setState({
       stageWidth: this.defaultWidth * newScale,
-      stageHeight: this.defaultHeight * newScale,
       scale: newScale,
     });
   }

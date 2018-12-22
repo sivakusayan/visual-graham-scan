@@ -15,18 +15,18 @@ describe('Points Reducer', () => {
     startPoint = {
       x: 10,
       y: 20,
-      id: 914901481,
+      name: 914901481,
     };
     endPoint = {
       x: 20,
       y: 10,
-      id: 109849381,
-    }
+      name: 109849381,
+    };
     lineID = 61783471;
     line = {
       startPoint,
       endPoint,
-      id: lineID,
+      name: lineID,
     };
   });
   it('should handle ADD_LINE', () => {
@@ -42,7 +42,7 @@ describe('Points Reducer', () => {
   it('should handle REMOVE_LINE', () => {
     const action = {
       type: REMOVE_LINE,
-      id: lineID,
+      name: lineID,
     };
     const initialState = [line];
     const finalState = [];

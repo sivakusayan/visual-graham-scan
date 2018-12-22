@@ -18,25 +18,12 @@ export const addLine = line => ({
 });
 
 /**
- * Creates an action to find a line by ID
- *
- * @param {Number} id
- *  The ID of the line to search for
- *
- * @returns {{ type: FIND_LINE, id: Number }}
- */
-export const findLine = id => ({
-  type: FIND_LINE,
-  id,
-});
-
-/**
  * Creates an action to remove a line by ID
  *
  * @param {Number} id
  *  The ID of the line to remove
  *
- * @returns {{ type: REMOVE_LINE, id: Number }}
+ * @returns {{ type: REMOVE_LINE, name: Number }}
  */
 export const removeLine = id => ({
   type: REMOVE_LINE,

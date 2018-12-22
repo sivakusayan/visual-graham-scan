@@ -4,6 +4,7 @@
  */
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import uuid from 'uuid';
 
 import ResponsiveStage from './ResponsiveStage';
@@ -20,7 +21,7 @@ class ConvexHullStage extends Component {
     const point = {
       x: rescaleCoordinate(stage, pointerPosition.x),
       y: rescaleCoordinate(stage, pointerPosition.y),
-      id: uuid(),
+      name: uuid(),
       status: 'NULL',
     };
 
@@ -38,5 +39,9 @@ class ConvexHullStage extends Component {
     );
   }
 }
+
+ConvexHullStage.propTypes = {
+  addPoint: PropTypes.func.isRequired,
+};
 
 export default ConvexHullStage;

@@ -15,7 +15,7 @@ describe('Points Reducer', () => {
     point = {
       x: 10,
       y: 20,
-      id: pointID,
+      name: pointID,
       status: 'NULL',
     };
   });
@@ -32,7 +32,7 @@ describe('Points Reducer', () => {
   it('should handle ACCEPT_POINT', () => {
     const action = {
       type: ACCEPT_POINT,
-      id: pointID,
+      name: pointID,
     };
     const initialState = [point];
     const finalState = [{ ...point, status: 'ACCEPTED' }];
@@ -42,7 +42,7 @@ describe('Points Reducer', () => {
   it('should handle REJECT_POINT', () => {
     const action = {
       type: REJECT_POINT,
-      id: pointID,
+      name: pointID,
     };
     const initialState = [point];
     const finalState = [{ ...point, status: 'REJECTED' }];

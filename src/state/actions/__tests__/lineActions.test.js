@@ -15,14 +15,14 @@ describe('Line Action Generators', () => {
       startPoint: {
         x: 0,
         y: 0,
-        id: 98231,
+        name: 98231,
       },
       endPoint: {
         x: 1,
         y: 1,
-        id: 58385,
+        name: 58385,
       },
-      id: 91490,
+      name: 91490,
     };
     const expectedAction = {
       type: ADD_LINE,
