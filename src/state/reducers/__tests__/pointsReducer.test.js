@@ -16,6 +16,7 @@ describe('Points Reducer', () => {
       x: 10,
       y: 20,
       id: pointID,
+      status: 'NULL',
     };
   });
   it('should handle ADD_POINT', () => {
@@ -34,7 +35,7 @@ describe('Points Reducer', () => {
       id: pointID,
     };
     const initialState = [point];
-    const finalState = [{ ...point, status: 'accepted' }];
+    const finalState = [{ ...point, status: 'ACCEPTED' }];
 
     expect(reducer(initialState, action)).toEqual(finalState);
   });
@@ -44,7 +45,7 @@ describe('Points Reducer', () => {
       id: pointID,
     };
     const initialState = [point];
-    const finalState = [{ ...point, status: 'rejected' }];
+    const finalState = [{ ...point, status: 'REJECTED' }];
 
     expect(reducer(initialState, action)).toEqual(finalState);
   });

@@ -15,7 +15,7 @@ const pointsReducer = (state = initialState, action) => {
         if (point.id === action.id) {
           return {
             ...point,
-            status: 'accepted',
+            status: 'ACCEPTED',
           };
         }
         return point;
@@ -25,7 +25,7 @@ const pointsReducer = (state = initialState, action) => {
         if (point.id === action.id) {
           return {
             ...point,
-            status: 'rejected',
+            status: 'REJECTED',
           };
         }
         return point;
