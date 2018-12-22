@@ -1,17 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import ConvexHullStage from './ConvexHullStage';
+import ConvexHullStageContainer from '../containers/ConvexHullStageContainer';
 
-class GrahamScanVisualizer extends Component {
-  state = {
-    points: [],
-  }
-
-  render() {
-    return (
-      <ConvexHullStage />
-    );
-  }
-}
+const GrahamScanVisualizer = () => (
+  <ConvexHullStageContainer />
+);
 
 export default GrahamScanVisualizer;

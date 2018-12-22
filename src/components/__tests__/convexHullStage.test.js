@@ -30,9 +30,20 @@ describe('Convex Hull Stage Component', () => {
   it('should dispense an action to add a point whenever clicked', () => {
     const addPointSpy = jest.fn();
     const wrapper = shallow(<ConvexHullStage addPoint={addPointSpy} />);
+    const event = {
+      target: {
+        getPointerPosition: () => ({
+          x: 10,
+          y: 20,
+        }),
+        attrs: {
+          scaleX: 2,
+        },
+      },
+    };
 
-    wrapper.simulate('click');
-    wrapper.simulate('click');
+    wrapper.simulate('click', event);
+    wrapper.simulate('click', event);
 
     expect(addPointSpy).toHaveBeenCalledTimes(2);
   });
@@ -64,7 +75,7 @@ describe('Convex Hull Stage Component', () => {
       y: 0,
       id: 10,
     };
-    const wrapper = shallow(<ConvexHullStage points={[point]}/>);
+    const wrapper = shallow(<ConvexHullStage points={[point]} />);
     const instance = wrapper.instance();
 
     jest.spyOn(instance, 'clearRenderedPoints');
