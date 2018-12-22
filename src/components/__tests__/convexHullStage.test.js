@@ -17,16 +17,6 @@ describe('Convex Hull Stage Component', () => {
     const wrapper = shallow(<ConvexHullStage />);
     expect(wrapper.exists()).toBe(true);
   });
-  it('should have a layer with classname "point-layer"', () => {
-    const wrapper = shallow(<ConvexHullStage />);
-
-    expect(wrapper.find('.point-layer').exists()).toEqual(true);
-  });
-  it('should have a layer with classname "line-layer"', () => {
-    const wrapper = shallow(<ConvexHullStage />);
-
-    expect(wrapper.find('.line-layer').exists()).toEqual(true);
-  });
   it('should dispense an action to add a point whenever clicked', () => {
     const addPointSpy = jest.fn();
     const wrapper = shallow(<ConvexHullStage addPoint={addPointSpy} />);
@@ -54,33 +44,5 @@ describe('Convex Hull Stage Component', () => {
     wrapper.find('.clear-all').simulate('click');
 
     expect(clearPointsSpy).toHaveBeenCalled();
-  });
-  it('should add a circle to the point-layer whenever a point is added to state', () => {
-    const wrapper = shallow(<ConvexHullStage points={[]} />);
-    const instance = wrapper.instance();
-    const point = {
-      x: 0,
-      y: 0,
-      id: 10,
-    };
-
-    jest.spyOn(instance, 'renderPoint');
-    wrapper.setProps({ points: [point] }).update();
-
-    expect(instance.renderPoint).toHaveBeenCalled();
-  });
-  it('should clear all circles from the point-layer when all points are cleared from state', () => {
-    const point = {
-      x: 0,
-      y: 0,
-      id: 10,
-    };
-    const wrapper = shallow(<ConvexHullStage points={[point]} />);
-    const instance = wrapper.instance();
-
-    jest.spyOn(instance, 'clearRenderedPoints');
-    wrapper.setProps({ points: [] }).update();
-
-    expect(instance.renderPoint).toHaveBeenCalled();
   });
 });

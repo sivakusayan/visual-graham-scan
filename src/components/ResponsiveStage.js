@@ -1,4 +1,8 @@
 /**
+ * @fileoverview We make the canvas responsive in the sense that the canvas scales to
+ * fit the user's screen, rather than simply making the clickable area
+ * smaller.
+ *
  * Modeled after the demo shown here:
  *
  * https://konvajs.github.io/docs/sandbox/Responsive_Canvas.html
