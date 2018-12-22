@@ -1,3 +1,6 @@
+const setupTestsPath = '<rootDir>/src/components/__tests__/setupTests.js';
+
 module.exports = {
-  setupTestFrameworkScriptFile: '<rootDir>/setupTests.js',
+  setupTestFrameworkScriptFile: setupTestsPath,
+  testPathIgnorePatterns: ['/nodule_modules/', setupTestsPath]
 };
