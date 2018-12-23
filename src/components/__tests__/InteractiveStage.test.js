@@ -1,5 +1,5 @@
 /**
- * @fileoverview Tests for the ConvexHullStage component.
+ * @fileoverview Tests for the InteractiveStage component.
  * Note that since we are testing a canvas based component, many
  * of enzyme's functions will not work as we expect. Therefore we
  * test user interactions using spies instead of checking for
@@ -9,16 +9,27 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import ConvexHullStage from '../ConvexHullStage';
+import InteractiveStage from '../InteractiveStage';
+import ResponsiveStage from '../ResponsiveStage';
+import PointLayerContainer from '../../containers/Layers/PointLayerContainer';
+import LineLayerContainer from '../../containers/Layers/LineLayerContainer';
 
 describe('Convex Hull Stage Component', () => {
-  it('should render', () => {
-    const wrapper = shallow(<ConvexHullStage />);
-    expect(wrapper.exists()).toBe(true);
+  it('should render a ResponsiveStage for its canvas', () => {
+    const wrapper = shallow(<InteractiveStage />);
+    expect(wrapper.find(ResponsiveStage).exists()).toBe(true);
+  });
+  it('should render a layer for points', () => {
+    const wrapper = shallow(<InteractiveStage />);
+    expect(wrapper.find(PointLayerContainer).exists()).toBe(true);
+  });
+  it('should render a layer for lines', () => {
+    const wrapper = shallow(<InteractiveStage />);
+    expect(wrapper.find(LineLayerContainer).exists()).toBe(true);
   });
   it('should dispense an action to add a point whenever clicked', () => {
     const addPointSpy = jest.fn();
-    const wrapper = shallow(<ConvexHullStage addPoint={addPointSpy} />);
+    const wrapper = shallow(<InteractiveStage addPoint={addPointSpy} />);
     const event = {
       target: {
         getPointerPosition: () => ({
@@ -31,8 +42,8 @@ describe('Convex Hull Stage Component', () => {
       },
     };
 
-    wrapper.find('.canvas').simulate('click', event);
-    wrapper.find('.canvas').simulate('click', event);
+    wrapper.find(ResponsiveStage).simulate('click', event);
+    wrapper.find(ResponsiveStage).simulate('click', event);
 
     expect(addPointSpy).toHaveBeenCalledTimes(2);
   });
@@ -40,7 +51,7 @@ describe('Convex Hull Stage Component', () => {
     const clearPointsSpy = jest.fn();
     const clearLinesSpy = jest.fn();
     const wrapper = shallow(
-      <ConvexHullStage
+      <InteractiveStage
         clearPoints={clearPointsSpy}
         clearLines={clearLinesSpy}
       />,

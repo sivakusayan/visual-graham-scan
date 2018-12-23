@@ -3,7 +3,7 @@ import {
   clearPoints,
 } from '../state/actions/pointActions';
 import { clearLines } from '../state/actions/lineActions';
-import ConvexHullStage from '../components/ConvexHullStage';
+import InteractiveStage from '../components/InteractiveStage';
 import connectWithStore from '../state/store/connectWithStore';
 
 export default connectWithStore(
@@ -13,4 +13,4 @@ export default connectWithStore(
     clearPoints,
     clearLines,
   },
-)(ConvexHullStage);
+)(InteractiveStage);

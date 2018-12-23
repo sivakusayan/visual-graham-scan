@@ -12,7 +12,7 @@ import PointLayerContainer from '../containers/Layers/PointLayerContainer';
 import LineLayerContainer from '../containers/Layers/LineLayerContainer';
 import rescaleCoordinate from '../utils/rescaleCoordinate';
 
-class ConvexHullStage extends Component {
+class InteractiveStage extends Component {
   onClick = (event) => {
     const { addPoint } = this.props;
     const stage = event.target;
@@ -56,12 +56,12 @@ class ConvexHullStage extends Component {
   }
 }
 
-ConvexHullStage.propTypes = {
+InteractiveStage.propTypes = {
   addPoint: PropTypes.func,
 };
 
-ConvexHullStage.defaultProps = {
+InteractiveStage.defaultProps = {
   addPoint: () => null,
 };
 
-export default ConvexHullStage;
+export default InteractiveStage;

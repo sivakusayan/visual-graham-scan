@@ -14,7 +14,7 @@ export const startScan = () => ({
 
 /**
  * Generates an action to stop the Graham Scan.
- * 
+ *
  * @returns {{ type: STOP_SCAN }}
  */
 export const stopScan = () => ({

@@ -1,9 +1,9 @@
 import React from 'react';
 
-import ConvexHullStageContainer from '../containers/ConvexHullStageContainer';
+import InteractiveStageContainer from '../containers/InteractiveStageContainer';
 
 const GrahamScanVisualizer = () => (
-  <ConvexHullStageContainer />
+  <InteractiveStageContainer />
 );
 
 export default GrahamScanVisualizer;
