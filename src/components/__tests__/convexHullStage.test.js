@@ -10,6 +10,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import ConvexHullStage from '../ConvexHullStage';
+import ResponsiveStage from '../ResponsiveStage';
 
 
 describe('Convex Hull Stage Component', () => {
@@ -32,17 +33,24 @@ describe('Convex Hull Stage Component', () => {
       },
     };
 
-    wrapper.simulate('click', event);
-    wrapper.simulate('click', event);
+    wrapper.find('.canvas').simulate('click', event);
+    wrapper.find('.canvas').simulate('click', event);
 
     expect(addPointSpy).toHaveBeenCalledTimes(2);
   });
-  it('should dispense an action to clear all points when the clear all button is clicked', () => {
+  it('should dispense an action to clear all shapes from view when the clear-all button is clicked', () => {
     const clearPointsSpy = jest.fn();
-    const wrapper = shallow(<ConvexHullStage clearPoints={clearPointsSpy} />);
+    const clearLinesSpy = jest.fn();
+    const wrapper = shallow(
+      <ConvexHullStage
+        clearPoints={clearPointsSpy}
+        clearLines={clearLinesSpy}
+      />,
+    );
 
     wrapper.find('.clear-all').simulate('click');
 
     expect(clearPointsSpy).toHaveBeenCalled();
+    expect(clearLinesSpy).toHaveBeenCalled();
   });
 });

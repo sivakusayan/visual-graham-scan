@@ -1,4 +1,4 @@
-const TOLERANCE = require('../../constants/TOLERANCE');
+const TOLERANCE = require('../constants/TOLERANCE');
 
 /**
  * Calculates the orientation when traversing

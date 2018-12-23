@@ -28,14 +28,30 @@ class ConvexHullStage extends Component {
     addPoint(point);
   }
 
+  clearAllShapes = () => {
+    const { clearPoints, clearLines } = this.props;
+    clearPoints();
+    clearLines();
+  }
+
   render() {
     return (
-      <ResponsiveStage
-        onClick={this.onClick}
-      >
-        <PointLayerContainer />
-        <LineLayerContainer />
-      </ResponsiveStage>
+      <div>
+        <ResponsiveStage
+          className="canvas"
+          onClick={this.onClick}
+        >
+          <PointLayerContainer />
+          <LineLayerContainer />
+        </ResponsiveStage>
+        <button
+          type="button"
+          className="clear-all"
+          onClick={this.clearAllShapes}
+        >
+          Clear All
+        </button>
+      </div>
     );
   }
 }
