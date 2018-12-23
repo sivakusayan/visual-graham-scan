@@ -3,12 +3,14 @@ import {
   sortPoints,
   addNextPoint,
   fixRightTurn,
+  done,
 } from '../scanStepActions';
 import {
   GET_START_POINT,
   SORT_POINTS,
   ADD_NEXT_POINT,
   FIX_RIGHT_TURN,
+  DONE,
 } from '../../actionTypes/scanStepActionTypes';
 
 describe('ScanStep Action Generators', () => {
@@ -39,5 +41,13 @@ describe('ScanStep Action Generators', () => {
     };
 
     expect(fixRightTurn()).toEqual(action);
+  });
+
+  it(`should create an action to set algorithm step to ${DONE}`, () => {
+    const action = {
+      type: DONE,
+    };
+
+    expect(done()).toEqual(action);
   });
 });

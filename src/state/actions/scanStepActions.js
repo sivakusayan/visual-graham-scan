@@ -3,6 +3,7 @@ import {
   SORT_POINTS,
   ADD_NEXT_POINT,
   FIX_RIGHT_TURN,
+  DONE,
 } from '../actionTypes/scanStepActionTypes';
 
 export const getStartPoint = () => ({
@@ -19,4 +20,8 @@ export const addNextPoint = () => ({
 
 export const fixRightTurn = () => ({
   type: FIX_RIGHT_TURN,
+});
+
+export const done = () => ({
+  type: DONE,
 });
