@@ -57,7 +57,11 @@ class ConvexHullStage extends Component {
 }
 
 ConvexHullStage.propTypes = {
-  addPoint: PropTypes.func.isRequired,
+  addPoint: PropTypes.func,
+};
+
+ConvexHullStage.defaultProps = {
+  addPoint: () => null,
 };
 
 export default ConvexHullStage;

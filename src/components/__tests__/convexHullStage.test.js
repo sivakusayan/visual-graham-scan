@@ -10,8 +10,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import ConvexHullStage from '../ConvexHullStage';
-import ResponsiveStage from '../ResponsiveStage';
-
 
 describe('Convex Hull Stage Component', () => {
   it('should render', () => {

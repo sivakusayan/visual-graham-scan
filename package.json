@@ -5,10 +5,10 @@
   "author": "Sayan Sivakumaran",
   "license": "MIT",
   "scripts": {
-    "test": "jest",
-    "test-algorithm": "jest algorithm",
-    "test-ui": "jest src/components",
-    "test-redux": "jest src/state",
+    "test": "jest --watch",
+    "test-algorithm": "jest algorithm --watch",
+    "test-ui": "jest src/components --watch",
+    "test-redux": "jest src/state --watch",
     "serve": "webpack-dev-server",
     "build": "webpack"
   },
