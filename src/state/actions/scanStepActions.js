@@ -6,17 +6,17 @@ import {
 } from '../actionTypes/scanStepActionTypes';
 
 export const getStartPoint = () => ({
-
+  type: GET_START_POINT,
 });
 
 export const sortPoints = () => ({
-
+  type: SORT_POINTS,
 });
 
 export const addNextPoint = () => ({
-
+  type: ADD_NEXT_POINT,
 });
 
 export const fixRightTurn = () => ({
-
+  type: FIX_RIGHT_TURN,
 });
