@@ -36,7 +36,7 @@ class InteractiveStage extends Component {
 
   render() {
     return (
-      <div>
+      <main>
         <ResponsiveStage
           className="canvas"
           onClick={this.onClick}
@@ -44,14 +44,10 @@ class InteractiveStage extends Component {
           <PointLayerContainer />
           <LineLayerContainer />
         </ResponsiveStage>
-        <button
-          type="button"
-          className="clear-all"
-          onClick={this.clearAllShapes}
-        >
+        <button type="button" className="clear-all" onClick={this.clearAllShapes}>
           Clear All
         </button>
-      </div>
+      </main>
     );
   }
 }
