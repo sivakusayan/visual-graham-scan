@@ -54,10 +54,14 @@ class InteractiveStage extends Component {
 
 InteractiveStage.propTypes = {
   addPoint: PropTypes.func,
+  clearPoints: PropTypes.func,
+  clearLines: PropTypes.func,
 };
 
 InteractiveStage.defaultProps = {
   addPoint: () => null,
+  clearPoints: () => null,
+  clearLines: () => null,
 };
 
 export default InteractiveStage;
