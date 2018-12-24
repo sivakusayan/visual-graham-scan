@@ -5,8 +5,8 @@
  * The x-coordinate of the point
  * @property {Number} y
  * The y-coordinate of the point
- * @property {Number} id
- * The id of the point
+ * @property {Number} name
+ * The name of the point
  * @property {'ACCEPTED' | 'REJECTED' | 'NULL'} status
  * Determines whether the point was rejected or accepted by the algorithm.
  * Point is accepted if it is on the convex hull, and rejected if it was

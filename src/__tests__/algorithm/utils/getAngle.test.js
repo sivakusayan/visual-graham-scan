@@ -1,4 +1,4 @@
-const getAngle = require('../getAngle');
+const getAngle = require('../../../algorithm/utils/getAngle');
 
 describe('getAngle', () => {
   it('should return the angle', () => {

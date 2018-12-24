@@ -1,15 +1,15 @@
 import {
-  START_SCAN,
-  STOP_SCAN,
+  ACTIVATE_SCAN,
+  DEACTIVATE_SCAN,
 } from '../actionTypes/scanIsActiveActionTypes';
 
 const initialState = false;
 
 const scanIsActiveReducer = (state = initialState, action) => {
   switch (action.type) {
-    case (START_SCAN):
+    case (ACTIVATE_SCAN):
       return true;
-    case (STOP_SCAN):
+    case (DEACTIVATE_SCAN):
       return false;
     default:
       return state;

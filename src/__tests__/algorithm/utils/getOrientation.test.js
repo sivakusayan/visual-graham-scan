@@ -1,4 +1,4 @@
-const getOrientation = require('../getOrientation');
+const getOrientation = require('../../../algorithm/utils/getOrientation');
 
 describe('getOrientation', () => {
   it('should return negative orientation', () => {

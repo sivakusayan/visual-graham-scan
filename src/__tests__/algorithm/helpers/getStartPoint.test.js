@@ -1,4 +1,4 @@
-const getStartPoint = require('../getStartPoint');
+const getStartPoint = require('../../../algorithm/helpers/getStartPoint');
 
 describe('getStartPoint', () => {
   it('should return the bottom-most point.', () => {

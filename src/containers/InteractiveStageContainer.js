@@ -6,11 +6,12 @@ import { clearLines } from '../state/actions/lineActions';
 import InteractiveStage from '../components/InteractiveStage';
 import connectWithStore from '../state/store/connectWithStore';
 
-export default connectWithStore(
-  null,
-  {
-    addPoint,
-    clearPoints,
-    clearLines,
-  },
-)(InteractiveStage);
+const mapStateToProps = state => ({
+  scanIsActive: state.scanIsActive,
+});
+
+export default connectWithStore(mapStateToProps, {
+  addPoint,
+  clearPoints,
+  clearLines,
+})(InteractiveStage);

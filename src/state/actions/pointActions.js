@@ -22,27 +22,27 @@ export const addPoint = point => ({
 /**
  * Creates an action to find accept a point by ID.
  *
- * @param {Number} id
+ * @param {Number} name
  *  The ID of the point to accept
  *
  * @returns {{ type: ACCEPT_POINT, name: Number}}
  */
-export const acceptPoint = id => ({
+export const acceptPoint = name => ({
   type: ACCEPT_POINT,
-  id,
+  name,
 });
 
 /**
  * Creates an action to reject a point by ID.
  *
- * @param {Number} id
+ * @param {Number} name
  *  The ID of the point to reject
  *
  * @returns {{ type: REJECT_POINT, name: Number}}
  */
-export const rejectPoint = id => ({
+export const rejectPoint = name => ({
   type: REJECT_POINT,
-  id,
+  name,
 });
 
 /**

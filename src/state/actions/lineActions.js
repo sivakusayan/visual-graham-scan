@@ -7,27 +7,30 @@ import {
 /**
  * Creates an action to add a line
  *
- * @param {[Point]} points
- *  The points that describe the line to add
+ * @param startPoint
+ *  The point on the canvas the line starts from
+ * @param endPoint
+ *  The point on the canvas the line ends at
  *
- * @returns {{ type: ADD_LINE, points: [Point] }}
+ * @return {type: ADD_LINE, startPoint: Point, endPoint: Point}
  */
-export const addLine = ([points]) => ({
+export const addLine = (startPoint, endPoint) => ({
   type: ADD_LINE,
-  points,
+  startPoint,
+  endPoint,
 });
 
 /**
  * Creates an action to remove a line by ID
  *
- * @param {Number} id
+ * @param {Number} name
  *  The ID of the line to remove
  *
  * @returns {{ type: REMOVE_LINE, name: Number }}
  */
-export const removeLine = id => ({
+export const removeLine = name => ({
   type: REMOVE_LINE,
-  id,
+  name,
 });
 
 /**

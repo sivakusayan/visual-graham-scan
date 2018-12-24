@@ -5,6 +5,6 @@
  * The x-coordinate of the point
  * @property {Point} endPoint
  * The y-coordinate of the point
- * @property {Number} id
- * The id of the point
+ * @property {Number} name
+ * The name of the point
  */

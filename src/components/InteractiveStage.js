@@ -35,6 +35,7 @@ class InteractiveStage extends Component {
   }
 
   render() {
+    const { scanIsActive } = this.props;
     return (
       <main>
         <ResponsiveStage
@@ -44,9 +45,11 @@ class InteractiveStage extends Component {
           <PointLayerContainer />
           <LineLayerContainer />
         </ResponsiveStage>
-        <button type="button" className="clear-all" onClick={this.clearAllShapes}>
-          Clear All
-        </button>
+        {!scanIsActive && (
+          <button type="button" className="clear-all" onClick={this.clearAllShapes}>
+            Clear All
+          </button>
+        )}
       </main>
     );
   }

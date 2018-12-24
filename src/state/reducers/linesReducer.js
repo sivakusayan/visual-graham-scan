@@ -12,11 +12,12 @@ const linesReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_LINE:
       return state.concat({
-        points: [...action.points[0], ...action.points[1]],
+        startPoint: action.startPoint,
+        endPoint: action.endPoint,
         name: uuid(),
       });
     case REMOVE_LINE:
-      return state.filter(line => line.id !== action.id);
+      return state.filter(line => line.name !== action.name);
     case CLEAR_LINES:
       return [];
     default:

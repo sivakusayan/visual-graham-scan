@@ -1,4 +1,4 @@
-const setupTestsPath = '<rootDir>/src/components/__tests__/setupTests.js';
+const setupTestsPath = '<rootDir>/src/__tests__/setupTests.js';
 
 module.exports = {
   setupTestFrameworkScriptFile: setupTestsPath,

@@ -10,7 +10,7 @@ const PointLayer = ({ points = [] }) => (
       <Circle
         x={point.x}
         y={point.y}
-        id={point.id}
+        name={point.name}
         radius={POINT_CONFIG.RADIUS}
         fill={POINT_CONFIG.GET_FILL(point.status)}
         key={point.name}

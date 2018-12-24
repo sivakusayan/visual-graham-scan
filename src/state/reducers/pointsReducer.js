@@ -19,7 +19,7 @@ const pointsReducer = (state = initialState, action) => {
       });
     case (ACCEPT_POINT):
       return state.map((point) => {
-        if (point.id === action.id) {
+        if (point.name === action.name) {
           return {
             ...point,
             status: 'ACCEPTED',
@@ -29,7 +29,7 @@ const pointsReducer = (state = initialState, action) => {
       });
     case (REJECT_POINT):
       return state.map((point) => {
-        if (point.id === action.id) {
+        if (point.name === action.name) {
           return {
             ...point,
             status: 'REJECTED',

@@ -1,4 +1,4 @@
-const preparePointSet = require('../preparePointSet');
+const preparePointSet = require('../../../algorithm/helpers/preparePointSet');
 
 describe('preparePointSet', () => {
   it('should sort points by angle with starting point in descending order', () => {
