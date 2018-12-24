@@ -32,15 +32,18 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   acceptPoint: name => dispatch(acceptPoint(name)),
-  rejectPoint
-})
+  rejectPoint: name => dispatch(rejectPoint(name)),
+  addLine: (startPoint, endPoint) => dispatch(addLine(startPoint, endPoint)),
+  removeLine: name => dispatch(removeLine(name)),
+  clearLines: () => dispatch(clearLines()),
+  activateScan: () => dispatch(activateScan()),
+  setStep: {
+    getStartPoint: () => dispatch(setStep.getStartPoint()),
+    sortPoints: () => dispatch(setStep.sortPoints()),
+    addNextPoint: () => dispatch(setStep.addNextPoint()),
+    fixRightTurn: () => dispatch(setStep.fixRightTurn()),
+    done: () => dispatch(setStep.done()),
+  },
+});
 
-export default connectWithStore(mapStateToProps, {
-  acceptPoint,
-  rejectPoint,
-  addLine,
-  removeLine,
-  clearLines,
-  activateScan,
-  ...setStep,
-})(GrahamScanDriverContainer);
+export default connectWithStore(mapStateToProps, mapDispatchToProps)(GrahamScanDriverContainer);
