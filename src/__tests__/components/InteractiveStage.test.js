@@ -47,6 +47,26 @@ describe('Convex Hull Stage Component', () => {
 
     expect(addPointSpy).toHaveBeenCalledTimes(2);
   });
+  it('should not respond to users clicks if scan is active', () => {
+    const addPointSpy = jest.fn();
+    const wrapper = shallow(<InteractiveStage scanIsActive addPoint={addPointSpy} />);
+    const event = {
+      target: {
+        getPointerPosition: () => ({
+          x: 10,
+          y: 20,
+        }),
+        attrs: {
+          scaleX: 2,
+        },
+      },
+    };
+
+    wrapper.find(ResponsiveStage).simulate('click', event);
+    wrapper.find(ResponsiveStage).simulate('click', event);
+
+    expect(addPointSpy).toHaveBeenCalledTimes(0);
+  });
   it('should dispense an action to clear all shapes from view when the clear-all button is clicked', () => {
     const clearPointsSpy = jest.fn();
     const clearLinesSpy = jest.fn();
@@ -61,5 +81,9 @@ describe('Convex Hull Stage Component', () => {
 
     expect(clearPointsSpy).toHaveBeenCalled();
     expect(clearLinesSpy).toHaveBeenCalled();
+  });
+  it('should not render the clear-all button while scan is active', () => {
+    const wrapper = shallow(<InteractiveStage scanIsActive />);
+    expect(wrapper.find('.clear-all').exists()).toBe(false);
   });
 });

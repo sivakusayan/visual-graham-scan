@@ -40,7 +40,7 @@ class InteractiveStage extends Component {
       <main>
         <ResponsiveStage
           className="canvas"
-          onClick={this.onClick}
+          onClick={!scanIsActive ? this.onClick : null}
         >
           <PointLayerContainer />
           <LineLayerContainer />
@@ -59,12 +59,14 @@ InteractiveStage.propTypes = {
   addPoint: PropTypes.func,
   clearPoints: PropTypes.func,
   clearLines: PropTypes.func,
+  scanIsActive: PropTypes.bool,
 };
 
 InteractiveStage.defaultProps = {
   addPoint: () => null,
   clearPoints: () => null,
   clearLines: () => null,
+  scanIsActive: false,
 };
 
 export default InteractiveStage;
