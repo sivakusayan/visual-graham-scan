@@ -16,9 +16,9 @@ import { Stage } from 'react-konva';
 class ResponsiveStage extends Component {
   // These values are only used as a reference to
   // calculate new sizes.
-  defaultWidth = 1000;
+  defaultWidth = window.innerWidth;
 
-  defaultHeight = window.innerHeight;
+  defaultHeight = window.innerHeight * 0.8;
 
   state = {
     stageWidth: this.defaultWidth,

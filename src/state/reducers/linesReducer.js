@@ -1,3 +1,5 @@
+import uuid from 'uuid';
+
 import {
   ADD_LINE,
   REMOVE_LINE,
@@ -7,9 +9,12 @@ import {
 const initialState = [];
 
 const linesReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case ADD_LINE:
-      return state.concat(action.line);
+      return state.concat({
+        points: [...action.points[0], ...action.points[1]],
+        name: uuid(),
+      });
     case REMOVE_LINE:
       return state.filter(line => line.id !== action.id);
     case CLEAR_LINES:

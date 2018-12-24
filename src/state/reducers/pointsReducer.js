@@ -1,15 +1,22 @@
+import uuid from 'uuid';
+
 import {
   ADD_POINT,
   ACCEPT_POINT,
   REJECT_POINT,
   CLEAR_POINTS,
 } from '../actionTypes/pointActionTypes';
+
 const initialState = [];
 
 const pointsReducer = (state = initialState, action) => {
   switch (action.type) {
     case (ADD_POINT):
-      return state.concat(action.point);
+      return state.concat({
+        ...action.point,
+        name: uuid(),
+        status: 'NULL',
+      });
     case (ACCEPT_POINT):
       return state.map((point) => {
         if (point.id === action.id) {

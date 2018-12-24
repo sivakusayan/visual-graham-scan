@@ -7,14 +7,14 @@ import {
 /**
  * Creates an action to add a line
  *
- * @param {Line} line
- *  The line to add
+ * @param {[Point]} points
+ *  The points that describe the line to add
  *
- * @returns {{ type: ADD_LINE, line: Line }}
+ * @returns {{ type: ADD_LINE, points: [Point] }}
  */
-export const addLine = line => ({
+export const addLine = ([points]) => ({
   type: ADD_LINE,
-  line,
+  points,
 });
 
 /**
