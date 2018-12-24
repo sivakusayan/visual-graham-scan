@@ -1,6 +1,6 @@
 const getLength = require('./getLength');
 const getDotProduct = require('./getDotProduct');
-const TOLERANCE = require('../constants/TOLERANCE');
+const TOLERANCE = require('../__constants__/TOLERANCE');
 
 /**
  * Gets the angle measure determined by three points.

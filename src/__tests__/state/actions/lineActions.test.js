@@ -11,24 +11,22 @@ import {
 
 describe('Line Action Generators', () => {
   it('should create an action to add a line', () => {
-    const line = {
-      startPoint: {
-        x: 0,
-        y: 0,
-        name: 98231,
-      },
-      endPoint: {
-        x: 1,
-        y: 1,
-        name: 58385,
-      },
-      name: 91490,
+    const startPoint = {
+      x: 0,
+      y: 0,
+      name: 98231,
+    };
+    const endPoint = {
+      x: 1,
+      y: 1,
+      name: 58385,
     };
     const expectedAction = {
       type: ADD_LINE,
-      line,
+      startPoint,
+      endPoint,
     };
-    expect(addLine(line)).toEqual(expectedAction);
+    expect(addLine(startPoint, endPoint)).toEqual(expectedAction);
   });
   it('should create an action to remove a line by ID', () => {
     const name = 91490;

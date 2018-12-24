@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Layer, Circle } from 'react-konva';
-import POINT_CONFIG from '../../constants/POINT_CONFIG';
+import POINT_CONFIG from '../../__constants__/POINT_CONFIG';
 import Point from '../../propTypes/Point';
 
 const PointLayer = ({ points = [] }) => (

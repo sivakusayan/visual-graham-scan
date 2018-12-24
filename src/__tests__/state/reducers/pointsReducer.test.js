@@ -5,47 +5,50 @@ import {
   REJECT_POINT,
   CLEAR_POINTS,
 } from '../../../state/actionTypes/pointActionTypes';
+import UUID_MOCK_ID from '../../__constants__/UUID_MOCK_ID';
 
 describe('Points Reducer', () => {
-  let pointID;
-  let point;
+  let testPoint;
+  let expectedPoint;
 
   beforeEach(() => {
-    pointID = 914901481;
-    point = {
+    testPoint = {
       x: 10,
       y: 20,
-      name: pointID,
+    };
+    expectedPoint = {
+      ...testPoint,
+      name: UUID_MOCK_ID,
       status: 'NULL',
     };
   });
   it('should handle ADD_POINT', () => {
     const action = {
       type: ADD_POINT,
-      point,
+      point: testPoint,
     };
     const initialState = [];
-    const finalState = [point];
+    const finalState = [expectedPoint];
 
     expect(reducer(initialState, action)).toEqual(finalState);
   });
   it('should handle ACCEPT_POINT', () => {
     const action = {
       type: ACCEPT_POINT,
-      name: pointID,
+      name: UUID_MOCK_ID,
     };
-    const initialState = [point];
-    const finalState = [{ ...point, status: 'ACCEPTED' }];
+    const initialState = [expectedPoint];
+    const finalState = [{ ...expectedPoint, status: 'ACCEPTED' }];
 
     expect(reducer(initialState, action)).toEqual(finalState);
   });
   it('should handle REJECT_POINT', () => {
     const action = {
       type: REJECT_POINT,
-      name: pointID,
+      name: UUID_MOCK_ID,
     };
-    const initialState = [point];
-    const finalState = [{ ...point, status: 'REJECTED' }];
+    const initialState = [expectedPoint];
+    const finalState = [{ ...expectedPoint, status: 'REJECTED' }];
 
     expect(reducer(initialState, action)).toEqual(finalState);
   });
@@ -53,7 +56,7 @@ describe('Points Reducer', () => {
     const action = {
       type: CLEAR_POINTS,
     };
-    const initialState = [point];
+    const initialState = [expectedPoint];
     const finalState = [];
 
     expect(reducer(initialState, action)).toEqual(finalState);

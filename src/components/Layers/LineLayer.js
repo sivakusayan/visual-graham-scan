@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Layer, Line } from 'react-konva';
-import LINE_CONFIG from '../../constants/LINE_CONFIG';
+import LINE_CONFIG from '../../__constants__/LINE_CONFIG';
 import Point from '../../propTypes/Point';
 
 const LineLayer = ({ lines = [] }) => (

@@ -6,9 +6,9 @@
   "license": "MIT",
   "scripts": {
     "test": "jest --watch",
-    "test-algorithm": "jest algorithm --watch",
-    "test-ui": "jest src/components --watch",
-    "test-redux": "jest src/state --watch",
+    "test-algorithm": "jest src/__tests__/algorithm --watch",
+    "test-ui": "jest src/__tests__/components --watch",
+    "test-state": "jest src/__tests__/state --watch",
     "serve": "webpack-dev-server",
     "build": "webpack"
   },

@@ -4,6 +4,7 @@ import {
   REMOVE_LINE,
   CLEAR_LINES,
 } from '../../../state/actionTypes/lineActionTypes';
+import UUID_MOCK_ID from '../../__constants__/UUID_MOCK_ID';
 
 describe('Points Reducer', () => {
   let startPoint;
@@ -24,7 +25,7 @@ describe('Points Reducer', () => {
       name: 109849381,
       status: 'NULL',
     };
-    lineName = MOCK_ID;
+    lineName = UUID_MOCK_ID;
     line = {
       startPoint,
       endPoint,
@@ -34,7 +35,8 @@ describe('Points Reducer', () => {
   it('should handle ADD_LINE', () => {
     const action = {
       type: ADD_LINE,
-      points: [startPoint, endPoint],
+      startPoint,
+      endPoint,
     };
     const initialState = [];
     const finalState = [line];

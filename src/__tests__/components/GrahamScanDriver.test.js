@@ -8,8 +8,8 @@ import {
   ADD_NEXT_POINT,
   FIX_RIGHT_TURN,
   DONE,
-} from '../../constants/SCAN_STEPS';
-import SCAN_STEP_DESCRIPTIONS from '../../constants/SCAN_STEP_DESCRIPTIONS';
+} from '../../__constants__/SCAN_STEPS';
+import SCAN_STEP_DESCRIPTIONS from '../../__constants__/SCAN_STEP_DESCRIPTIONS';
 
 describe('GrahamScanDriver Component', () => {
   it('should render a start-scan button when scan is inactive', () => {

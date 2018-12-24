@@ -1,4 +1,4 @@
-import * as ALGORITHM_STEPS from '../../constants/SCAN_STEPS';
+import * as ALGORITHM_STEPS from '../../__constants__/SCAN_STEPS';
 
 export const { 
   GET_START_POINT,
