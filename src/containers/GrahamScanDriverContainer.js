@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -17,27 +17,34 @@ import GrahamScanDriver from '../components/GrahamScanDriver';
 import Point from '../propTypes/Point';
 import Line from '../propTypes/Line';
 
-const GrahamScanDriverContainer = (props) => {
-  const startScan = () => {
+export class GrahamScanDriverContainer extends Component {
+  componentDidUpdate() {
+
+  }
+
+  startScan = () => {
     props.activateScan();
     props.setStep.getStartPoint();
   };
-  const { isActive, step } = props;
-  return (
-    <GrahamScanDriver
-      startScan={startScan}
-      isActive={isActive}
-      scanStep={step}
-    />
-  );
-};
+
+
+  render() {
+    return (
+      <GrahamScanDriver
+        startScan={this.startScan}
+        isActive={isActive}
+        scanStep={step}
+      />
+    );
+  }
+}
 
 const mapStateToProps = state => ({
   points: state.points,
   lines: state.lines,
   isActive: state.scanIsActive,
   step: state.scanStep,
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   acceptPoint: name => dispatch(acceptPoint(name)),
@@ -66,19 +73,19 @@ GrahamScanDriverContainer.propTypes = {
     FIX_RIGHT_TURN,
     DONE,
   ]),
-  acceptPoint: PropTypes.func.isRequired,
-  rejectPoint: PropTypes.func.isRequired,
-  addLine: PropTypes.func.isRequired,
-  removeLine: PropTypes.func.isRequired,
-  clearLines: PropTypes.func.isRequired,
-  activateScan: PropTypes.func.isRequired,
+  acceptPoint: PropTypes.func,
+  rejectPoint: PropTypes.func,
+  addLine: PropTypes.func,
+  removeLine: PropTypes.func,
+  clearLines: PropTypes.func,
+  activateScan: PropTypes.func,
   setStep: PropTypes.shape({
-    getStartPoint: PropTypes.func.isRequired,
-    sortPoints: PropTypes.func.isRequired,
-    addNextPoint: PropTypes.func.isRequired,
-    fixRightTurn: PropTypes.func.isRequired,
-    done: PropTypes.func.isRequired,
-  }).isRequired,
+    getStartPoint: PropTypes.func,
+    sortPoints: PropTypes.func,
+    addNextPoint: PropTypes.func,
+    fixRightTurn: PropTypes.func,
+    done: PropTypes.func,
+  }),
 };
 
 GrahamScanDriverContainer.defaultProps = {
@@ -86,6 +93,19 @@ GrahamScanDriverContainer.defaultProps = {
   lines: [],
   isActive: false,
   step: DONE,
+  acceptPoint: () => null,
+  rejectPoint: () => null,
+  addLine: () => null,
+  removeLine: () => null,
+  clearLines: () => null,
+  activateScan: () => null,
+  setStep: PropTypes.shape({
+    getStartPoint: () => null,
+    sortPoints: () => null,
+    addNextPoint: () => null,
+    fixRightTurn: () => null,
+    done: () => null,
+  }),
 };
 
 export default connectWithStore(mapStateToProps, mapDispatchToProps)(GrahamScanDriverContainer);
