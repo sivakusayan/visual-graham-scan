@@ -63,7 +63,7 @@ GrahamScanDriverContainer.propTypes = {
   points: PropTypes.arrayOf(Point),
   lines: PropTypes.arrayOf(Line),
   isActive: PropTypes.bool,
-  step: PropTypes.enum([
+  step: PropTypes.oneOf([
     GET_START_POINT,
     SORT_POINTS,
     ADD_NEXT_POINT,

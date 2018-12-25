@@ -9,6 +9,7 @@
     "test-algorithm": "jest src/__tests__/algorithm --watch",
     "test-ui": "jest src/__tests__/components --watch",
     "test-state": "jest src/__tests__/state --watch",
+    "test-containers": "jest src/__tests__/containers",
     "serve": "webpack-dev-server",
     "build": "webpack"
   },
