@@ -4,6 +4,7 @@ import {
   REMOVE_LINE,
   CLEAR_LINES,
 } from '../../../state/actionTypes/lineActionTypes';
+import { NULL } from '../../../__constants__/POINT_STATUSES';
 import UUID_MOCK_ID from '../../__constants__/UUID_MOCK_ID';
 
 describe('Points Reducer', () => {
@@ -17,13 +18,13 @@ describe('Points Reducer', () => {
       x: 10,
       y: 20,
       name: 914901481,
-      status: 'NULL',
+      status: NULL,
     };
     endPoint = {
       x: 20,
       y: 10,
       name: 109849381,
-      status: 'NULL',
+      status: NULL,
     };
     lineName = UUID_MOCK_ID;
     line = {

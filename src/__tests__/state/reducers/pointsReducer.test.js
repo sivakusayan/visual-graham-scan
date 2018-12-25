@@ -5,6 +5,7 @@ import {
   REJECT_POINT,
   CLEAR_POINTS,
 } from '../../../state/actionTypes/pointActionTypes';
+import { NULL, ACCEPTED, REJECTED } from '../../../__constants__/POINT_STATUSES';
 import UUID_MOCK_ID from '../../__constants__/UUID_MOCK_ID';
 
 describe('Points Reducer', () => {
@@ -19,7 +20,7 @@ describe('Points Reducer', () => {
     expectedPoint = {
       ...testPoint,
       name: UUID_MOCK_ID,
-      status: 'NULL',
+      status: NULL,
     };
   });
   it('should handle ADD_POINT', () => {
@@ -38,7 +39,7 @@ describe('Points Reducer', () => {
       name: UUID_MOCK_ID,
     };
     const initialState = [expectedPoint];
-    const finalState = [{ ...expectedPoint, status: 'ACCEPTED' }];
+    const finalState = [{ ...expectedPoint, status: ACCEPTED }];
 
     expect(reducer(initialState, action)).toEqual(finalState);
   });
@@ -48,7 +49,7 @@ describe('Points Reducer', () => {
       name: UUID_MOCK_ID,
     };
     const initialState = [expectedPoint];
-    const finalState = [{ ...expectedPoint, status: 'REJECTED' }];
+    const finalState = [{ ...expectedPoint, status: REJECTED }];
 
     expect(reducer(initialState, action)).toEqual(finalState);
   });

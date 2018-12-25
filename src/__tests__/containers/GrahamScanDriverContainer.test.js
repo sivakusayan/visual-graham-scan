@@ -13,12 +13,21 @@ import {
   FIX_RIGHT_TURN,
   DONE,
 } from '../../__constants__/SCAN_STEPS';
+import { NULL, ACCEPTED } from '../../__constants__/POINT_STATUSES';
 import { GrahamScanDriverContainer } from '../../containers/GrahamScanDriverContainer';
 
 describe('Scan Driver Logic', () => {
   it('should initialize currentPoint to 0', () => {
     const wrapper = shallow(<GrahamScanDriverContainer />);
     expect(wrapper.state('currentPoint')).toBe(0);
+  });
+  it('should initialize the startPoint to an empty object', () => {
+    const wrapper = shallow(<GrahamScanDriverContainer />);
+    expect(wrapper.state('startPoint')).toEqual({});
+  });
+  it('should initialize the convexHull to an empty array', () => {
+    const wrapper = shallow(<GrahamScanDriverContainer />);
+    expect(wrapper.state('convexHull')).toEqual([]);
   });
   it('should dispatch an action to clear lines when getStartPoint is called', () => {
     const clearLinesSpy = jest.fn();
@@ -100,10 +109,10 @@ describe('Scan Driver Logic', () => {
     it(`should call addNextPoint if current step is ${ADD_NEXT_POINT} and there is no right turn`, () => {
       const addNextPointSpy = jest.spyOn(GrahamScanDriverContainer.prototype, 'addNextPoint');
       const points = [
-        { x: 0, y: 0, status: 'ACCEPTED' },
-        { x: 1, y: 0, status: 'ACCEPTED' },
-        { x: 1, y: 1, status: 'ACCEPTED' },
-        { x: 1, y: 2, status: 'NULL' },
+        { x: 0, y: 0, status: ACCEPTED },
+        { x: 1, y: 0, status: ACCEPTED },
+        { x: 1, y: 1, status: ACCEPTED },
+        { x: 1, y: 2, status: NULL },
       ];
       const wrapper = shallow(<GrahamScanDriverContainer points={points} step={ADD_NEXT_POINT} />);
       wrapper.instance().nextStep();
@@ -113,10 +122,10 @@ describe('Scan Driver Logic', () => {
     it(`should call fixRightTurn if current step is ${ADD_NEXT_POINT} and there is a right turn`, () => {
       const fixRightTurnSpy = jest.spyOn(GrahamScanDriverContainer.prototype, 'fixRightTurn');
       const points = [
-        { x: 0, y: 0, status: 'ACCEPTED' },
-        { x: 1, y: 0, status: 'ACCEPTED' },
-        { x: 1, y: -1, status: 'ACCEPTED' },
-        { x: 1, y: 2, status: 'NULL' },
+        { x: 0, y: 0, status: ACCEPTED },
+        { x: 1, y: 0, status: ACCEPTED },
+        { x: 1, y: -1, status: ACCEPTED },
+        { x: 1, y: 2, status: NULL },
       ];
       const wrapper = shallow(<GrahamScanDriverContainer points={points} step={ADD_NEXT_POINT} />);
       wrapper.instance().nextStep();

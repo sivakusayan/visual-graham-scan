@@ -6,6 +6,7 @@ import {
   REJECT_POINT,
   CLEAR_POINTS,
 } from '../actionTypes/pointActionTypes';
+import { NULL, ACCEPTED, REJECTED } from '../../__constants__/POINT_STATUSES';
 
 const initialState = [];
 
@@ -15,14 +16,14 @@ const pointsReducer = (state = initialState, action) => {
       return state.concat({
         ...action.point,
         name: uuid(),
-        status: 'NULL',
+        status: NULL,
       });
     case (ACCEPT_POINT):
       return state.map((point) => {
         if (point.name === action.name) {
           return {
             ...point,
-            status: 'ACCEPTED',
+            status: ACCEPTED,
           };
         }
         return point;
@@ -32,7 +33,7 @@ const pointsReducer = (state = initialState, action) => {
         if (point.name === action.name) {
           return {
             ...point,
-            status: 'REJECTED',
+            status: REJECTED,
           };
         }
         return point;

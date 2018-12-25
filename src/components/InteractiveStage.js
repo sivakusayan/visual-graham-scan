@@ -21,8 +21,6 @@ class InteractiveStage extends Component {
     const point = {
       x: rescaleCoordinate(stage, pointerPosition.x),
       y: rescaleCoordinate(stage, pointerPosition.y),
-      name: uuid(),
-      status: 'NULL',
     };
 
     addPoint(point);
