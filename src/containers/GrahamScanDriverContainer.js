@@ -18,13 +18,10 @@ import Point from '../propTypes/Point';
 import Line from '../propTypes/Line';
 
 export class GrahamScanDriverContainer extends Component {
-  componentDidUpdate() {
-
-  }
 
   startScan = () => {
-    props.activateScan();
-    props.setStep.getStartPoint();
+    this.props.activateScan();
+    this.props.setStep.getStartPoint();
   };
 
 
@@ -32,8 +29,8 @@ export class GrahamScanDriverContainer extends Component {
     return (
       <GrahamScanDriver
         startScan={this.startScan}
-        isActive={isActive}
-        scanStep={step}
+        isActive={this.props.isActive}
+        scanStep={this.props.step}
       />
     );
   }
@@ -44,7 +41,7 @@ const mapStateToProps = state => ({
   lines: state.lines,
   isActive: state.scanIsActive,
   step: state.scanStep,
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   acceptPoint: name => dispatch(acceptPoint(name)),
