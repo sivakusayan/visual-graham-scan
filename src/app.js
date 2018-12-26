@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import InteractiveStageContainer from './containers/InteractiveStageContainer';
-import GrahamScanDriverContainer from './containers/GrahamScanDriverContainer';
+import ConnectedGrahamScanDriverContainer from './containers/ConnectedGrahamScanDriverContainer';
 
 const App = () => (
   <>
     <InteractiveStageContainer />
-    <GrahamScanDriverContainer />
+    <ConnectedGrahamScanDriverContainer />
   </>
 );
 

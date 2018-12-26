@@ -14,7 +14,7 @@ import {
   DONE,
 } from '../../__constants__/SCAN_STEPS';
 import { NULL, ACCEPTED } from '../../__constants__/POINT_STATUSES';
-import { GrahamScanDriverContainer } from '../../containers/GrahamScanDriverContainer';
+import GrahamScanDriverContainer from '../../containers/GrahamScanDriverContainer';
 
 describe('Scan Driver Logic', () => {
   it('should initialize currentPoint to 0', () => {
@@ -24,10 +24,6 @@ describe('Scan Driver Logic', () => {
   it('should initialize the startPoint to an empty object', () => {
     const wrapper = shallow(<GrahamScanDriverContainer />);
     expect(wrapper.state('startPoint')).toEqual({});
-  });
-  it('should initialize the convexHull to an empty array', () => {
-    const wrapper = shallow(<GrahamScanDriverContainer />);
-    expect(wrapper.state('convexHull')).toEqual([]);
   });
   it('should dispatch an action to clear lines when getStartPoint is called', () => {
     const clearLinesSpy = jest.fn();
