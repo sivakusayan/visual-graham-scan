@@ -6,7 +6,7 @@
 import { NULL, ACCEPTED, REJECTED } from './POINT_STATUSES';
 
 export default {
-  RADIUS: 20,
+  RADIUS: 10,
   GET_FILL: (status) => {
     if (status === ACCEPTED) return 'green';
     if (status === REJECTED) return 'red';

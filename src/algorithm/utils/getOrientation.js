@@ -11,8 +11,8 @@ const TOLERANCE = require('../__constants__/TOLERANCE');
  * is 'close enough' to 0, we will return 0.
  */
 const getOrientation = (firstPoint, secondPoint, thirdPoint) => {
-  const res = (secondPoint[1] - firstPoint[1]) * (thirdPoint[0] - secondPoint[0])
-              - (secondPoint[0] - firstPoint[0]) * (thirdPoint[1] - secondPoint[1]);
+  const res = (secondPoint.y - firstPoint.y) * (thirdPoint.x - secondPoint.x)
+              - (secondPoint.x - firstPoint.x) * (thirdPoint.y - secondPoint.y);
   if (0 - TOLERANCE <= res && res <= 0 + TOLERANCE) return 0;
   if (res < 0) return -1;
   if (res > 0) return 1;

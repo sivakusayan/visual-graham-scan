@@ -15,11 +15,16 @@ import {
   FIX_RIGHT_TURN,
   DONE,
 } from '../__constants__/SCAN_STEPS';
+import getStartPoint from '../algorithm/helpers/getStartPoint';
+import sortPoints from '../algorithm/helpers/sortPoints';
 import GrahamScanDriver from '../components/GrahamScanDriver';
 import Point from '../propTypes/Point';
 import Line from '../propTypes/Line';
 
 class GrahamScanDriverContainer extends Component {
+  state = {
+    startPoint: null,
+  }
 
   startScan = () => {
     const { activateScan } = this.props;
@@ -28,9 +33,19 @@ class GrahamScanDriverContainer extends Component {
   };
 
   getStartPoint = () => {
-    const { setStep } = this.props;
+    const { points, acceptPoint, setStep } = this.props;
     setStep.getStartPoint();
-  }
+    const startPoint = getStartPoint(points);
+    this.setState({ startPoint });
+    acceptPoint(startPoint.name);
+  };
+
+  sortPoints = () => {
+    const { points, setStep } = this.props;
+    const { startPoint } = this.state;
+    setStep.sortPoints(startPoint, points);
+    sortPoints();
+  };
 
   render() {
     const { isActive, step } = this.props;

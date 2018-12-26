@@ -1,28 +1,33 @@
-const getAngle = require('../../../algorithm/utils/getAngle');
+import getAngle from '../../../algorithm/utils/getAngle';
+import { NULL } from '../../../__constants__/POINT_STATUSES';
 
 describe('getAngle', () => {
   it('should return the angle', () => {
-    const vertex = [0, 0];
-    const firstPoint = [0, 1];
-    const secondPoint = [1, 0];
+    const vertex = { x: 0, y: 0, name: 1, status: NULL };
+    const firstPoint = { x: 0, y: 1, name: 2, status: NULL };
+    const secondPoint = { x: 1, y: 0, name: 3, status: NULL };
+
     expect(getAngle(vertex, firstPoint, secondPoint)).toBeCloseTo(90);
   });
   it('should return 180 for collinear points', () => {
-    const vertex = [0, 0];
-    const firstPoint = [-1, 0];
-    const secondPoint = [1, 0];
+    const vertex = { x: 0, y: 0, name: 1, status: NULL };
+    const firstPoint = { x: -1, y: 0, name: 2, status: NULL };
+    const secondPoint = { x: 1, y: 0, name: 3, status: NULL };
+
     expect(getAngle(vertex, firstPoint, secondPoint)).toBe(180);
   });
   it('should return 180 for "almost collinear" points', () => {
-    const vertex = [0, 0];
-    const firstPoint = [-1, 0.00001];
-    const secondPoint = [1, 0.00001];
+    const vertex = { x: 0, y: 0, name: 1, status: NULL };
+    const firstPoint = { x: -1, y: 0.00001, name: 2, status: NULL };
+    const secondPoint = { x: 1, y: 0.00001, name: 2, status: NULL };
+
     expect(getAngle(vertex, firstPoint, secondPoint)).toBe(180);
   });
   it('should return 0 if the vertex is repeated', () => {
-    const vertex = [0, 0];
-    const firstPoint = [0, 0];
-    const secondPoint = [1, 0.0001];
+    const vertex = { x: 0, y: 0, name: 1, status: NULL };
+    const firstPoint = { x: 0, y: 0, name: 2, status: NULL };
+    const secondPoint = { x: 1, y: 0.00001, name: 2, status: NULL };
+
     expect(getAngle(vertex, firstPoint, secondPoint)).toBe(0);
   });
 });

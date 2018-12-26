@@ -1,22 +1,11 @@
 /**
- * Gets the dot product of two vectors. If the
- * two vectors do not have the same dimension, the
- * bigger vector will be projected to have the same
- * dimension as the smaller vector.
+ * Gets the dot product of two vectors.
  *
- * @param {Number[]} firstVector
- * @param {Number[]} secondVector
+ * @param {Point} firstVector
+ * @param {Point} secondVector
  * @return {Number}
  *  The dot product of the two vectors.
  */
-const getDotProduct = (firstVector, secondVector) => {
-  // See which vector length to use
-  const base = firstVector.length < secondVector.length ? firstVector : secondVector;
-  let dotProduct = 0;
-  for (let i = 0; i < base.length; i += 1) {
-    dotProduct += firstVector[i] * secondVector[i];
-  }
-  return dotProduct;
-};
+const getDotProduct = (firstVector, secondVector) => firstVector.x * secondVector.x + firstVector.y * secondVector.y;
 
 module.exports = getDotProduct;

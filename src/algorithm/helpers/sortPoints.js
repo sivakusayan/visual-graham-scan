@@ -15,11 +15,11 @@ const getDistance = require('../utils/getDistance');
  * See https://en.wikipedia.org/wiki/Graham_scan#Algorithm
  * for more information.
  *
- * @param {[Number, Number]} startPoint
+ * @param {Point} startPoint
  *  The starting point determined in the graham scan algorithm.
- * @param {[Number, Number]} a
+ * @param {Point} a
  *  The first point to compare.
- * @param {[Number, Number]} b
+ * @param {Point} b
  *  The second point to compare.
  * 
  * @return {Number}
@@ -27,28 +27,31 @@ const getDistance = require('../utils/getDistance');
  */
 const comparator = (startPoint, firstPoint, secondPoint) => {
   // Take a point that forms a horizontal line with startPoint
-  const supportPoint = [startPoint[0] - 1, startPoint[1]];
+  const supportPoint = {
+    x: startPoint.x - 1,
+    y: startPoint.x,
+  }
   const firstAngle = getAngle(startPoint, supportPoint, firstPoint);
   const secondAngle = getAngle(startPoint, supportPoint, secondPoint);
   if (firstAngle < secondAngle) {
-    return -1;
+    return 1;
   }
   if (firstAngle > secondAngle) {
-    return 1;
+    return -1;
   }
   const firstDistance = getDistance(startPoint, firstPoint);
   const secondDistance = getDistance(startPoint, secondPoint);
   if (firstDistance < secondDistance) {
-    return -1;
+    return 1;
   } 
   if (firstDistance > secondDistance) {
-    return 1;
+    return -1;
   }
   return 0;
 };
 
-const preparePointSet = (startPoint, pointSet) => {
+const sortPoints = (startPoint, pointSet) => {
   pointSet.sort((a, b) => comparator(startPoint, a, b));
 };
 
-module.exports = preparePointSet;
+module.exports = sortPoints;
