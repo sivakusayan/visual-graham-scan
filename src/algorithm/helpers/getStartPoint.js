@@ -1,16 +1,19 @@
 /**
  * Obtains the starting point for the graham scan. We
  * adopt the convention to start at the bottom-most,
- * right-most point.
+ * right-most point on the canvas. Note that this means
+ * we search for the point with the highest y-coordinate,
+ * and highest x-coordinate.
  *
- * @param {[Number, Number][]} points
+ * @param {[Points]} points
  *  The pointset to scan.
- * @return {[Number, Number]}
- *  The bottom-most, right-most point of the set.
+ * @return {Points}
+ *  The bottom-most, right-most point of the set on the
+ *  canvas.
  */
 const getStartPoint = points => points.reduce((prev, curr) => {
-  if (prev[1] > curr[1]) return curr;
-  if (prev[1] === curr[1] && prev[0] < curr[0]) return curr;
+  if (prev.y < curr.y) return curr;
+  if (prev.y === curr.y && prev.x < curr.x) return curr;
   return prev;
 });
 
