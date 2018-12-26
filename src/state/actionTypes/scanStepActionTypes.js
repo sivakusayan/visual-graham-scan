@@ -1,9 +1,5 @@
-import * as ALGORITHM_STEPS from '../../__constants__/SCAN_STEPS';
-
-export const { 
-  GET_START_POINT,
-  SORT_POINTS,
-  ADD_NEXT_POINT,
-  FIX_RIGHT_TURN,
-  DONE,
-} = ALGORITHM_STEPS;
+export const SET_GET_START_POINT = 'SET_GET_START_POINT';
+export const SET_SORT_POINTS = 'SET_SORT_POINTS';
+export const SET_ADD_NEXT_POINT = 'SET_ADD_NEXT_POINT';
+export const SET_FIX_RIGHT_TURN = 'SET_FIX_RIGHT_TURN';
+export const SET_DONE = 'SET_DONE';

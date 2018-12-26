@@ -6,38 +6,45 @@ import {
   done,
 } from '../../../state/actions/scanStepActions';
 import {
+  SET_GET_START_POINT,
+  SET_SORT_POINTS,
+  SET_ADD_NEXT_POINT,
+  SET_FIX_RIGHT_TURN,
+  SET_DONE,
+} from '../../../state/actionTypes/scanStepActionTypes';
+import {
   GET_START_POINT,
   SORT_POINTS,
   ADD_NEXT_POINT,
   FIX_RIGHT_TURN,
   DONE,
-} from '../../../state/actionTypes/scanStepActionTypes';
+} from '../../../__constants__/SCAN_STEPS';
 
 describe('ScanStep Action Generators', () => {
   it(`should create an action to set algorithm step to ${GET_START_POINT}`, () => {
     const action = {
-      type: GET_START_POINT,
+      type: SET_GET_START_POINT,
     };
 
     expect(getStartPoint()).toEqual(action);
   });
   it(`should create an action to set algorithm step to ${SORT_POINTS}`, () => {
     const action = {
-      type: SORT_POINTS,
+      type: SET_SORT_POINTS,
     };
 
     expect(sortPoints()).toEqual(action);
   });
   it(`should create an action to set algorithm step to ${ADD_NEXT_POINT}`, () => {
     const action = {
-      type: ADD_NEXT_POINT,
+      type: SET_ADD_NEXT_POINT,
     };
 
     expect(addNextPoint()).toEqual(action);
   });
   it(`should create an action to set algorithm step to ${FIX_RIGHT_TURN}`, () => {
     const action = {
-      type: FIX_RIGHT_TURN,
+      type: SET_FIX_RIGHT_TURN,
     };
 
     expect(fixRightTurn()).toEqual(action);
@@ -45,7 +52,7 @@ describe('ScanStep Action Generators', () => {
 
   it(`should create an action to set algorithm step to ${DONE}`, () => {
     const action = {
-      type: DONE,
+      type: SET_DONE,
     };
 
     expect(done()).toEqual(action);
