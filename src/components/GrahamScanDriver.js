@@ -28,14 +28,14 @@ const GrahamScanDriver = ({
       </button>
     )}
     {isActive && (
-      <>
-        <p className="step-description">
-          {SCAN_STEP_DESCRIPTIONS[scanStep]}
-        </p>
-        <button onClick={nextStep} type="button" className="next-move">
-          Next Move
-        </button>
-      </>
+      <p className="step-description">
+        {SCAN_STEP_DESCRIPTIONS[scanStep]}
+      </p>
+    )}
+    {(isActive && scanStep !== DONE) && (
+      <button onClick={nextStep} type="button" className="next-move">
+        Next Move
+      </button>
     )}
     {(isActive && scanStep === DONE) && (
       <button onClick={nextStep} type="button" className="repeat-scan">

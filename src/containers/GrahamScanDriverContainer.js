@@ -19,7 +19,16 @@ class GrahamScanDriverContainer extends Component {
     startPoint: null,
     // Tracks the index of the current point we are
     // processing in the points array.
-    currentPoint: 0,
+    nextPointIndex: 0,
+  }
+
+  init = () => {
+    const { resetPoints } = this.props;
+    resetPoints();
+    this.setState({
+      startPoint: null,
+      nextPointIndex: 0,
+    });
   }
 
   startScan = () => {
@@ -47,6 +56,29 @@ class GrahamScanDriverContainer extends Component {
     acceptPoint(startPoint.name);
   };
 
+  addNextPoint = () => {
+    const {
+      acceptPoint,
+      setAddNextPoint,
+      setDone,
+      addLine,
+      points,
+    } = this.props;
+    const { nextPointIndex, startPoint } = this.state;
+    setAddNextPoint();
+
+    const prevPoint = nextPointIndex === 0 ? startPoint : points[nextPointIndex - 1];
+    const nextPoint = points[nextPointIndex];
+    acceptPoint(nextPoint.name);
+    addLine(prevPoint, nextPoint);
+
+    // Do this check before setState since setState isn't synchronous
+    if (nextPointIndex + 1 === points.length) setDone();
+    this.setState(prevState => ({
+      nextPointIndex: prevState.nextPointIndex + 1,
+    }));
+  }
+
   sortPoints = () => {
     const { setSortPoints, sortPoints } = this.props;
     const { startPoint } = this.state;
@@ -56,16 +88,13 @@ class GrahamScanDriverContainer extends Component {
 
   nextStep = () => {
     const { step } = this.props;
-    switch (step) {
-      case (DONE):
-        this.getStartPoint();
-        break;
-      case (GET_START_POINT):
-        this.sortPoints();
-        break;
-      default:
-        break;
+    if (step === DONE) {
+      this.init();
+      this.getStartPoint();
     }
+    if (step === GET_START_POINT) this.sortPoints();
+    if (step === SORT_POINTS) this.addNextPoint();
+    if (step === ADD_NEXT_POINT) this.addNextPoint();
   }
 
   render() {
@@ -95,6 +124,7 @@ GrahamScanDriverContainer.propTypes = {
   acceptPoint: PropTypes.func,
   rejectPoint: PropTypes.func,
   sortPoints: PropTypes.func,
+  resetPoints: PropTypes.func,
   addLine: PropTypes.func,
   removeLine: PropTypes.func,
   clearLines: PropTypes.func,
@@ -114,6 +144,7 @@ GrahamScanDriverContainer.defaultProps = {
   acceptPoint: () => null,
   rejectPoint: () => null,
   sortPoints: () => null,
+  resetPoints: () => null,
   addLine: () => null,
   removeLine: () => null,
   clearLines: () => null,

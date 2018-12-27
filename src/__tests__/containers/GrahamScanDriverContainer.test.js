@@ -35,9 +35,9 @@ describe('Scan Driver Logic', () => {
     dummyPoints = [point1, point2, point3];
   });
 
-  it('should initialize currentPoint to 0', () => {
+  it('should initialize nextPointIndex to 0', () => {
     const wrapper = shallow(<GrahamScanDriverContainer />);
-    expect(wrapper.state('currentPoint')).toBe(0);
+    expect(wrapper.state('nextPointIndex')).toBe(0);
   });
   it('should initialize the startPoint to null', () => {
     const wrapper = shallow(<GrahamScanDriverContainer />);
@@ -114,26 +114,26 @@ describe('Scan Driver Logic', () => {
 
     expect(setAddNextPointSpy).toHaveBeenCalled();
   });
-  it('should increment currentPoint by 1 whenever addNextPoint is called', () => {
+  it('should increment nextPointIndex by 1 whenever addNextPoint is called', () => {
     const wrapper = shallow(<GrahamScanDriverContainer points={dummyPoints} />);
 
-    const originalValue = wrapper.state('currentPoint');
+    const originalValue = wrapper.state('nextPointIndex');
     wrapper.instance().addNextPoint();
     wrapper.instance().addNextPoint();
-    const newValue = wrapper.state('currentPoint');
+    const newValue = wrapper.state('nextPointIndex');
 
     expect(newValue).toBe(originalValue + 2);
   });
-  it('should not increment currentPoint out of array bounds when addNextPoint is called', () => {
+  it('should not increment nextPointIndex out of array bounds when addNextPoint is called', () => {
     const wrapper = shallow(<GrahamScanDriverContainer points={dummyPoints} />);
 
     wrapper.instance().addNextPoint();
     wrapper.instance().addNextPoint();
     wrapper.instance().addNextPoint();
 
-    expect(wrapper.state('currentPoint')).toBe(2);
+    expect(wrapper.state('nextPointIndex')).toBe(2);
   });
-  it('should call setDone when addNextPoint is called and currentPoint is at array\'s end', () => {
+  it('should call setDone after addNextPoint is called and nextPointIndex equal to the number of points', () => {
     const setDoneSpy = jest.fn();
     const wrapper = shallow(
       <GrahamScanDriverContainer
@@ -142,6 +142,7 @@ describe('Scan Driver Logic', () => {
       />,
     );
 
+    wrapper.instance().addNextPoint();
     wrapper.instance().addNextPoint();
     wrapper.instance().addNextPoint();
 

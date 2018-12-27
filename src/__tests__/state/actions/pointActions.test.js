@@ -4,6 +4,7 @@ import {
   rejectPoint,
   clearPoints,
   sortPoints,
+  resetPoints,
 } from '../../../state/actions/pointActions';
 import {
   ADD_POINT,
@@ -11,6 +12,7 @@ import {
   REJECT_POINT,
   CLEAR_POINTS,
   SORT_POINTS,
+  RESET_POINTS,
 } from '../../../state/actionTypes/pointActionTypes';
 
 describe('Point Action Generators', () => {
@@ -59,5 +61,11 @@ describe('Point Action Generators', () => {
       startPoint,
     };
     expect(sortPoints(startPoint)).toEqual(expectedAction);
+  });
+  it('should create an action to reset the statuses of points', () => {
+    const expectedAction = {
+      type: RESET_POINTS,
+    };
+    expect(resetPoints()).toEqual(expectedAction);
   });
 });

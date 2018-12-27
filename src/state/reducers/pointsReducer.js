@@ -6,6 +6,7 @@ import {
   REJECT_POINT,
   CLEAR_POINTS,
   SORT_POINTS,
+  RESET_POINTS,
 } from '../actionTypes/pointActionTypes';
 import { NULL, ACCEPTED, REJECTED } from '../../__constants__/POINT_STATUSES';
 import sortPoints from '../../algorithm/helpers/sortPoints';
@@ -46,6 +47,12 @@ const pointsReducer = (state = initialState, action) => {
       const stateCopy = JSON.parse(JSON.stringify(state));
       sortPoints(action.startPoint, stateCopy);
       return stateCopy;
+    }
+    case (RESET_POINTS): {
+      return state.map(point => ({
+        ...point,
+        status: NULL,
+      }));
     }
     default:
       return state;

@@ -1,4 +1,9 @@
-import { acceptPoint, rejectPoint, sortPoints } from '../state/actions/pointActions';
+import { 
+  acceptPoint,
+  rejectPoint,
+  sortPoints,
+  resetPoints,
+} from '../state/actions/pointActions';
 import { addLine, removeLine, clearLines } from '../state/actions/lineActions';
 import {
   setGetStartPoint,
@@ -23,6 +28,7 @@ export default connectWithStore(mapStateToProps, {
   acceptPoint,
   rejectPoint,
   sortPoints,
+  resetPoints,
   addLine,
   removeLine,
   clearLines,

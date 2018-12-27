@@ -3,8 +3,9 @@ import {
   ACCEPT_POINT,
   REJECT_POINT,
   CLEAR_POINTS,
+  SORT_POINTS,
+  RESET_POINTS,
 } from '../actionTypes/pointActionTypes';
-import { SORT_POINTS } from '../../__constants__/SCAN_STEPS';
 
 /**
  * Creates an action to add a point. The point should not have a
@@ -70,3 +71,13 @@ export const sortPoints = startPoint => ({
   type: SORT_POINTS,
   startPoint,
 });
+
+/**
+ * Creates an action to reset the status
+ * of all points to NULL.
+ *
+ * @returns {{ type: RESET_POINTS }}
+ */
+export const resetPoints = () => ({
+  type: RESET_POINTS,
+})
