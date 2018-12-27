@@ -17,6 +17,7 @@ import SCAN_STEP_DESCRIPTIONS from '../__constants__/SCAN_STEP_DESCRIPTIONS';
 
 const GrahamScanDriver = ({
   startScan,
+  exitScan,
   isActive,
   scanStep,
   nextStep,
@@ -38,9 +39,14 @@ const GrahamScanDriver = ({
       </button>
     )}
     {(isActive && scanStep === DONE) && (
-      <button onClick={startScan} type="button" className="repeat-scan">
-        Repeat Scan
-      </button>
+      <>
+        <button onClick={startScan} type="button" className="repeat-scan">
+          Repeat Scan
+        </button>
+        <button onClick={exitScan} type="button" className="exit-scan">
+          Edit Points
+        </button>
+      </>
     )}
   </section>
 );
@@ -48,6 +54,7 @@ const GrahamScanDriver = ({
 GrahamScanDriver.propTypes = {
   isActive: PropTypes.bool,
   startScan: PropTypes.func,
+  exitScan: PropTypes.func,
   nextStep: PropTypes.func,
   scanStep: PropTypes.oneOf([
     GET_START_POINT,
@@ -61,6 +68,7 @@ GrahamScanDriver.propTypes = {
 GrahamScanDriver.defaultProps = {
   isActive: false,
   startScan: () => null,
+  exitScan: () => null,
   nextStep: () => null,
   scanStep: DONE,
 };

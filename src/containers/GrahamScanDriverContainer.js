@@ -8,12 +8,10 @@ import {
   FIX_RIGHT_TURN,
   DONE,
 } from '../__constants__/SCAN_STEPS';
-import { ACCEPTED } from '../__constants__/POINT_STATUSES';
 import getStartPoint from '../algorithm/helpers/getStartPoint';
 import hasRightTurn from '../algorithm/helpers/hasRightTurn';
 import GrahamScanDriver from '../components/GrahamScanDriver';
 import Point from '../propTypes/Point';
-import Line from '../propTypes/Line';
 
 class GrahamScanDriverContainer extends Component {
   state = {
@@ -42,8 +40,9 @@ class GrahamScanDriverContainer extends Component {
   }
 
   init = () => {
-    const { resetPoints } = this.props;
+    const { resetPoints, clearLines } = this.props;
     resetPoints();
+    clearLines();
     this.setState({
       startPoint: null,
       nextPointIndex: 0,
@@ -57,9 +56,14 @@ class GrahamScanDriverContainer extends Component {
     if (points.length > 0) {
       activateScan();
       this.getStartPoint();
-      setGetStartPoint();
     }
   };
+
+  exitScan = () => {
+    const { deactivateScan } = this.props;
+    this.init();
+    deactivateScan();
+  }
 
   getStartPoint = () => {
     const {
@@ -155,6 +159,7 @@ class GrahamScanDriverContainer extends Component {
     return (
       <GrahamScanDriver
         startScan={this.startScan}
+        exitScan={this.exitScan}
         isActive={isActive}
         scanStep={step}
         nextStep={this.nextStep}
@@ -181,6 +186,7 @@ GrahamScanDriverContainer.propTypes = {
   removeLine: PropTypes.func,
   clearLines: PropTypes.func,
   activateScan: PropTypes.func,
+  deactivateScan: PropTypes.func,
   setGetStartPoint: PropTypes.func,
   setSortPoints: PropTypes.func,
   setAddNextPoint: PropTypes.func,
@@ -200,6 +206,7 @@ GrahamScanDriverContainer.defaultProps = {
   removeLine: () => null,
   clearLines: () => null,
   activateScan: () => null,
+  deactivateScan: () => null,
   setGetStartPoint: () => null,
   setSortPoints: () => null,
   setAddNextPoint: () => null,

@@ -44,6 +44,10 @@ describe('GrahamScanDriver Component', () => {
     const wrapper = shallow(<GrahamScanDriver isActive scanStep={DONE} />);
     expect(wrapper.find('button.repeat-scan').exists()).toBe(true);
   });
+  it('should render an exit-scan button when scan finishes and is active', () => {
+    const wrapper = shallow(<GrahamScanDriver isActive scanStep={DONE} />);
+    expect(wrapper.find('button.exit-scan').exists()).toBe(true);
+  });
   it('should NOT render a repeat-scan button when scan finishes and is inactive', () => {
     const wrapper = shallow(<GrahamScanDriver scanStep={DONE} />);
     expect(wrapper.find('button.repeat-scan').exists()).toBe(false);

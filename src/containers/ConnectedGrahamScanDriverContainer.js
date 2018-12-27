@@ -12,7 +12,7 @@ import {
   setFixRightTurn,
   setDone,
 } from '../state/actions/scanStepActions';
-import { activateScan } from '../state/actions/scanIsActiveActions';
+import { activateScan, deactivateScan } from '../state/actions/scanIsActiveActions';
 import connectWithStore from '../state/store/connectWithStore';
 
 import GrahamScanDriverContainer from './GrahamScanDriverContainer';
@@ -32,6 +32,7 @@ export default connectWithStore(mapStateToProps, {
   removeLine,
   clearLines,
   activateScan,
+  deactivateScan,
   setGetStartPoint,
   setSortPoints,
   setAddNextPoint,
