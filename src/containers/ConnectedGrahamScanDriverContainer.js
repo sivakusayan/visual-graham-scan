@@ -1,6 +1,12 @@
-import { acceptPoint, rejectPoint } from '../state/actions/pointActions';
+import { acceptPoint, rejectPoint, sortPoints } from '../state/actions/pointActions';
 import { addLine, removeLine, clearLines } from '../state/actions/lineActions';
-import * as setStep from '../state/actions/scanStepActions';
+import {
+  setGetStartPoint,
+  setSortPoints,
+  setAddNextPoint,
+  setFixRightTurn,
+  setDone,
+} from '../state/actions/scanStepActions';
 import { activateScan } from '../state/actions/scanIsActiveActions';
 import connectWithStore from '../state/store/connectWithStore';
 
@@ -13,21 +19,17 @@ const mapStateToProps = state => ({
   step: state.scanStep,
 });
 
-const mapDispatchToProps = dispatch => ({
-  acceptPoint: name => dispatch(acceptPoint(name)),
-  rejectPoint: name => dispatch(rejectPoint(name)),
-  addLine: (startPoint, endPoint) => dispatch(addLine(startPoint, endPoint)),
-  removeLine: name => dispatch(removeLine(name)),
-  clearLines: () => dispatch(clearLines()),
-  activateScan: () => dispatch(activateScan()),
-  setStep: {
-    getStartPoint: () => dispatch(setStep.getStartPoint()),
-    sortPoints: () => dispatch(setStep.sortPoints()),
-    addNextPoint: () => dispatch(setStep.addNextPoint()),
-    fixRightTurn: () => dispatch(setStep.fixRightTurn()),
-    done: () => dispatch(setStep.done()),
-  },
-});
-
-
-export default connectWithStore(mapStateToProps, mapDispatchToProps)(GrahamScanDriverContainer);
+export default connectWithStore(mapStateToProps, {
+  acceptPoint,
+  rejectPoint,
+  sortPoints,
+  addLine,
+  removeLine,
+  clearLines,
+  activateScan,
+  setGetStartPoint,
+  setSortPoints,
+  setAddNextPoint,
+  setFixRightTurn,
+  setDone,
+})(GrahamScanDriverContainer);

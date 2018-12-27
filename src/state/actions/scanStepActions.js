@@ -12,7 +12,7 @@ import {
  *
  * @return {{ type: SET_GET_START_POINT }}
  */
-export const getStartPoint = () => ({
+export const setGetStartPoint = () => ({
   type: SET_GET_START_POINT,
 });
 
@@ -23,7 +23,7 @@ export const getStartPoint = () => ({
  *
  * @return {{ type: SET_SORT_POINTS }}
  */
-export const sortPoints = () => ({
+export const setSortPoints = () => ({
   type: SET_SORT_POINTS,
 });
 
@@ -33,7 +33,7 @@ export const sortPoints = () => ({
  *
  * @return {{ type: SET_ADD_NEXT_POINT }}
  */
-export const addNextPoint = () => ({
+export const setAddNextPoint = () => ({
   type: SET_ADD_NEXT_POINT,
 });
 
@@ -44,7 +44,7 @@ export const addNextPoint = () => ({
  *
  * @return {{ type: SET_FIX_RIGHT_TURN }}
  */
-export const fixRightTurn = () => ({
+export const setFixRightTurn = () => ({
   type: SET_FIX_RIGHT_TURN,
 });
 
@@ -54,6 +54,6 @@ export const fixRightTurn = () => ({
  *
  * @return {{ type: SET_DONE }}
  */
-export const done = () => ({
+export const setDone = () => ({
   type: SET_DONE,
 });

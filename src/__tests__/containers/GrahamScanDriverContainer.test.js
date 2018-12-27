@@ -25,16 +25,16 @@ describe('Scan Driver Logic', () => {
     const wrapper = shallow(<GrahamScanDriverContainer />);
     expect(wrapper.state('startPoint')).toEqual({});
   });
-  it('should dispatch an action to clear lines when getStartPoint is called', () => {
+  it('should dispatch an action to clear lines when setGetStartPoint is called', () => {
     const clearLinesSpy = jest.fn();
     const wrapper = shallow(<GrahamScanDriverContainer clearLines={clearLinesSpy} />);
 
-    wrapper.instance().getStartPoint();
+    wrapper.instance().setGetStartPoint();
     expect(clearLinesSpy).toHaveBeenCalled();
   });
-  it(`should change step to ${GET_START_POINT} when getStartPoint is called`, () => {
+  it(`should change step to ${GET_START_POINT} when setGetStartPoint is called`, () => {
     const wrapper = shallow(<GrahamScanDriverContainer />);
-    wrapper.instance().getStartPoint();
+    wrapper.instance().setGetStartPoint();
 
     expect(wrapper.prop('step')).toBe(GET_START_POINT);
   });
@@ -136,10 +136,10 @@ describe('Scan Driver Logic', () => {
       expect(addNextPointSpy).toHaveBeenCalled();
     });
     it(`should call getStartPoint if current step is ${DONE}`, () => {
-      const getStartPointSpy = jest.spyOn(GrahamScanDriverContainer.prototype, 'getStartPoint');
       const wrapper = shallow(<GrahamScanDriverContainer step={DONE} />);
-      wrapper.instance().nextStep();
+      const getStartPointSpy = jest.spyOn(wrapper.instance(), 'getStartPoint');
 
+      wrapper.instance().nextStep();
       expect(getStartPointSpy).toHaveBeenCalled();
     });
   });

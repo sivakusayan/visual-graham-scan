@@ -1,4 +1,4 @@
-const getStartPoint = require('./helpers/getStartPoint');
+const setGetStartPoint = require('./helpers/setGetStartPoint');
 const preparePointSet = require('./helpers/preparePointSet');
 const hasRightTurn = require('./helpers/hasRightTurn');
 
@@ -14,7 +14,7 @@ const hasRightTurn = require('./helpers/hasRightTurn');
 const grahamScan = (points) => {
   if (points.length <= 3) return points;
   const pointSet = JSON.parse(JSON.stringify(points));
-  const startPoint = getStartPoint(pointSet);
+  const startPoint = setGetStartPoint(pointSet);
   preparePointSet(startPoint, pointSet);
 
   const convexHull = [];

@@ -1,10 +1,3 @@
-// Note that there is a distinction to be made between the
-// action creators that change the scanStep state
-// (ex: setStep.getStartPoint, setStep.addNextPoint) and the
-// component methods (ex: getStartPoint and addNextPoint). The latter
-// will actually do necessary computations, while the former is
-// for the sake of UI changes.
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
@@ -33,17 +26,17 @@ class GrahamScanDriverContainer extends Component {
   };
 
   getStartPoint = () => {
-    const { points, acceptPoint, setStep } = this.props;
-    setStep.getStartPoint();
+    const { points, acceptPoint, setGetStartPoint } = this.props;
+    setGetStartPoint();
     const startPoint = getStartPoint(points);
     this.setState({ startPoint });
     acceptPoint(startPoint.name);
   };
 
   sortPoints = () => {
-    const { points, setStep } = this.props;
+    const { points, setSortPoints } = this.props;
     const { startPoint } = this.state;
-    setStep.sortPoints(startPoint, points);
+    setSortPoints(startPoint, points);
     sortPoints();
   };
 
@@ -76,13 +69,11 @@ GrahamScanDriverContainer.propTypes = {
   removeLine: PropTypes.func,
   clearLines: PropTypes.func,
   activateScan: PropTypes.func,
-  setStep: PropTypes.shape({
-    getStartPoint: PropTypes.func,
-    sortPoints: PropTypes.func,
-    addNextPoint: PropTypes.func,
-    fixRightTurn: PropTypes.func,
-    done: PropTypes.func,
-  }),
+  setGetStartPoint: PropTypes.func,
+  setSortPoints: PropTypes.func,
+  setAddNextPoint: PropTypes.func,
+  setFixRightTurn: PropTypes.func,
+  setDone: PropTypes.func,
 };
 
 GrahamScanDriverContainer.defaultProps = {
@@ -96,13 +87,11 @@ GrahamScanDriverContainer.defaultProps = {
   removeLine: () => null,
   clearLines: () => null,
   activateScan: () => null,
-  setStep: PropTypes.shape({
-    getStartPoint: () => null,
-    sortPoints: () => null,
-    addNextPoint: () => null,
-    fixRightTurn: () => null,
-    done: () => null,
-  }),
+  setGetStartPoint: () => null,
+  setSortPoints: () => null,
+  setAddNextPoint: () => null,
+  setFixRightTurn: () => null,
+  setDone: () => null,
 };
 
 export default GrahamScanDriverContainer;
