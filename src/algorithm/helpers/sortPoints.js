@@ -29,8 +29,8 @@ const comparator = (startPoint, firstPoint, secondPoint) => {
   // Take a point that forms a horizontal line with startPoint
   const supportPoint = {
     x: startPoint.x - 1,
-    y: startPoint.x,
-  }
+    y: startPoint.y,
+  };
   const firstAngle = getAngle(startPoint, supportPoint, firstPoint);
   const secondAngle = getAngle(startPoint, supportPoint, secondPoint);
   if (firstAngle < secondAngle) {

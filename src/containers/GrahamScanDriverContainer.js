@@ -24,7 +24,6 @@ class GrahamScanDriverContainer extends Component {
 
   startScan = () => {
     const { activateScan, points } = this.props;
-    console.log('WAS I CALLED BITCH')
     if (points.length > 0) {
       activateScan();
       this.getStartPoint();
@@ -32,7 +31,12 @@ class GrahamScanDriverContainer extends Component {
   };
 
   getStartPoint = () => {
-    const { points, acceptPoint, setGetStartPoint, clearLines } = this.props;
+    const {
+      points,
+      acceptPoint,
+      setGetStartPoint,
+      clearLines,
+    } = this.props;
     clearLines();
     setGetStartPoint();
     // Note that this getStartPoint is different from the
@@ -44,11 +48,25 @@ class GrahamScanDriverContainer extends Component {
   };
 
   sortPoints = () => {
-    const { points, setSortPoints, sortPoints } = this.props;
+    const { setSortPoints, sortPoints } = this.props;
     const { startPoint } = this.state;
     setSortPoints();
     sortPoints(startPoint);
   };
+
+  nextStep = () => {
+    const { step } = this.props;
+    switch (step) {
+      case (DONE):
+        this.getStartPoint();
+        break;
+      case (GET_START_POINT):
+        this.sortPoints();
+        break;
+      default:
+        break;
+    }
+  }
 
   render() {
     const { isActive, step } = this.props;
@@ -57,6 +75,7 @@ class GrahamScanDriverContainer extends Component {
         startScan={this.startScan}
         isActive={isActive}
         scanStep={step}
+        nextStep={this.nextStep}
       />
     );
   }
@@ -75,6 +94,7 @@ GrahamScanDriverContainer.propTypes = {
   ]),
   acceptPoint: PropTypes.func,
   rejectPoint: PropTypes.func,
+  sortPoints: PropTypes.func,
   addLine: PropTypes.func,
   removeLine: PropTypes.func,
   clearLines: PropTypes.func,
@@ -93,6 +113,7 @@ GrahamScanDriverContainer.defaultProps = {
   step: DONE,
   acceptPoint: () => null,
   rejectPoint: () => null,
+  sortPoints: () => null,
   addLine: () => null,
   removeLine: () => null,
   clearLines: () => null,

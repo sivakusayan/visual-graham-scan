@@ -14,11 +14,15 @@ import TOLERANCE from '../__constants__/TOLERANCE';
 const getAngle = (vertex, firstPoint, secondPoint) => {
   const firstVector = {
     x: firstPoint.x - vertex.x,
-    y: firstPoint.y - vertex.y,
+    // Note that we negate y-coordinate since
+    // canvas flips axis
+    y: -firstPoint.y + vertex.y,
   };
   const secondVector = {
     x: secondPoint.x - vertex.x,
-    y: secondPoint.y - vertex.y,
+    // Note that we negate y-coordinate since
+    // canvas flips axis
+    y: -secondPoint.y + vertex.y,
   };
   // Check if the firstPoint or secondPoint is equal to the vertex
   if (firstVector.x === 0 && firstVector.y === 0) return 0;
