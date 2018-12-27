@@ -2,6 +2,10 @@ import getStartPoint from '../../../algorithm/helpers/getStartPoint';
 import { NULL } from '../../../__constants__/POINT_STATUSES';
 
 describe('getStartPoint', () => {
+  it('should return null if passed the empty array', () => {
+    const pointSet = [];
+    expect(getStartPoint(pointSet)).toEqual(null);
+  })
   it('should return the top-most point.', () => {
     const point1 = { x: 0, y: 0, name: 1, status: NULL };
     const point2 = { x: 0, y: 1, name: 2, status: NULL };

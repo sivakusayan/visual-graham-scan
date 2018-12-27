@@ -11,10 +11,14 @@
  *  The bottom-most, right-most point of the set on the
  *  canvas.
  */
-const setGetStartPoint = points => points.reduce((prev, curr) => {
-  if (prev.y < curr.y) return curr;
-  if (prev.y === curr.y && prev.x < curr.x) return curr;
-  return prev;
-});
+const getStartPoint = (points) => {
+  if (points.length === 0) return null;
 
-export default setGetStartPoint;
+  return points.reduce((prev, curr) => {
+    if (prev.y < curr.y) return curr;
+    if (prev.y === curr.y && prev.x < curr.x) return curr;
+    return prev;
+  });
+};
+
+export default getStartPoint;

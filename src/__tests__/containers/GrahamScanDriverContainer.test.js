@@ -17,41 +17,81 @@ import { NULL, ACCEPTED } from '../../__constants__/POINT_STATUSES';
 import GrahamScanDriverContainer from '../../containers/GrahamScanDriverContainer';
 
 describe('Scan Driver Logic', () => {
+  let point1;
+  let point2;
+  let point3;
+  let dummyPoints;
+  beforeEach(() => {
+    point1 = { x: 0, y: 0, name: 1, status: NULL };
+    point2 = { x: 0, y: 1, name: 2, status: NULL };
+    point3 = { x: 0, y: -1, name: 3, status: NULL };
+
+    dummyPoints = [point1, point2, point3];
+  });
+
   it('should initialize currentPoint to 0', () => {
     const wrapper = shallow(<GrahamScanDriverContainer />);
     expect(wrapper.state('currentPoint')).toBe(0);
   });
-  it('should initialize the startPoint to an empty object', () => {
+  it('should initialize the startPoint to null', () => {
     const wrapper = shallow(<GrahamScanDriverContainer />);
-    expect(wrapper.state('startPoint')).toEqual({});
+    expect(wrapper.state('startPoint')).toEqual(null);
   });
-  it('should dispatch an action to clear lines when setGetStartPoint is called', () => {
-    const clearLinesSpy = jest.fn();
-    const wrapper = shallow(<GrahamScanDriverContainer clearLines={clearLinesSpy} />);
+  it('should not call activateScan if startScan is called while points array is empty', () => {
+    const activateScanSpy = jest.fn();
+    const wrapper = shallow(
+      <GrahamScanDriverContainer
+        points={[]}
+        activateScan={activateScanSpy}
+      />,
+    );
+    wrapper.instance().startScan();
 
-    wrapper.instance().setGetStartPoint();
+    expect(activateScanSpy).toHaveBeenCalledTimes(0);
+  });
+  it('should call activateScan if startScan is called while points array is empty', () => {
+    const activateScanSpy = jest.fn();
+    const wrapper = shallow(
+      <GrahamScanDriverContainer
+        points={dummyPoints}
+        activateScan={activateScanSpy}
+      />,
+    );
+    wrapper.instance().startScan();
+
+    expect(activateScanSpy).toHaveBeenCalled();
+  });
+  it('should dispatch an action to clear lines when getStartPoint is called', () => {
+    const clearLinesSpy = jest.fn();
+    const wrapper = shallow(
+      <GrahamScanDriverContainer
+        points={dummyPoints}
+        clearLines={clearLinesSpy}
+      />,
+    );
+    wrapper.instance().getStartPoint();
     expect(clearLinesSpy).toHaveBeenCalled();
   });
-  it(`should change step to ${GET_START_POINT} when setGetStartPoint is called`, () => {
-    const wrapper = shallow(<GrahamScanDriverContainer />);
-    wrapper.instance().setGetStartPoint();
+  it(`should change step to ${GET_START_POINT} when getStartPoint is called`, () => {
+    const wrapper = shallow(<GrahamScanDriverContainer points={dummyPoints} />);
+    wrapper.instance().getStartPoint();
 
     expect(wrapper.prop('step')).toBe(GET_START_POINT);
   });
   it(`should change step to ${SORT_POINTS} when sortPoints is called`, () => {
-    const wrapper = shallow(<GrahamScanDriverContainer />);
+    const wrapper = shallow(<GrahamScanDriverContainer points={dummyPoints} />);
     wrapper.instance().sortPoints();
 
     expect(wrapper.prop('step')).toBe(SORT_POINTS);
   });
   it(`should change step to ${ADD_NEXT_POINT} when addNextPoint is called`, () => {
-    const wrapper = shallow(<GrahamScanDriverContainer />);
+    const wrapper = shallow(<GrahamScanDriverContainer points={dummyPoints} />);
     wrapper.instance().addNextPoint();
 
     expect(wrapper.prop('step')).toBe(ADD_NEXT_POINT);
   });
   it('should increment currentPoint by 1 whenever addNextPoint is called', () => {
-    const wrapper = shallow(<GrahamScanDriverContainer />);
+    const wrapper = shallow(<GrahamScanDriverContainer points={dummyPoints} />);
 
     const originalValue = wrapper.state('currentPoint');
     wrapper.instance().addNextPoint();
@@ -61,9 +101,7 @@ describe('Scan Driver Logic', () => {
     expect(newValue).toBe(originalValue + 2);
   });
   it('should not increment currentPoint out of array bounds when addNextPoint is called', () => {
-    const point = {}; // Dummy point to fill points array
-    const points = [point, point, point];
-    const wrapper = shallow(<GrahamScanDriverContainer points={points} />);
+    const wrapper = shallow(<GrahamScanDriverContainer points={dummyPoints} />);
 
     wrapper.instance().addNextPoint();
     wrapper.instance().addNextPoint();
@@ -72,9 +110,7 @@ describe('Scan Driver Logic', () => {
     expect(wrapper.state('currentPoint')).toBe(2);
   });
   it(`should change step to ${DONE} when addNextPoint is called and currentPoint is at array's end`, () => {
-    const point = {}; // Dummy point to fill points array
-    const points = [point, point, point];
-    const wrapper = shallow(<GrahamScanDriverContainer points={points} />);
+    const wrapper = shallow(<GrahamScanDriverContainer points={dummyPoints} />);
 
     wrapper.instance().addNextPoint();
     wrapper.instance().addNextPoint();
@@ -82,21 +118,31 @@ describe('Scan Driver Logic', () => {
     expect(wrapper.state('step')).toBe(DONE);
   });
   it(`should change step to ${FIX_RIGHT_TURN} when fixRightTurn is called`, () => {
-    const wrapper = shallow(<GrahamScanDriverContainer />);
+    const wrapper = shallow(<GrahamScanDriverContainer points={dummyPoints} />);
     wrapper.instance().fixRightTurn();
 
     expect(wrapper.prop('step')).toBe(FIX_RIGHT_TURN);
   });
   describe('nextStep function', () => {
     it(`should call sortPoints if current step is ${GET_START_POINT}`, () => {
-      const wrapper = shallow(<GrahamScanDriverContainer step={GET_START_POINT} />);
+      const wrapper = shallow(
+        <GrahamScanDriverContainer
+          points={dummyPoints}
+          step={GET_START_POINT}
+        />,
+      );
       const sortPointsSpy = jest.spyOn(wrapper.instance(), 'sortPoints');
       wrapper.instance().nextStep();
 
       expect(sortPointsSpy).toHaveBeenCalled();
     });
     it(`should call addNextPoint if current step is ${SORT_POINTS}`, () => {
-      const wrapper = shallow(<GrahamScanDriverContainer step={SORT_POINTS} />);
+      const wrapper = shallow(
+        <GrahamScanDriverContainer
+          points={dummyPoints}
+          step={SORT_POINTS}
+        />,
+      );
       const addNextPointSpy = jest.spyOn(wrapper.instance(), 'addNextPoint');
       wrapper.instance().nextStep();
 
@@ -129,14 +175,19 @@ describe('Scan Driver Logic', () => {
       expect(fixRightTurnSpy).toHaveBeenCalled();
     });
     it(`should call addNextPoint if current step is ${FIX_RIGHT_TURN}`, () => {
-      const wrapper = shallow(<GrahamScanDriverContainer step={FIX_RIGHT_TURN} />);
+      const wrapper = shallow(
+        <GrahamScanDriverContainer
+          points={dummyPoints}
+          step={FIX_RIGHT_TURN}
+        />,
+      );
       const addNextPointSpy = jest.spyOn(wrapper.instance(), 'addNextPoint');
       wrapper.instance().nextStep();
 
       expect(addNextPointSpy).toHaveBeenCalled();
     });
     it(`should call getStartPoint if current step is ${DONE}`, () => {
-      const wrapper = shallow(<GrahamScanDriverContainer step={DONE} />);
+      const wrapper = shallow(<GrahamScanDriverContainer points={dummyPoints} step={DONE} />);
       const getStartPointSpy = jest.spyOn(wrapper.instance(), 'getStartPoint');
 
       wrapper.instance().nextStep();

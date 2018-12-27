@@ -16,28 +16,38 @@ import Line from '../propTypes/Line';
 
 class GrahamScanDriverContainer extends Component {
   state = {
+    // The start point of the algorithm.
     startPoint: null,
+    // Tracks the index of the current point we are
+    // processing in the points array.
+    currentPoint: 0,
   }
 
   startScan = () => {
-    const { activateScan } = this.props;
-    activateScan();
-    this.getStartPoint();
+    const { activateScan, points } = this.props;
+    if (points.length > 0) {
+      activateScan();
+      this.getStartPoint();
+    }
   };
 
   getStartPoint = () => {
-    const { points, acceptPoint, setGetStartPoint } = this.props;
+    const { points, acceptPoint, setGetStartPoint, clearLines } = this.props;
+    clearLines();
     setGetStartPoint();
+    // Note that this getStartPoint is different from the
+    // class method. This function actually computes the
+    // startPoint.
     const startPoint = getStartPoint(points);
     this.setState({ startPoint });
     acceptPoint(startPoint.name);
   };
 
   sortPoints = () => {
-    const { points, setSortPoints } = this.props;
+    const { points, setSortPoints, sortPoints } = this.props;
     const { startPoint } = this.state;
-    setSortPoints(startPoint, points);
-    sortPoints();
+    setSortPoints();
+    sortPoints(startPoint);
   };
 
   render() {
