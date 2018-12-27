@@ -10,20 +10,9 @@ describe('sortPoints', () => {
     const point4 = { x: -3, y: 2, name: 4, status: NULL };
     const point5 = { x: 1, y: 1, name: 5, status: NULL };
 
-    const pointSet = [
-      point1,
-      point2,
-      point3,
-      point4,
-      point5,
-    ];
-    const sortedPoints = [
-      point5,
-      point4,
-      point3,
-      point2,
-      point1,
-    ];
+    const pointSet = [point1, point2, point3, point4, point5];
+    const sortedPoints = [point5, point4, point3, point2, point1];
+    
     sortPoints(startingPoint, pointSet);
     expect(pointSet).toEqual(sortedPoints);
   });
@@ -35,18 +24,9 @@ describe('sortPoints', () => {
     const point3 = { x: -3, y: 2, name: 3, status: NULL };
     const point4 = { x: 1, y: 1, name: 4, status: NULL };
 
-    const pointSet = [
-      point1,
-      point2,
-      point3,
-      point4,
-    ];
-    const sortedPoints = [
-      point4,
-      point3,
-      point2,
-      point1,
-    ];
+    const pointSet = [point1, point2, point3, point4];
+    const sortedPoints = [point4, point3, point2, point1];
+
     sortPoints(startingPoint, pointSet);
     expect(pointSet).toEqual(sortedPoints);
   });

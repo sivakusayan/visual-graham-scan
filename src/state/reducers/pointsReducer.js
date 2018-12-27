@@ -5,8 +5,10 @@ import {
   ACCEPT_POINT,
   REJECT_POINT,
   CLEAR_POINTS,
+  SORT_POINTS,
 } from '../actionTypes/pointActionTypes';
 import { NULL, ACCEPTED, REJECTED } from '../../__constants__/POINT_STATUSES';
+import sortPoints from '../../algorithm/helpers/sortPoints';
 
 const initialState = [];
 
@@ -40,6 +42,11 @@ const pointsReducer = (state = initialState, action) => {
       });
     case (CLEAR_POINTS):
       return [];
+    case (SORT_POINTS): {
+      const stateCopy = JSON.parse(JSON.stringify(state));
+      sortPoints(action.startPoint, stateCopy);
+      return stateCopy;
+    }
     default:
       return state;
   }

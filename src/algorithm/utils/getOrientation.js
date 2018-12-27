@@ -1,4 +1,4 @@
-const TOLERANCE = require('../__constants__/TOLERANCE');
+import TOLERANCE from '../__constants__/TOLERANCE';
 
 /**
  * Calculates the orientation when traversing
@@ -18,4 +18,4 @@ const getOrientation = (firstPoint, secondPoint, thirdPoint) => {
   if (res > 0) return 1;
 };
 
-module.exports = getOrientation;
+export default getOrientation;

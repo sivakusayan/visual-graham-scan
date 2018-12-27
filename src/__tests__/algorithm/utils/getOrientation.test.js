@@ -1,4 +1,4 @@
-const getOrientation = require('../../../algorithm/utils/getOrientation');
+import getOrientation from '../../../algorithm/utils/getOrientation';
 import { NULL } from '../../../__constants__/POINT_STATUSES';
 
 describe('getOrientation', () => {

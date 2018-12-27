@@ -1,5 +1,5 @@
-const getDistance = require('./getDistance');
+import getDistance from './getDistance';
 
 const getLength = vector => getDistance({ x: 0, y: 0}, vector);
 
-module.exports = getLength;
+export default getLength;

@@ -1,5 +1,5 @@
-const getAngle = require('../utils/getAngle');
-const getDistance = require('../utils/getDistance');
+import getAngle from '../utils/getAngle';
+import getDistance from '../utils/getDistance';
 
 /**
  * Enforces a linear order on a point set. We
@@ -54,4 +54,4 @@ const sortPoints = (startPoint, pointSet) => {
   pointSet.sort((a, b) => comparator(startPoint, a, b));
 };
 
-module.exports = sortPoints;
+export default sortPoints;

@@ -1,6 +1,6 @@
-const getLength = require('./getLength');
-const getDotProduct = require('./getDotProduct');
-const TOLERANCE = require('../__constants__/TOLERANCE');
+import getLength from './getLength';
+import getDotProduct from './getDotProduct';
+import TOLERANCE from '../__constants__/TOLERANCE';
 
 /**
  * Gets the angle measure determined by three points.
@@ -34,4 +34,4 @@ const getAngle = (vertex, firstPoint, secondPoint) => {
   return angle;
 };
 
-module.exports = getAngle;
+export default getAngle;

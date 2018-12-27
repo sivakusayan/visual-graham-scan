@@ -17,4 +17,4 @@ const getStartPoint = points => points.reduce((prev, curr) => {
   return prev;
 });
 
-module.exports = getStartPoint;
+export default getStartPoint;

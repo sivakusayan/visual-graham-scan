@@ -6,6 +6,9 @@
  * @return {Number}
  *  The dot product of the two vectors.
  */
-const getDotProduct = (firstVector, secondVector) => firstVector.x * secondVector.x + firstVector.y * secondVector.y;
+const getDotProduct = (
+  firstVector,
+  secondVector,
+) => firstVector.x * secondVector.x + firstVector.y * secondVector.y;
 
-module.exports = getDotProduct;
+export default getDotProduct;
