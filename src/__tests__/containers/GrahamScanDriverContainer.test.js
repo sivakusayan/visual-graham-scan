@@ -89,21 +89,20 @@ describe('Scan Driver Logic', () => {
   });
   describe('nextStep function', () => {
     it(`should call sortPoints if current step is ${GET_START_POINT}`, () => {
-      const sortPointsSpy = jest.spyOn(GrahamScanDriverContainer.prototype, 'sortPoints');
       const wrapper = shallow(<GrahamScanDriverContainer step={GET_START_POINT} />);
+      const sortPointsSpy = jest.spyOn(wrapper.instance(), 'sortPoints');
       wrapper.instance().nextStep();
 
       expect(sortPointsSpy).toHaveBeenCalled();
     });
     it(`should call addNextPoint if current step is ${SORT_POINTS}`, () => {
-      const addNextPointSpy = jest.spyOn(GrahamScanDriverContainer.prototype, 'addNextPoint');
       const wrapper = shallow(<GrahamScanDriverContainer step={SORT_POINTS} />);
+      const addNextPointSpy = jest.spyOn(wrapper.instance(), 'addNextPoint');
       wrapper.instance().nextStep();
 
       expect(addNextPointSpy).toHaveBeenCalled();
     });
     it(`should call addNextPoint if current step is ${ADD_NEXT_POINT} and there is no right turn`, () => {
-      const addNextPointSpy = jest.spyOn(GrahamScanDriverContainer.prototype, 'addNextPoint');
       const points = [
         { x: 0, y: 0, status: ACCEPTED },
         { x: 1, y: 0, status: ACCEPTED },
@@ -111,12 +110,12 @@ describe('Scan Driver Logic', () => {
         { x: 1, y: 2, status: NULL },
       ];
       const wrapper = shallow(<GrahamScanDriverContainer points={points} step={ADD_NEXT_POINT} />);
+      const addNextPointSpy = jest.spyOn(wrapper.instance(), 'addNextPoint');
       wrapper.instance().nextStep();
 
       expect(addNextPointSpy).toHaveBeenCalled();
     });
     it(`should call fixRightTurn if current step is ${ADD_NEXT_POINT} and there is a right turn`, () => {
-      const fixRightTurnSpy = jest.spyOn(GrahamScanDriverContainer.prototype, 'fixRightTurn');
       const points = [
         { x: 0, y: 0, status: ACCEPTED },
         { x: 1, y: 0, status: ACCEPTED },
@@ -124,13 +123,14 @@ describe('Scan Driver Logic', () => {
         { x: 1, y: 2, status: NULL },
       ];
       const wrapper = shallow(<GrahamScanDriverContainer points={points} step={ADD_NEXT_POINT} />);
+      const fixRightTurnSpy = jest.spyOn(wrapper.instance(), 'fixRightTurn');
       wrapper.instance().nextStep();
 
       expect(fixRightTurnSpy).toHaveBeenCalled();
     });
     it(`should call addNextPoint if current step is ${FIX_RIGHT_TURN}`, () => {
-      const addNextPointSpy = jest.spyOn(GrahamScanDriverContainer.prototype, 'addNextPoint');
       const wrapper = shallow(<GrahamScanDriverContainer step={FIX_RIGHT_TURN} />);
+      const addNextPointSpy = jest.spyOn(wrapper.instance(), 'addNextPoint');
       wrapper.instance().nextStep();
 
       expect(addNextPointSpy).toHaveBeenCalled();
