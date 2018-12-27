@@ -47,7 +47,8 @@ describe('Points Reducer', () => {
   it('should handle REMOVE_LINE', () => {
     const action = {
       type: REMOVE_LINE,
-      name: lineName,
+      startPoint,
+      endPoint,
     };
     const initialState = [line];
     const finalState = [];

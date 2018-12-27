@@ -14,8 +14,9 @@ const getOrientation = (firstPoint, secondPoint, thirdPoint) => {
   const res = (secondPoint.y - firstPoint.y) * (thirdPoint.x - secondPoint.x)
               - (secondPoint.x - firstPoint.x) * (thirdPoint.y - secondPoint.y);
   if (0 - TOLERANCE <= res && res <= 0 + TOLERANCE) return 0;
-  if (res < 0) return -1;
-  if (res > 0) return 1;
+  // Note that we negate the results in order to account for the canvas y-axis being flipped
+  if (res < 0) return 1;
+  if (res > 0) return -1;
 };
 
 export default getOrientation;

@@ -19,7 +19,6 @@ import GrahamScanDriverContainer from './GrahamScanDriverContainer';
 
 const mapStateToProps = state => ({
   points: state.points,
-  lines: state.lines,
   isActive: state.scanIsActive,
   step: state.scanStep,
 });

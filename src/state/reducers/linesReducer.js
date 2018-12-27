@@ -17,7 +17,10 @@ const linesReducer = (state = initialState, action) => {
         name: uuid(),
       });
     case REMOVE_LINE:
-      return state.filter(line => line.name !== action.name);
+      return state.filter((line) => {
+        return line.startPoint.name !== action.startPoint.name
+            && line.endPoint.name !== action.endPoint.name;
+      });
     case CLEAR_LINES:
       return [];
     default:

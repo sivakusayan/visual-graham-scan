@@ -10,17 +10,22 @@ import {
 } from '../../../state/actionTypes/lineActionTypes';
 
 describe('Line Action Generators', () => {
-  it('should create an action to add a line', () => {
-    const startPoint = {
+  let startPoint;
+  let endPoint;
+
+  beforeEach(() => {
+    startPoint = {
       x: 0,
       y: 0,
       name: 98231,
     };
-    const endPoint = {
+    endPoint = {
       x: 1,
       y: 1,
       name: 58385,
     };
+  });
+  it('should create an action to add a line', () => {
     const expectedAction = {
       type: ADD_LINE,
       startPoint,
@@ -29,12 +34,12 @@ describe('Line Action Generators', () => {
     expect(addLine(startPoint, endPoint)).toEqual(expectedAction);
   });
   it('should create an action to remove a line by ID', () => {
-    const name = 91490;
     const expectedAction = {
       type: REMOVE_LINE,
-      name,
+      startPoint,
+      endPoint,
     };
-    expect(removeLine(name)).toEqual(expectedAction);
+    expect(removeLine(startPoint, endPoint)).toEqual(expectedAction);
   });
   it('should create an action to clear all lines', () => {
     const expectedAction = {

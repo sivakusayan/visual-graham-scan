@@ -124,15 +124,6 @@ describe('Scan Driver Logic', () => {
 
     expect(newValue).toBe(originalValue + 2);
   });
-  it('should not increment nextPointIndex out of array bounds when addNextPoint is called', () => {
-    const wrapper = shallow(<GrahamScanDriverContainer points={dummyPoints} />);
-
-    wrapper.instance().addNextPoint();
-    wrapper.instance().addNextPoint();
-    wrapper.instance().addNextPoint();
-
-    expect(wrapper.state('nextPointIndex')).toBe(2);
-  });
   it('should call setDone after addNextPoint is called and nextPointIndex equal to the number of points', () => {
     const setDoneSpy = jest.fn();
     const wrapper = shallow(
@@ -150,12 +141,18 @@ describe('Scan Driver Logic', () => {
   });
   it('should call setFixRightTurn when fixRightTurn is called', () => {
     const setFixRightTurnSpy = jest.fn();
+    const convexHull = [
+      { x: 0, y: 0, status: ACCEPTED },
+      { x: 1, y: 0, status: ACCEPTED },
+      { x: 1, y: 1, status: ACCEPTED },
+    ];
     const wrapper = shallow(
       <GrahamScanDriverContainer
         setFixRightTurn={setFixRightTurnSpy}
         points={dummyPoints}
       />,
     );
+    wrapper.setState({ convexHull });
     wrapper.instance().fixRightTurn();
 
     expect(setFixRightTurnSpy).toHaveBeenCalled();
@@ -186,26 +183,38 @@ describe('Scan Driver Logic', () => {
       expect(addNextPointSpy).toHaveBeenCalled();
     });
     it(`should call addNextPoint if current step is ${ADD_NEXT_POINT} and there is no right turn`, () => {
-      const points = [
+      const convexHull = [
         { x: 0, y: 0, status: ACCEPTED },
         { x: 1, y: 0, status: ACCEPTED },
-        { x: 1, y: 1, status: ACCEPTED },
-        { x: 1, y: 2, status: NULL },
+        { x: 1, y: -1, status: ACCEPTED },
       ];
-      const wrapper = shallow(<GrahamScanDriverContainer points={points} step={ADD_NEXT_POINT} />);
+      const wrapper = shallow(
+        <GrahamScanDriverContainer
+          points={dummyPoints}
+          step={ADD_NEXT_POINT}
+        />,
+      );
+      wrapper.setState({
+        convexHull,
+      });
       const addNextPointSpy = jest.spyOn(wrapper.instance(), 'addNextPoint');
       wrapper.instance().nextStep();
 
       expect(addNextPointSpy).toHaveBeenCalled();
     });
     it(`should call fixRightTurn if current step is ${ADD_NEXT_POINT} and there is a right turn`, () => {
-      const points = [
+      const convexHull = [
         { x: 0, y: 0, status: ACCEPTED },
         { x: 1, y: 0, status: ACCEPTED },
-        { x: 1, y: -1, status: ACCEPTED },
-        { x: 1, y: 2, status: NULL },
+        { x: 1, y: 1, status: ACCEPTED },
       ];
-      const wrapper = shallow(<GrahamScanDriverContainer points={points} step={ADD_NEXT_POINT} />);
+      const wrapper = shallow(
+        <GrahamScanDriverContainer
+          points={dummyPoints}
+          step={ADD_NEXT_POINT}
+        />,
+      );
+      wrapper.setState({ convexHull });
       const fixRightTurnSpy = jest.spyOn(wrapper.instance(), 'fixRightTurn');
       wrapper.instance().nextStep();
 

@@ -21,16 +21,19 @@ export const addLine = (startPoint, endPoint) => ({
 });
 
 /**
- * Creates an action to remove a line by ID
+ * Creates an action to remove a line
  *
- * @param {Number} name
- *  The ID of the line to remove
+ * @param startPoint
+ *  The point on the canvas the line starts from
+ * @param endPoint
+ *  The point on the canvas the line ends at
  *
- * @returns {{ type: REMOVE_LINE, name: Number }}
+ * @return {type: REMOVE_LINE, startPoint: Point, endPoint: Point}
  */
-export const removeLine = name => ({
+export const removeLine = (startPoint, endPoint) => ({
   type: REMOVE_LINE,
-  name,
+  startPoint,
+  endPoint,
 });
 
 /**

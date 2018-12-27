@@ -8,7 +8,9 @@ import {
   FIX_RIGHT_TURN,
   DONE,
 } from '../__constants__/SCAN_STEPS';
+import { ACCEPTED } from '../__constants__/POINT_STATUSES';
 import getStartPoint from '../algorithm/helpers/getStartPoint';
+import hasRightTurn from '../algorithm/helpers/hasRightTurn';
 import GrahamScanDriver from '../components/GrahamScanDriver';
 import Point from '../propTypes/Point';
 import Line from '../propTypes/Line';
@@ -20,6 +22,8 @@ class GrahamScanDriverContainer extends Component {
     // Tracks the index of the current point we are
     // processing in the points array.
     nextPointIndex: 0,
+    // The points currently on the convex hull
+    convexHull: [],
   }
 
   init = () => {
@@ -28,6 +32,7 @@ class GrahamScanDriverContainer extends Component {
     this.setState({
       startPoint: null,
       nextPointIndex: 0,
+      convexHull: [],
     });
   }
 
@@ -52,8 +57,18 @@ class GrahamScanDriverContainer extends Component {
     // class method. This function actually computes the
     // startPoint.
     const startPoint = getStartPoint(points);
-    this.setState({ startPoint });
+    this.setState(prevState => ({ 
+      startPoint,
+      convexHull: prevState.convexHull.concat(startPoint),
+    }));
     acceptPoint(startPoint.name);
+  };
+
+  sortPoints = () => {
+    const { setSortPoints, sortPoints } = this.props;
+    const { startPoint } = this.state;
+    setSortPoints();
+    sortPoints(startPoint);
   };
 
   addNextPoint = () => {
@@ -76,25 +91,50 @@ class GrahamScanDriverContainer extends Component {
     if (nextPointIndex + 1 === points.length) setDone();
     this.setState(prevState => ({
       nextPointIndex: prevState.nextPointIndex + 1,
+      convexHull: prevState.convexHull.concat(nextPoint),
     }));
   }
 
-  sortPoints = () => {
-    const { setSortPoints, sortPoints } = this.props;
-    const { startPoint } = this.state;
-    setSortPoints();
-    sortPoints(startPoint);
-  };
+  fixRightTurn = () => {
+    const {
+      points,
+      rejectPoint,
+      setFixRightTurn,
+      addLine,
+      removeLine,
+    } = this.props;
+    const { startPoint, nextPointIndex, convexHull } = this.state;
+    // Point before errorPoint
+    const originPoint = convexHull[convexHull.length - 3];
+    // Point where line made a right turn from
+    const errorPoint = convexHull[convexHull.length - 2];
+    // Point where line made a right turn to
+    const endPoint = convexHull[convexHull.length - 1];
+    setFixRightTurn();
+
+    rejectPoint(errorPoint.name);
+    convexHull.splice(convexHull.length - 2, 1);
+    removeLine(errorPoint, endPoint);
+    removeLine(originPoint, errorPoint);
+    addLine(originPoint, endPoint);
+  }
 
   nextStep = () => {
     const { step } = this.props;
+    const { convexHull } = this.state;
     if (step === DONE) {
       this.init();
       this.getStartPoint();
     }
     if (step === GET_START_POINT) this.sortPoints();
     if (step === SORT_POINTS) this.addNextPoint();
-    if (step === ADD_NEXT_POINT) this.addNextPoint();
+    if (step === ADD_NEXT_POINT || step === FIX_RIGHT_TURN) {
+      if (convexHull.length >= 3 && hasRightTurn(convexHull)) {
+        this.fixRightTurn();
+      } else {
+        this.addNextPoint();
+      }
+    }
   }
 
   render() {
@@ -112,7 +152,6 @@ class GrahamScanDriverContainer extends Component {
 
 GrahamScanDriverContainer.propTypes = {
   points: PropTypes.arrayOf(Point),
-  lines: PropTypes.arrayOf(Line),
   isActive: PropTypes.bool,
   step: PropTypes.oneOf([
     GET_START_POINT,
@@ -138,7 +177,6 @@ GrahamScanDriverContainer.propTypes = {
 
 GrahamScanDriverContainer.defaultProps = {
   points: [],
-  lines: [],
   isActive: false,
   step: DONE,
   acceptPoint: () => null,
