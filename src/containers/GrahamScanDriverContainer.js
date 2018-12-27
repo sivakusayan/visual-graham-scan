@@ -9,7 +9,6 @@ import {
   DONE,
 } from '../__constants__/SCAN_STEPS';
 import getStartPoint from '../algorithm/helpers/getStartPoint';
-import sortPoints from '../algorithm/helpers/sortPoints';
 import GrahamScanDriver from '../components/GrahamScanDriver';
 import Point from '../propTypes/Point';
 import Line from '../propTypes/Line';
@@ -25,6 +24,7 @@ class GrahamScanDriverContainer extends Component {
 
   startScan = () => {
     const { activateScan, points } = this.props;
+    console.log('WAS I CALLED BITCH')
     if (points.length > 0) {
       activateScan();
       this.getStartPoint();
