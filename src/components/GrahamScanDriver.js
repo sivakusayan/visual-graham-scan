@@ -33,12 +33,12 @@ const GrahamScanDriver = ({
       </p>
     )}
     {(isActive && scanStep !== DONE) && (
-      <button onClick={nextStep} type="button" className="next-move">
-        Next Move
+      <button onClick={nextStep} type="button" className="next-step">
+        Next Step
       </button>
     )}
     {(isActive && scanStep === DONE) && (
-      <button onClick={nextStep} type="button" className="repeat-scan">
+      <button onClick={startScan} type="button" className="repeat-scan">
         Repeat Scan
       </button>
     )}

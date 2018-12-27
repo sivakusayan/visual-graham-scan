@@ -14,6 +14,7 @@ import {
   DONE,
 } from '../../__constants__/SCAN_STEPS';
 import { NULL, ACCEPTED } from '../../__constants__/POINT_STATUSES';
+import UUID_MOCK_ID from '../__constants__/UUID_MOCK_ID';
 import GrahamScanDriverContainer from '../../containers/GrahamScanDriverContainer';
 
 describe('Scan Driver Logic', () => {
@@ -23,13 +24,13 @@ describe('Scan Driver Logic', () => {
   let dummyPoints;
   beforeEach(() => {
     point1 = {
-      x: 0, y: 0, name: 1, status: NULL,
+      x: 0, y: 0, name: UUID_MOCK_ID, status: NULL,
     };
     point2 = {
-      x: 0, y: 1, name: 2, status: NULL,
+      x: 0, y: 1, name: UUID_MOCK_ID, status: NULL,
     };
     point3 = {
-      x: 0, y: -1, name: 3, status: NULL,
+      x: 0, y: -1, name: UUID_MOCK_ID, status: NULL,
     };
 
     dummyPoints = [point1, point2, point3];
@@ -231,13 +232,6 @@ describe('Scan Driver Logic', () => {
       wrapper.instance().nextStep();
 
       expect(addNextPointSpy).toHaveBeenCalled();
-    });
-    it(`should call getStartPoint if current step is ${DONE}`, () => {
-      const wrapper = shallow(<GrahamScanDriverContainer points={dummyPoints} step={DONE} />);
-      const getStartPointSpy = jest.spyOn(wrapper.instance(), 'getStartPoint');
-
-      wrapper.instance().nextStep();
-      expect(getStartPointSpy).toHaveBeenCalled();
     });
   });
 });

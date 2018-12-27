@@ -13,7 +13,7 @@ import {
   DONE,
 } from '../../__constants__/SCAN_STEPS';
 
-const initialState = null;
+const initialState = DONE;
 
 const scanStepReducer = (state = initialState, action) => {
   switch (action.type) {

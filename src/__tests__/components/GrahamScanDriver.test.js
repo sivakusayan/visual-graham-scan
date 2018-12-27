@@ -23,19 +23,20 @@ describe('GrahamScanDriver Component', () => {
     button.simulate('click');
     expect(startScanSpy).toHaveBeenCalled();
   });
-  it('should render a next-move button when scan is active', () => {
-    const wrapper = shallow(<GrahamScanDriver isActive />);
-    expect(wrapper.find('button.next-move').exists()).toBe(true);
+  it('should render a next-step button when scan is active', () => {
+    const wrapper = shallow(<GrahamScanDriver scanStep={GET_START_POINT} isActive />);
+    expect(wrapper.find('button.next-step').exists()).toBe(true);
   });
-  it('should call nextStep whenever next-move button is clicked', () => {
+  it('should call nextStep whenever next-step button is clicked', () => {
     const nextStepSpy = jest.fn();
     const wrapper = shallow(
       <GrahamScanDriver
+        scanStep={GET_START_POINT}
         nextStep={nextStepSpy}
         isActive
       />,
     );
-    const button = wrapper.find('button.next-move');
+    const button = wrapper.find('button.next-step');
     button.simulate('click');
     expect(nextStepSpy).toHaveBeenCalled();
   });
