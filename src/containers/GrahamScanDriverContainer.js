@@ -27,18 +27,6 @@ class GrahamScanDriverContainer extends Component {
     doAuto: true,
   }
 
-  // We run the next step automatically here instead
-  // of recursively in next step since sometimes the
-  // props from store updates aren't passed down fast
-  // enough otherwise.
-  componentDidUpdate() {
-    const { doAuto } = this.state;
-    const { step, isActive } = this.props;
-    if (isActive && doAuto && step !== DONE) {
-      setTimeout(this.nextStep, 500);
-    }
-  }
-
   init = () => {
     const { resetPoints, clearLines } = this.props;
     resetPoints();
@@ -51,11 +39,15 @@ class GrahamScanDriverContainer extends Component {
   }
 
   startScan = () => {
-    const { activateScan, points, setGetStartPoint } = this.props;
+    const { activateScan, points } = this.props;
+    const { doAuto, nextPointIndex } = this.state;
     this.init();
     if (points.length > 0) {
       activateScan();
       this.getStartPoint();
+      if (doAuto && nextPointIndex + 1 !== points.length) {
+        setTimeout(this.nextStep, 100);
+      }
     }
   };
 
@@ -141,8 +133,8 @@ class GrahamScanDriverContainer extends Component {
   }
 
   nextStep = () => {
-    const { step } = this.props;
-    const { convexHull, doAuto } = this.state;
+    const { points, step } = this.props;
+    const { convexHull, doAuto, nextPointIndex, } = this.state;
     if (step === GET_START_POINT) this.sortPoints();
     if (step === SORT_POINTS) this.addNextPoint();
     if (step === ADD_NEXT_POINT || step === FIX_RIGHT_TURN) {
@@ -151,6 +143,10 @@ class GrahamScanDriverContainer extends Component {
       } else {
         this.addNextPoint();
       }
+    }
+
+    if (doAuto && nextPointIndex + 1 <= points.length) {
+      setTimeout(this.nextStep, 100);
     }
   }
 

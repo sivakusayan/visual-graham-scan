@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 import InteractiveStage from '../../components/InteractiveStage';
 import ResponsiveStage from '../../components/ResponsiveStage';

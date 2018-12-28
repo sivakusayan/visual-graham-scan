@@ -8,8 +8,8 @@ import { NULL, ACCEPTED, REJECTED } from './POINT_STATUSES';
 export default {
   RADIUS: 7,
   GET_FILL: (status) => {
-    if (status === ACCEPTED) return 'green';
-    if (status === REJECTED) return 'red';
-    if (status === NULL) return 'black';
+    if (status === ACCEPTED) return '#ACC196';
+    if (status === REJECTED) return '#511730';
+    if (status === NULL) return '#14080E';
   },
 };

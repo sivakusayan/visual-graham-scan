@@ -4,12 +4,13 @@ import { Layer, Line } from 'react-konva';
 import LINE_CONFIG from '../../__constants__/LINE_CONFIG';
 import Point from '../../propTypes/Point';
 
-const LineLayer = ({ lines = [] }) => (
+const LineLayer = ({ lines = [], scale }) => (
   <Layer>
     {lines.map(line => (
       <Line
         x={0}
         y={0}
+        strokeWidth={7 * scale}
         stroke={LINE_CONFIG.STROKE}
         points={[line.startPoint.x, line.startPoint.y, line.endPoint.x, line.endPoint.y]}
         key={line.name}

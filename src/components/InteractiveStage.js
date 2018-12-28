@@ -13,6 +13,7 @@ import LineLayerContainer from '../containers/Layers/LineLayerContainer';
 import rescaleCoordinate from '../utils/rescaleCoordinate';
 
 class InteractiveStage extends Component {
+
   onClick = (event) => {
     const { addPoint } = this.props;
     const stage = event.target;
@@ -20,8 +21,10 @@ class InteractiveStage extends Component {
 
     const point = {
       x: rescaleCoordinate(stage, pointerPosition.x),
-      y: rescaleCoordinate(stage, pointerPosition.y),
+      y: pointerPosition.y,
     };
+
+    console.log(point);
 
     addPoint(point);
   }
@@ -40,8 +43,11 @@ class InteractiveStage extends Component {
           className="canvas"
           onClick={!scanIsActive ? this.onClick : null}
         >
-          <PointLayerContainer />
+          {/* Note that with how React-Konva works, PointLayer MUST come after
+          LineLayer if we want the z-index of PointLayer to be higher. See:
+          https://github.com/konvajs/react-konva/issues/73 */}
           <LineLayerContainer />
+          <PointLayerContainer />
         </ResponsiveStage>
         {!scanIsActive && (
           <button type="button" className="clear-all" onClick={this.clearAllShapes}>

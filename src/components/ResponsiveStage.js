@@ -51,9 +51,9 @@ class ResponsiveStage extends Component {
         {...other}
         width={stageWidth}
         height={stageHeight}
-        scale={{ x: scale, y: scale }}
+        scale={{ x: scale }}
       >
-        {children}
+        { children.map(child => React.cloneElement(child, { scale })) }
       </Stage>
     );
   }

@@ -7,9 +7,9 @@
   "scripts": {
     "test": "jest --watch",
     "test-algorithm": "jest src/__tests__/algorithm --watch",
-    "test-ui": "jest src/__tests__/components --watch",
-    "test-state": "jest src/__tests__/state --watch",
+    "test-components": "jest src/__tests__/components --watch",
     "test-containers": "jest src/__tests__/containers --watch",
+    "test-state": "jest src/__tests__/state --watch",
     "serve": "webpack-dev-server",
     "build": "webpack"
   },
