@@ -1,9 +1,17 @@
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
 html {
+  box-sizing: border-box;
+  background: color(white);
   font-size: 62.5%;
 }
 
 body {
-  font-family: Helvetica, Arial, Helvetica, sans-serif;
+  font-family: 'Lato', Helvetica, Arial, sans-serif;
 }
 
 button {

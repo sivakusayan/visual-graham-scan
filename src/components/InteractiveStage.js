@@ -24,8 +24,6 @@ class InteractiveStage extends Component {
       y: pointerPosition.y,
     };
 
-    console.log(point);
-
     addPoint(point);
   }
 

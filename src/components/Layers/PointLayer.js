@@ -8,6 +8,7 @@ const PointLayer = ({ points = [], scale }) => (
   <Layer>
     {points.map(point => (
       <Ellipse
+        {...POINT_CONFIG}
         x={point.x}
         y={point.y}
         name={point.name}
@@ -15,7 +16,8 @@ const PointLayer = ({ points = [], scale }) => (
           x: POINT_CONFIG.RADIUS / scale,
           y: POINT_CONFIG.RADIUS,
         }}
-        fill={POINT_CONFIG.GET_FILL(point.status)}
+        fillLinearGradientColorStops={POINT_CONFIG.GET_GRADIENT_FILL(point.status)}
+        stroke={POINT_CONFIG.GET_STROKE(point.status)}
         key={point.name}
       />
     ))}
@@ -24,10 +26,12 @@ const PointLayer = ({ points = [], scale }) => (
 
 PointLayer.propTypes = {
   points: PropTypes.arrayOf(Point),
+  scale: PropTypes.number,
 };
 
 PointLayer.defaultProps = {
   points: [],
+  scale: 1,
 };
 
 export default PointLayer;

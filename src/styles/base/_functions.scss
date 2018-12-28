@@ -1,0 +1,32 @@
+/*------------------------------------------------------------------
+  POSITION
+  ------------------------------------------------------------------*/
+
+  @function z($level) {
+    @return map-get($stackingLevels, $level );
+  }
+  
+  /*------------------------------------------------------------------
+    LAYOUT
+    ------------------------------------------------------------------*/
+  
+  // Base values of 0.55rem were chosen as a midway between 0.5rem and
+  // 0.6rem, as it was found 0.6rem gave a big range of values at the cost
+  // of finer control, whilst the 0.5rem base value did the opposite. 
+  
+  @function margin($size) {
+    @return map-get($marginSizes, $size ) *  0.55rem;
+  }
+  
+  @function padding($size) {
+    @return map-get($paddingSizes, $size ) * 0.55rem;
+  }
+  
+  /*------------------------------------------------------------------
+    DECORATIONS
+    ------------------------------------------------------------------*/
+  
+  @function color($color) {
+    @return map-get($colors, $color );
+  }
+  
