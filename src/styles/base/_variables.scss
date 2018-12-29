@@ -1,13 +1,8 @@
-// SASS variables will be used instead of CSS variables for this application. We
-// do this as CSS colors conflict with inbuilt SASS color functions, along with the 
-// fact that we don't need the ability to programatically change the theme or 
-// reassign variables with a cascade 
-
 /*------------------------------------------------------------------
   POSITION
   ------------------------------------------------------------------*/
 
-  $stackingLevels: (
+  $stacking-levels: (
     bottom-most: -100,
     bottom: -10,
     top: 10,
@@ -23,7 +18,7 @@
   // EX: margin(M) = 4 * 0.5rem = 2rem
   //
   // NOTE: Actual base value is seen in _functions.scss
-  $marginSizes: (
+  $margin-sizes: (
     XXS: 1,
     XS: 2,
     S: 3,
@@ -38,7 +33,7 @@
   // EX: padding(M) = 4 * 0.5rem = 2rem
   //
   // NOTE: Actual base value is seen in _functions.scss
-  $paddingSizes: (
+  $padding-sizes: (
     XXS: 1,
     XS: 2,
     S: 3,
@@ -55,9 +50,9 @@
   $colors: (
     primary-red: #FF6F59,
     primary-green: #23CE6B,
-    white: #FBFEF9,
+    white: #FCFCFC,
     black: #272D2D,
   );
   
-  $borderRadius: 5px;
+  $border-radius: 5px;
   

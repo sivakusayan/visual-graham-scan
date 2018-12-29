@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import InteractiveStage from '../../components/InteractiveStage';
 import ResponsiveStage from '../../components/ResponsiveStage';
@@ -82,8 +82,13 @@ describe('Convex Hull Stage Component', () => {
     expect(clearPointsSpy).toHaveBeenCalled();
     expect(clearLinesSpy).toHaveBeenCalled();
   });
-  it('should not render the clear-all button while scan is active', () => {
+  it('should not render any btn--icon button while scan is active', () => {
     const wrapper = shallow(<InteractiveStage scanIsActive />);
-    expect(wrapper.find('.clear-all').exists()).toBe(false);
+    expect(wrapper.find('.btn--icon')).toHaveLength(0);
+  });
+  it('should have a data-tool-tip attribute for every btn--icon button', () => {
+    const wrapper = shallow(<InteractiveStage />);
+    const buttons = wrapper.find('.btn--icon');
+    expect(buttons.filterWhere(button => button.prop('data-tool-tip'))).toHaveLength(buttons.length);
   });
 });

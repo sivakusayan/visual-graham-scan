@@ -13,7 +13,6 @@ import LineLayerContainer from '../containers/Layers/LineLayerContainer';
 import rescaleCoordinate from '../utils/rescaleCoordinate';
 
 class InteractiveStage extends Component {
-
   onClick = (event) => {
     const { addPoint } = this.props;
     const stage = event.target;
@@ -48,8 +47,15 @@ class InteractiveStage extends Component {
           <PointLayerContainer />
         </ResponsiveStage>
         {!scanIsActive && (
-          <button type="button" className="clear-all" onClick={this.clearAllShapes}>
-            Clear All
+          <button
+            type="button"
+            data-tool-tip="Clear All"
+            className="btn btn--icon clear-all"
+            onClick={this.clearAllShapes}
+          >
+            <svg className="btn--icon__icon">
+              <use href="img/spritesheet.svg#cancel" />
+            </svg>
           </button>
         )}
       </main>
