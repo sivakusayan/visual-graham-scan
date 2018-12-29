@@ -1,13 +1,50 @@
-.btn--icon {
+.btn {
   position: relative;
   display: flex;
-  width: 5rem;
-  height: 5rem;
   align-items: center;
   justify-content: space-around;
 
   background: none;
   transition: all 0.3s;
+}
+
+.btn:hover,
+.btn:focus {
+  // We don't need the blue focus outline, since we will be defining our own focus
+  outline: none;
+}
+
+.btn:hover,
+.btn[data-focus-visible-added] {
+  transform: $scale-subtle;
+}
+
+/*--------------------------------------------------------
+---------------------TEXT-ONLY BUTTONS--------------------
+--------------------------------------------------------*/
+
+.btn--text {
+  padding: padding(XS) padding(M);
+
+  border: 2px solid currentColor;
+  background: darken(color(white), 2%);
+  border-radius: $radius-subtle;
+  box-shadow: $shadow-down-subtle;
+  color: lighten(color(primary-green), 10%);
+  font-size: 2rem;
+}
+
+.btn--text:hover {
+  box-shadow: $shadow-down;
+}
+
+/*--------------------------------------------------------
+---------------------ICON-ONLY BUTTONS--------------------
+--------------------------------------------------------*/
+
+.btn--icon {
+  width: 5rem;
+  height: 5rem;
 
   &__icon {
     width: 100%;
@@ -24,8 +61,8 @@
 
     padding: padding(XXS) padding(XS);
     background-color: color(white);
-    border-radius: $border-radius;
-    box-shadow: 0 1px 5px rgba(color(black), 0.08);
+    border-radius: $radius-subtle;
+    box-shadow: $shadow-down-subtle;
     // Inherit the color from .btn--icon since we want the icons and text to have the same color
     color: currentColor;
 
@@ -42,16 +79,15 @@
 }
 
 .btn--icon:hover,
-.btn--icon:focus {
-  outline: none;
-  transform: scale(1.1);
-
+.btn--icon[data-focus-visible-added] {
   &::before {
     right: 110%;
     opacity: 1;
     visibility: visible;
   }
 }
+
+//---------------SPECIFIC ICON ONLY BUTTONS----------------------
 
 .btn--icon.clear-all {
   position: absolute;

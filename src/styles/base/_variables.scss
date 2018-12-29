@@ -53,6 +53,13 @@
     white: #FCFCFC,
     black: #272D2D,
   );
+
+  $shadow-down-subtle: 0 1px 5px rgba(#272D2D, 0.1);
+  $shadow-down: 0 2px 5px rgba(#272D2D, 0.15);
+  $shadow-up-subtle: 0 -1px 5px rgba(#272D2D, 0.1);
+  $shadow-up: 0 -2px 5px rgba(#272D2D, 0.15);
   
-  $border-radius: 5px;
+  $radius-subtle: 10px;
+
+  $scale-subtle: scale(1.1);
   

@@ -5,13 +5,24 @@
 }
 
 html {
+  height: 100%;
   box-sizing: border-box;
+
   background-image: url(img/vintage-leaves.jpg);
   font-size: 62.5%;
 }
 
 body {
+  height: 100%;
   font-family: 'Lato', Helvetica, Arial, sans-serif;
+}
+
+#app {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
 }
 
 button {
