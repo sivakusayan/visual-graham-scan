@@ -13,6 +13,7 @@ import InteractiveStage from '../../components/InteractiveStage';
 import ResponsiveStage from '../../components/ResponsiveStage';
 import PointLayerContainer from '../../containers/Layers/PointLayerContainer';
 import LineLayerContainer from '../../containers/Layers/LineLayerContainer';
+import ToolTipButton from '../../components/ToolTipButton';
 import { DONE, GET_START_POINT } from '../../__constants__/SCAN_STEPS';
 
 describe('Convex Hull Stage Component', () => {
@@ -86,12 +87,12 @@ describe('Convex Hull Stage Component', () => {
     wrapper.setState({ isEditable: false });
     expect(wrapper.find('.clear-all').exists()).toBe(false);
   });
-  it('should have a data-tool-tip attribute for every btn--icon button', () => {
+  it('should have a data-tool-tip attribute for every .btn ToolTipButton', () => {
     const wrapper = shallow(<InteractiveStage />);
-    const buttons = wrapper.find('.btn--icon');
+    const buttons = wrapper.find('.btn');
     expect(buttons.filterWhere(button => button.prop('data-tool-tip'))).toHaveLength(buttons.length);
   });
-  it('should render a play button', () => {
+  it('should render a play ToolTipButton', () => {
     const wrapper = shallow(<InteractiveStage />);
     expect(wrapper.find('button.play').exists()).toBe(true);
   });
@@ -103,7 +104,7 @@ describe('Convex Hull Stage Component', () => {
 
     expect(activateScanSpy).toHaveBeenCalled();
   });
-  it('should render a play-auto button', () => {
+  it('should render a play-auto ToolTipButton', () => {
     const wrapper = shallow(<InteractiveStage />);
     expect(wrapper.find('button.play-auto').exists()).toBe(true);
   });

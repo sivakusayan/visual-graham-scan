@@ -10,7 +10,6 @@ import connectWithStore from '../state/store/connectWithStore';
 
 const mapStateToProps = state => ({
   pointCount: state.points.length,
-  scanIsActive: state.scanIsActive,
   scanStep: state.scanStep,
 });
 

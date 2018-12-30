@@ -9,12 +9,14 @@ import PropTypes from 'prop-types';
 import ResponsiveStage from './ResponsiveStage';
 import PointLayerContainer from '../containers/Layers/PointLayerContainer';
 import LineLayerContainer from '../containers/Layers/LineLayerContainer';
+import ToolTipButton from './ToolTipButton';
 import rescaleCoordinate from '../utils/rescaleCoordinate';
 
 class InteractiveStage extends Component {
   state = {
     isEditable: true,
   }
+
   onClick = (event) => {
     const { addPoint } = this.props;
     const stage = event.target;
@@ -38,14 +40,13 @@ class InteractiveStage extends Component {
     const { activateScan } = this.props;
     this.setState({
       isEditable: false,
-    })
+    });
     this.resetCanvas();
     activateScan();
   }
 
   render() {
     const {
-      scanIsActive,
       pointCount,
       clearPoints,
     } = this.props;
@@ -65,7 +66,7 @@ class InteractiveStage extends Component {
         {pointCount === 0 && (
           <p className="stage__text">Add a point by clicking on the screen!</p>
         )}
-        {!isEditable && (
+        {isEditable && (
           <button
             type="button"
             data-tool-tip="Clear All"
@@ -73,7 +74,7 @@ class InteractiveStage extends Component {
             onClick={clearPoints}
           >
             <svg className="btn--icon__icon">
-              <use href="img/spritesheet.svg#cancel" />
+              <use href="img/spritesheet.svg#clear-all" />
             </svg>
           </button>
         )}
@@ -87,7 +88,6 @@ InteractiveStage.propTypes = {
   addPoint: PropTypes.func,
   clearPoints: PropTypes.func,
   clearLines: PropTypes.func,
-  scanIsActive: PropTypes.bool,
   pointCount: PropTypes.number,
 };
 
@@ -95,7 +95,6 @@ InteractiveStage.defaultProps = {
   addPoint: () => null,
   clearPoints: () => null,
   clearLines: () => null,
-  scanIsActive: false,
   pointCount: 0,
 };
 

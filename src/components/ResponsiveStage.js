@@ -1,8 +1,8 @@
 /**
- * @fileoverview We make the canvas responsive in the sense that the viewbox becomes
- * smaller to fit the users screen. We do this since if we shrunk the physical canvas,
- * then preserving aspect ratios would create a large blank space under the canvas on
- * smaller screens.
+ * @fileoverview We make the canvas responsive only horizontally for now, although
+ * vertical responsiveness should be implemented soon. We don't shrink the horizontal
+ * and vertical by the same scales to preserve aspect ratios since that would create a
+ * large blank space under the canvas on smaller screens.
  *
  * Modeled after the demo shown here:
  *
