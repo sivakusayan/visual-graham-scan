@@ -134,7 +134,7 @@ class GrahamScanDriverContainer extends Component {
 
   nextStep = () => {
     const { points, step } = this.props;
-    const { convexHull, doAuto, nextPointIndex, } = this.state;
+    const { convexHull, doAuto, nextPointIndex } = this.state;
     if (step === GET_START_POINT) this.sortPoints();
     if (step === SORT_POINTS) this.addNextPoint();
     if (step === ADD_NEXT_POINT || step === FIX_RIGHT_TURN) {

@@ -33,9 +33,9 @@ class InteractiveStage extends Component {
   }
 
   render() {
-    const { scanIsActive } = this.props;
+    const { scanIsActive, pointCount } = this.props;
     return (
-      <main>
+      <main className="stage">
         <ResponsiveStage
           className="canvas"
           onClick={!scanIsActive ? this.onClick : null}
@@ -46,6 +46,9 @@ class InteractiveStage extends Component {
           <LineLayerContainer />
           <PointLayerContainer />
         </ResponsiveStage>
+        {pointCount === 0 && (
+          <p className="stage__text">Add a point by clicking on the screen!</p>
+        )}
         {!scanIsActive && (
           <button
             type="button"
@@ -68,6 +71,7 @@ InteractiveStage.propTypes = {
   clearPoints: PropTypes.func,
   clearLines: PropTypes.func,
   scanIsActive: PropTypes.bool,
+  pointCount: PropTypes.number,
 };
 
 InteractiveStage.defaultProps = {
@@ -75,6 +79,7 @@ InteractiveStage.defaultProps = {
   clearPoints: () => null,
   clearLines: () => null,
   scanIsActive: false,
+  pointCount: 0,
 };
 
 export default InteractiveStage;

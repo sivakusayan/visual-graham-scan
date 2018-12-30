@@ -41,6 +41,11 @@ class ResponsiveStage extends Component {
   componentDidMount() {
     this.resizeCanvas();
     window.addEventListener('resize', this.resizeCanvas);
+    window.addEventListener('deviceorientation', () => {
+      this.setState({
+        stageHeight: window.innerHeight * 0.8,
+      });
+    });
   }
 
   render() {

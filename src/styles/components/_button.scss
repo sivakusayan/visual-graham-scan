@@ -14,28 +14,27 @@
   outline: none;
 }
 
-.btn:hover,
-.btn[data-focus-visible-added] {
-  transform: $scale-subtle;
-}
-
 /*--------------------------------------------------------
 ---------------------TEXT-ONLY BUTTONS--------------------
 --------------------------------------------------------*/
 
 .btn--text {
-  padding: padding(XS) padding(M);
+  width: 100%;
+  height: 100%;
+  padding: padding(S) padding(XL);
 
   border: 2px solid currentColor;
   background: darken(color(white), 2%);
-  border-radius: $radius-subtle;
-  box-shadow: $shadow-down-subtle;
-  color: lighten(color(primary-green), 10%);
+  color: lighten(color(primary), 10%);
   font-size: 2rem;
+  white-space: nowrap;
 }
 
 .btn--text:hover {
+  border: 2px solid lighten(color(primary), 10%);
+  background-color: lighten(color(primary), 10%);
   box-shadow: $shadow-down;
+  color: darken(color(white), 2%);
 }
 
 /*--------------------------------------------------------
@@ -45,6 +44,7 @@
 .btn--icon {
   width: 5rem;
   height: 5rem;
+  border-radius: 100%;
 
   &__icon {
     width: 100%;
@@ -72,7 +72,10 @@
     // This property makes it so the button isn't still hovered 
     // while hovering over the before pseudo-element.
     pointer-events: none; 
-    transition: all 0.3s;
+    // Don't define transition for color, since right now color
+    // goes off computed color. This means that the text will 'flash'
+    // colors if we enable transition for that property.
+    transition: background-color 0.3s, opacity 0.3s, right 0.3s, visibility 0.3s;
     visibility: hidden;
     white-space: nowrap;
   }
@@ -80,6 +83,7 @@
 
 .btn--icon:hover,
 .btn--icon[data-focus-visible-added] {
+
   &::before {
     right: 110%;
     opacity: 1;
@@ -94,5 +98,16 @@
   top: 5%;
   right: 5%;
 
-  color: color(primary-red);
+  color: color(secondary);
+}
+
+.btn--icon.clear-all:hover,
+.btn--icon.clear-all[data-focus-visible-added] {
+  background-color: color(secondary);
+  color: color(white);
+  transform: $scale-subtle;
+
+  &::before {
+    background-color: color(secondary);
+  }
 }

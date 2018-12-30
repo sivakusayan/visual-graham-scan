@@ -1,0 +1,13 @@
+.stage {
+  position: relative;
+
+  &__text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    font-size: 1.5rem;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+  }
+}
