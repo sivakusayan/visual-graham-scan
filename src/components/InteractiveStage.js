@@ -5,7 +5,6 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import uuid from 'uuid';
 
 import ResponsiveStage from './ResponsiveStage';
 import PointLayerContainer from '../containers/Layers/PointLayerContainer';
@@ -13,6 +12,9 @@ import LineLayerContainer from '../containers/Layers/LineLayerContainer';
 import rescaleCoordinate from '../utils/rescaleCoordinate';
 
 class InteractiveStage extends Component {
+  state = {
+    isEditable: true,
+  }
   onClick = (event) => {
     const { addPoint } = this.props;
     const stage = event.target;
@@ -26,19 +28,33 @@ class InteractiveStage extends Component {
     addPoint(point);
   }
 
-  clearAllShapes = () => {
-    const { clearPoints, clearLines } = this.props;
-    clearPoints();
+  resetCanvas = () => {
+    const { clearLines, resetPoints } = this.props;
     clearLines();
+    resetPoints();
+  }
+
+  activateScan = () => {
+    const { activateScan } = this.props;
+    this.setState({
+      isEditable: false,
+    })
+    this.resetCanvas();
+    activateScan();
   }
 
   render() {
-    const { scanIsActive, pointCount } = this.props;
+    const {
+      scanIsActive,
+      pointCount,
+      clearPoints,
+    } = this.props;
+    const { isEditable } = this.state;
     return (
       <main className="stage">
         <ResponsiveStage
           className="canvas"
-          onClick={!scanIsActive ? this.onClick : null}
+          onClick={isEditable ? this.onClick : null}
         >
           {/* Note that with how React-Konva works, PointLayer MUST come after
           LineLayer if we want the z-index of PointLayer to be higher. See:
@@ -49,18 +65,19 @@ class InteractiveStage extends Component {
         {pointCount === 0 && (
           <p className="stage__text">Add a point by clicking on the screen!</p>
         )}
-        {!scanIsActive && (
+        {!isEditable && (
           <button
             type="button"
             data-tool-tip="Clear All"
             className="btn btn--icon clear-all"
-            onClick={this.clearAllShapes}
+            onClick={clearPoints}
           >
             <svg className="btn--icon__icon">
               <use href="img/spritesheet.svg#cancel" />
             </svg>
           </button>
         )}
+        <button onClick={this.activateScan}>Activate Scan</button>
       </main>
     );
   }

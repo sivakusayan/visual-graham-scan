@@ -27,34 +27,24 @@ class GrahamScanDriverContainer extends Component {
     doAuto: true,
   }
 
+  componentDidUpdate(prevProps) {
+    const { isActive } = this.props;
+    const { doAuto } = this.state;
+    if (isActive !== prevProps.isActive && isActive) {
+      this.init();
+      this.getStartPoint();
+      if (doAuto) {
+        setTimeout(this.nextStep, 100);
+      }
+    }
+  }
+
   init = () => {
-    const { resetPoints, clearLines } = this.props;
-    resetPoints();
-    clearLines();
     this.setState({
       startPoint: null,
       nextPointIndex: 0,
       convexHull: [],
     });
-  }
-
-  startScan = () => {
-    const { activateScan, points } = this.props;
-    const { doAuto, nextPointIndex } = this.state;
-    this.init();
-    if (points.length > 0) {
-      activateScan();
-      this.getStartPoint();
-      if (doAuto && nextPointIndex + 1 !== points.length) {
-        setTimeout(this.nextStep, 100);
-      }
-    }
-  };
-
-  exitScan = () => {
-    const { deactivateScan } = this.props;
-    this.init();
-    deactivateScan();
   }
 
   getStartPoint = () => {
@@ -65,7 +55,6 @@ class GrahamScanDriverContainer extends Component {
       clearLines,
     } = this.props;
     setGetStartPoint();
-    clearLines();
     // Note that this getStartPoint is different from the
     // class method. This function actually computes the
     // startPoint.
@@ -88,7 +77,6 @@ class GrahamScanDriverContainer extends Component {
     const {
       acceptPoint,
       setAddNextPoint,
-      setDone,
       addLine,
       points,
     } = this.props;
@@ -101,12 +89,16 @@ class GrahamScanDriverContainer extends Component {
     addLine(prevPoint, nextPoint);
 
     // Do this check before setState since setState isn't synchronous
-    if (nextPointIndex + 1 === points.length) setDone();
+    if (nextPointIndex + 1 === points.length) {
+      const { setDone, deactivateScan } = this.props;
+      setDone();
+      deactivateScan();
+    }
     this.setState(prevState => ({
       nextPointIndex: prevState.nextPointIndex + 1,
       convexHull: prevState.convexHull.concat(nextPoint),
     }));
-  }
+  };
 
   fixRightTurn = () => {
     const {
@@ -130,7 +122,7 @@ class GrahamScanDriverContainer extends Component {
     removeLine(errorPoint, endPoint);
     removeLine(originPoint, errorPoint);
     addLine(originPoint, endPoint);
-  }
+  };
 
   nextStep = () => {
     const { points, step } = this.props;
@@ -148,17 +140,14 @@ class GrahamScanDriverContainer extends Component {
     if (doAuto && nextPointIndex + 1 <= points.length) {
       setTimeout(this.nextStep, 100);
     }
-  }
+  };
 
   render() {
     const { isActive, step } = this.props;
     return (
       <GrahamScanDriver
-        startScan={this.startScan}
-        exitScan={this.exitScan}
         isActive={isActive}
         scanStep={step}
-        nextStep={this.nextStep}
       />
     );
   }
@@ -177,11 +166,8 @@ GrahamScanDriverContainer.propTypes = {
   acceptPoint: PropTypes.func,
   rejectPoint: PropTypes.func,
   sortPoints: PropTypes.func,
-  resetPoints: PropTypes.func,
   addLine: PropTypes.func,
   removeLine: PropTypes.func,
-  clearLines: PropTypes.func,
-  activateScan: PropTypes.func,
   deactivateScan: PropTypes.func,
   setGetStartPoint: PropTypes.func,
   setSortPoints: PropTypes.func,
@@ -197,11 +183,8 @@ GrahamScanDriverContainer.defaultProps = {
   acceptPoint: () => null,
   rejectPoint: () => null,
   sortPoints: () => null,
-  resetPoints: () => null,
   addLine: () => null,
   removeLine: () => null,
-  clearLines: () => null,
-  activateScan: () => null,
   deactivateScan: () => null,
   setGetStartPoint: () => null,
   setSortPoints: () => null,

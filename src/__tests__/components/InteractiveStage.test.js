@@ -13,8 +13,13 @@ import InteractiveStage from '../../components/InteractiveStage';
 import ResponsiveStage from '../../components/ResponsiveStage';
 import PointLayerContainer from '../../containers/Layers/PointLayerContainer';
 import LineLayerContainer from '../../containers/Layers/LineLayerContainer';
+import { DONE, GET_START_POINT } from '../../__constants__/SCAN_STEPS';
 
 describe('Convex Hull Stage Component', () => {
+  it('should initialize isEditable to true', () => {
+    const wrapper = shallow(<InteractiveStage />);
+    expect(wrapper.state('isEditable')).toBe(true);
+  });
   it('should render a ResponsiveStage for its canvas', () => {
     const wrapper = shallow(<InteractiveStage />);
     expect(wrapper.find(ResponsiveStage).exists()).toBe(true);
@@ -47,9 +52,10 @@ describe('Convex Hull Stage Component', () => {
 
     expect(addPointSpy).toHaveBeenCalledTimes(2);
   });
-  it('should not respond to users clicks if scan is active', () => {
+  it('should not respond to users clicks if isEditable is false', () => {
     const addPointSpy = jest.fn();
-    const wrapper = shallow(<InteractiveStage scanIsActive addPoint={addPointSpy} />);
+    const wrapper = shallow(<InteractiveStage addPoint={addPointSpy} />);
+    wrapper.setState({ isEditable: false });
     const event = {
       target: {
         getPointerPosition: () => ({
@@ -67,28 +73,67 @@ describe('Convex Hull Stage Component', () => {
 
     expect(addPointSpy).toHaveBeenCalledTimes(0);
   });
-  it('should dispense an action to clear all shapes from view when the clear-all button is clicked', () => {
+  it('should dispense an action to clear all points from view when the clear-all button is clicked', () => {
     const clearPointsSpy = jest.fn();
-    const clearLinesSpy = jest.fn();
-    const wrapper = shallow(
-      <InteractiveStage
-        clearPoints={clearPointsSpy}
-        clearLines={clearLinesSpy}
-      />,
-    );
+    const wrapper = shallow(<InteractiveStage clearPoints={clearPointsSpy} />);
 
     wrapper.find('.clear-all').simulate('click');
 
     expect(clearPointsSpy).toHaveBeenCalled();
-    expect(clearLinesSpy).toHaveBeenCalled();
   });
-  it('should not render any btn--icon button while scan is active', () => {
-    const wrapper = shallow(<InteractiveStage scanIsActive />);
-    expect(wrapper.find('.btn--icon')).toHaveLength(0);
+  it('should not render the clear-all button while isEditable is false', () => {
+    const wrapper = shallow(<InteractiveStage />);
+    wrapper.setState({ isEditable: false });
+    expect(wrapper.find('.clear-all').exists()).toBe(false);
   });
   it('should have a data-tool-tip attribute for every btn--icon button', () => {
     const wrapper = shallow(<InteractiveStage />);
     const buttons = wrapper.find('.btn--icon');
     expect(buttons.filterWhere(button => button.prop('data-tool-tip'))).toHaveLength(buttons.length);
+  });
+  it('should render a play button', () => {
+    const wrapper = shallow(<InteractiveStage />);
+    expect(wrapper.find('button.play').exists()).toBe(true);
+  });
+  it('should activate the scan when play button is clicked', () => {
+    const activateScanSpy = jest.fn();
+    const wrapper = shallow(<InteractiveStage activateScan={activateScanSpy} />);
+    const button = wrapper.find('button.play');
+    button.simulate('click');
+
+    expect(activateScanSpy).toHaveBeenCalled();
+  });
+  it('should render a play-auto button', () => {
+    const wrapper = shallow(<InteractiveStage />);
+    expect(wrapper.find('button.play-auto').exists()).toBe(true);
+  });
+  it('should activate the scan and set doAuto to true when play-auto button is clicked', () => {
+    const setAutoSpy = jest.fn();
+    const activateScanSpy = jest.fn();
+    const wrapper = shallow(
+      <InteractiveStage
+        setAuto={setAutoSpy}
+        activateScan={activateScanSpy}
+      />,
+    );
+    const button = wrapper.find('button.play-auto');
+    button.simulate('click');
+
+    expect(setAutoSpy).toHaveBeenCalled();
+    expect(activateScanSpy).toHaveBeenCalled();
+  });
+  it(`should render a edit-canvas button if scanStep is ${DONE} and isEditable is false`, () => {
+    const wrapper = shallow(<InteractiveStage scanStep={DONE} />);
+    wrapper.setState({ isEditable: false });
+    expect(wrapper.find('button.edit-canvas').exists()).toBe(true);
+  });
+  it(`should not render a edit-canvas button if scanStep is not ${DONE} or isEditable is true`, () => {
+    const wrapper = shallow(<InteractiveStage scanStep={GET_START_POINT} />);
+
+    expect(wrapper.find('button.edit-canvas').exists()).toBe(false);
+
+    wrapper.setProps({ scanStep: DONE });
+    wrapper.setState({ isEditable: true });
+    expect(wrapper.find('button.edit-canvas').exists()).toBe(false);
   });
 });

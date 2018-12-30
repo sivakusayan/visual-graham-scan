@@ -2,9 +2,8 @@ import {
   acceptPoint,
   rejectPoint,
   sortPoints,
-  resetPoints,
 } from '../state/actions/pointActions';
-import { addLine, removeLine, clearLines } from '../state/actions/lineActions';
+import { addLine, removeLine } from '../state/actions/lineActions';
 import {
   setGetStartPoint,
   setSortPoints,
@@ -12,7 +11,7 @@ import {
   setFixRightTurn,
   setDone,
 } from '../state/actions/scanStepActions';
-import { activateScan, deactivateScan } from '../state/actions/scanIsActiveActions';
+import { deactivateScan } from '../state/actions/scanIsActiveActions';
 import connectWithStore from '../state/store/connectWithStore';
 
 import GrahamScanDriverContainer from './GrahamScanDriverContainer';
@@ -27,11 +26,8 @@ export default connectWithStore(mapStateToProps, {
   acceptPoint,
   rejectPoint,
   sortPoints,
-  resetPoints,
   addLine,
   removeLine,
-  clearLines,
-  activateScan,
   deactivateScan,
   setGetStartPoint,
   setSortPoints,

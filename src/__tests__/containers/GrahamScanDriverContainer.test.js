@@ -43,41 +43,6 @@ describe('Scan Driver Logic', () => {
     const wrapper = shallow(<GrahamScanDriverContainer />);
     expect(wrapper.state('startPoint')).toEqual(null);
   });
-  it('should not call activateScan if startScan is called while points array is empty', () => {
-    const activateScanSpy = jest.fn();
-    const wrapper = shallow(
-      <GrahamScanDriverContainer
-        points={[]}
-        activateScan={activateScanSpy}
-      />,
-    );
-    wrapper.instance().startScan();
-
-    expect(activateScanSpy).toHaveBeenCalledTimes(0);
-  });
-  it('should call activateScan if startScan is called while points array is empty', () => {
-    const activateScanSpy = jest.fn();
-    const wrapper = shallow(
-      <GrahamScanDriverContainer
-        points={dummyPoints}
-        activateScan={activateScanSpy}
-      />,
-    );
-    wrapper.instance().startScan();
-
-    expect(activateScanSpy).toHaveBeenCalled();
-  });
-  it('should dispatch an action to clear lines when getStartPoint is called', () => {
-    const clearLinesSpy = jest.fn();
-    const wrapper = shallow(
-      <GrahamScanDriverContainer
-        points={dummyPoints}
-        clearLines={clearLinesSpy}
-      />,
-    );
-    wrapper.instance().getStartPoint();
-    expect(clearLinesSpy).toHaveBeenCalled();
-  });
   it('should call setGetStartPoint when getStartPoint is called', () => {
     const setGetStartPointSpy = jest.fn();
     const wrapper = shallow(
