@@ -74,67 +74,89 @@ describe('Convex Hull Stage Component', () => {
 
     expect(addPointSpy).toHaveBeenCalledTimes(0);
   });
-  it('should dispense an action to clear all points from view when the clear-all button is clicked', () => {
-    const clearPointsSpy = jest.fn();
-    const wrapper = shallow(<InteractiveStage clearPoints={clearPointsSpy} />);
-
-    wrapper.find('.clear-all').simulate('click');
-
-    expect(clearPointsSpy).toHaveBeenCalled();
-  });
-  it('should not render the clear-all button while isEditable is false', () => {
-    const wrapper = shallow(<InteractiveStage />);
-    wrapper.setState({ isEditable: false });
-    expect(wrapper.find('.clear-all').exists()).toBe(false);
-  });
   it('should have a data-tool-tip attribute for every .btn ToolTipButton', () => {
     const wrapper = shallow(<InteractiveStage />);
     const buttons = wrapper.find('.btn');
     expect(buttons.filterWhere(button => button.prop('data-tool-tip'))).toHaveLength(buttons.length);
   });
+  it('should render a clear-all ToolTipButton', () => {
+    const wrapper = shallow(<InteractiveStage />);
+    const button = wrapper.find(ToolTipButton).filterWhere({ purpose: 'clear-all' });
+    expect(button).toHaveLength(1);
+  });
+  it('should not render the clear-all button while isEditable is false', () => {
+    const wrapper = shallow(<InteractiveStage />);
+    wrapper.setState({ isEditable: false });
+    const button = wrapper.find(ToolTipButton).filterWhere({ purpose: 'clear-all' });
+    expect(button).toHaveLength(0);
+  });
+  it('should pass an onClick to clear-all ToolTipButton which clears all points on the canvas', () => {
+    const clearPointsSpy = jest.fn();
+    const wrapper = shallow(<InteractiveStage clearPoints={clearPointsSpy} />);
+
+    const button = wrapper.find(ToolTipButton).filterWhere({ purpose: 'clear-all' });
+    button.props('onClick')();
+
+    expect(clearPointsSpy).toHaveBeenCalled();
+  });
   it('should render a play ToolTipButton', () => {
     const wrapper = shallow(<InteractiveStage />);
-    expect(wrapper.find('button.play').exists()).toBe(true);
+    const button = wrapper.find(ToolTipButton).filterWhere({ purpose: 'play' });
+    expect(button).toHaveLength(0);
   });
-  it('should activate the scan when play button is clicked', () => {
+  it('should pass an onClick to play ToolTipButton which activates the scan', () => {
     const activateScanSpy = jest.fn();
     const wrapper = shallow(<InteractiveStage activateScan={activateScanSpy} />);
-    const button = wrapper.find('button.play');
-    button.simulate('click');
+
+    const button = wrapper.find(ToolTipButton).filterWhere({ purpose: 'play' });
+    button.props('onClick')();
 
     expect(activateScanSpy).toHaveBeenCalled();
   });
   it('should render a play-auto ToolTipButton', () => {
     const wrapper = shallow(<InteractiveStage />);
-    expect(wrapper.find('button.play-auto').exists()).toBe(true);
+    const button = wrapper.find(ToolTipButton).filterWhere({ purpose: 'clear-all' });
+    expect(button).toHaveLength(0);
   });
-  it('should activate the scan and set doAuto to true when play-auto button is clicked', () => {
-    const setAutoSpy = jest.fn();
+  it('should pass an onClick to play-auto ToolTipButton which activates the scan and sets doAuto to true', () => {
     const activateScanSpy = jest.fn();
+    const setAutoSpy = jest.fn();
     const wrapper = shallow(
       <InteractiveStage
         setAuto={setAutoSpy}
         activateScan={activateScanSpy}
       />,
     );
-    const button = wrapper.find('button.play-auto');
-    button.simulate('click');
 
-    expect(setAutoSpy).toHaveBeenCalled();
+    const button = wrapper.find(ToolTipButton).filterWhere({ purpose: 'play-auto' });
+    button.props('onClick')();
+
     expect(activateScanSpy).toHaveBeenCalled();
+    expect(setAutoSpy).toHaveBeenCalled();
   });
   it(`should render a edit-canvas button if scanStep is ${DONE} and isEditable is false`, () => {
     const wrapper = shallow(<InteractiveStage scanStep={DONE} />);
     wrapper.setState({ isEditable: false });
-    expect(wrapper.find('button.edit-canvas').exists()).toBe(true);
+    const button = wrapper.find(ToolTipButton).filterWhere({ purpose: 'edit-canvas' });
+    expect(button).toHaveLength(1);
   });
   it(`should not render a edit-canvas button if scanStep is not ${DONE} or isEditable is true`, () => {
     const wrapper = shallow(<InteractiveStage scanStep={GET_START_POINT} />);
-
-    expect(wrapper.find('button.edit-canvas').exists()).toBe(false);
+    let button = wrapper.find(ToolTipButton).filterWhere({ purpose: 'edit-canvas' });
+    expect(button).toHaveLength(0);
 
     wrapper.setProps({ scanStep: DONE });
     wrapper.setState({ isEditable: true });
-    expect(wrapper.find('button.edit-canvas').exists()).toBe(false);
+    button = wrapper.find(ToolTipButton).filterWhere({ purpose: 'edit-canvas' });
+    expect(button).toHaveLength(0);
+  });
+  it('should pass an onClick to edit-canvas ToolTipButton which sets isEditable to true', () => {
+    const wrapper = shallow(<InteractiveStage scanStep={DONE} />);
+    wrapper.setState({ isEditable: false });
+
+    const button = wrapper.find(ToolTipButton).filterWhere({ purpose: 'edit-canvas' });
+    button.props('onClick')();
+
+    expect(wrapper.state('isEditable')).toBe(true);
   });
 });
