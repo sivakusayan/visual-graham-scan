@@ -43,6 +43,7 @@ describe('Convex Hull Stage Component', () => {
         }),
         attrs: {
           scaleX: 2,
+          scaleY: 2,
         },
       },
     };

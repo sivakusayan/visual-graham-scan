@@ -8,7 +8,7 @@ import { activateScan } from '../state/actions/scanIsActiveActions';
 import { activateAuto, deactivateAuto } from '../state/actions/scanIsAutoActions';
 import InteractiveStage from '../components/InteractiveStage';
 import connectWithStore from '../state/store/connectWithStore';
-import rescaleCoordinate from '../utils/rescaleCoordinate';
+import rescaleCoordinates from '../utils/rescaleCoordinates';
 
 const mapStateToProps = state => ({
   pointCount: state.points.length,
@@ -22,10 +22,7 @@ const mapDispatchToProps = dispatch => ({
     const stage = event.target;
     const pointerPosition = stage.getPointerPosition();
 
-    const point = {
-      x: rescaleCoordinate(stage, pointerPosition.x),
-      y: pointerPosition.y,
-    };
+    const point = rescaleCoordinates(stage, pointerPosition);
 
     dispatch(addPoint(point));
   },

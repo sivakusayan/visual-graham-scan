@@ -1,10 +1,9 @@
 /**
- * @fileoverview We make the canvas responsive only horizontally for now, although
- * vertical responsiveness should be implemented soon. We don't shrink the horizontal
+ * @fileoverview A responsive wrapper around Konva Stage. We don't shrink the horizontal
  * and vertical by the same scales to preserve aspect ratios since that would create a
  * large blank space under the canvas on smaller screens.
  *
- * Modeled after the demo shown here:
+ * Idea modeled after the demo shown here:
  *
  * https://konvajs.github.io/docs/sandbox/Responsive_Canvas.html
  */
@@ -18,33 +17,38 @@ class ResponsiveStage extends Component {
   // calculate new sizes.
   defaultWidth = window.innerWidth;
 
-  defaultHeight = window.innerHeight * 0.8;
+  defaultHeight = window.innerHeight;
 
   state = {
     stageWidth: this.defaultWidth,
     stageHeight: this.defaultHeight,
-    scale: 1,
+    scale: {
+      x: 1,
+      y: 1,
+    },
   };
-
-  resizeCanvas = () => {
-    // Get width of parent
-    const containerWidth = document.querySelector('#app').offsetWidth;
-    // Calculate new scale with reference to default values
-    const newScale = containerWidth / this.defaultWidth;
-
-    this.setState({
-      stageWidth: this.defaultWidth * newScale,
-      scale: newScale,
-    });
-  }
 
   componentDidMount() {
     this.resizeCanvas();
     window.addEventListener('resize', this.resizeCanvas);
-    window.addEventListener('deviceorientation', () => {
-      this.setState({
-        stageHeight: window.innerHeight * 0.8,
-      });
+    window.addEventListener('deviceorientation', this.resizeCanvas);
+  }
+
+  resizeCanvas = () => {
+    // Get width of parent
+    const containerWidth = document.querySelector('#app').offsetWidth;
+    const containerHeight = document.querySelector('#app').offsetHeight;
+    // Calculate new scale with reference to default values
+    const xScale = containerWidth / this.defaultWidth;
+    const yScale = containerHeight / this.defaultHeight;
+
+    this.setState({
+      stageWidth: this.defaultWidth * xScale,
+      stageHeight: this.defaultHeight * yScale,
+      scale: {
+        x: xScale,
+        y: yScale,
+      }
     });
   }
 
@@ -56,7 +60,7 @@ class ResponsiveStage extends Component {
         {...other}
         width={stageWidth}
         height={stageHeight}
-        scale={{ x: scale }}
+        scale={scale}
       >
         { children.map(child => React.cloneElement(child, { scale })) }
       </Stage>

@@ -18,12 +18,18 @@ class InteractiveStage extends Component {
 
   play = () => {
     const { deactivateAuto, isActive, startScan } = this.props;
+    this.setState({
+      isEditable: false,
+    });
     deactivateAuto();
     if (!isActive) startScan();
   }
 
   playAuto = () => {
     const { activateAuto, isActive, startScan } = this.props;
+    this.setState({
+      isEditable: false,
+    });
     activateAuto();
     if (!isActive) startScan();
   }
@@ -39,7 +45,6 @@ class InteractiveStage extends Component {
   render() {
     const {
       onStageClick,
-      scanStep,
       pointCount,
       clearPoints,
       isActive,
@@ -76,6 +81,7 @@ InteractiveStage.propTypes = {
   clearPoints: PropTypes.func,
   activateAuto: PropTypes.func,
   deactivateAuto: PropTypes.func,
+  startScan: PropTypes.func,
   pointCount: PropTypes.number,
   isActive: PropTypes.bool,
   isAuto: PropTypes.bool,
@@ -87,6 +93,7 @@ InteractiveStage.defaultProps = {
   clearPoints: () => null,
   activateAuto: () => null,
   deactivateAuto: () => null,
+  startScan: () => null,
   pointCount: 0,
   isActive: false,
   isAuto: false,
