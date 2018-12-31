@@ -104,26 +104,12 @@ describe('Convex Hull Stage Component', () => {
     const button = wrapper.find(ToolTipButton).filterWhere({ purpose: 'play' });
     expect(button).toHaveLength(0);
   });
-  it('should pass an onClick to play ToolTipButton which activates the scan', () => {
+  it('should pass an onClick to play ToolTipButton which activates the scan and sets doAuto to false', () => {
     const activateScanSpy = jest.fn();
-    const wrapper = shallow(<InteractiveStage activateScan={activateScanSpy} />);
-
-    const button = wrapper.find(ToolTipButton).filterWhere({ purpose: 'play' });
-    button.props('onClick')();
-
-    expect(activateScanSpy).toHaveBeenCalled();
-  });
-  it('should render a play-auto ToolTipButton', () => {
-    const wrapper = shallow(<InteractiveStage />);
-    const button = wrapper.find(ToolTipButton).filterWhere({ purpose: 'clear-all' });
-    expect(button).toHaveLength(0);
-  });
-  it('should pass an onClick to play-auto ToolTipButton which activates the scan and sets doAuto to true', () => {
-    const activateScanSpy = jest.fn();
-    const setAutoSpy = jest.fn();
+    const deactivateAutoSpy = jest.fn();
     const wrapper = shallow(
       <InteractiveStage
-        setAuto={setAutoSpy}
+        deactivateAuto={deactivateAutoSpy}
         activateScan={activateScanSpy}
       />,
     );
@@ -132,7 +118,28 @@ describe('Convex Hull Stage Component', () => {
     button.props('onClick')();
 
     expect(activateScanSpy).toHaveBeenCalled();
-    expect(setAutoSpy).toHaveBeenCalled();
+    expect(deactivateAutoSpy).toHaveBeenCalled();
+  });
+  it('should render a play-auto ToolTipButton', () => {
+    const wrapper = shallow(<InteractiveStage />);
+    const button = wrapper.find(ToolTipButton).filterWhere({ purpose: 'clear-all' });
+    expect(button).toHaveLength(0);
+  });
+  it('should pass an onClick to play-auto ToolTipButton which activates the scan and sets doAuto to true', () => {
+    const activateScanSpy = jest.fn();
+    const activateAutoSpy = jest.fn();
+    const wrapper = shallow(
+      <InteractiveStage
+        activateAuto={activateAutoSpy}
+        activateScan={activateScanSpy}
+      />,
+    );
+
+    const button = wrapper.find(ToolTipButton).filterWhere({ purpose: 'play-auto' });
+    button.props('onClick')();
+
+    expect(activateScanSpy).toHaveBeenCalled();
+    expect(activateAutoSpy).toHaveBeenCalled();
   });
   it(`should render a edit-canvas button if scanStep is ${DONE} and isEditable is false`, () => {
     const wrapper = shallow(<InteractiveStage scanStep={DONE} />);

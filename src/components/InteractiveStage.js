@@ -11,6 +11,7 @@ import PointLayerContainer from '../containers/Layers/PointLayerContainer';
 import LineLayerContainer from '../containers/Layers/LineLayerContainer';
 import ToolTipButton from './ToolTipButton';
 import rescaleCoordinate from '../utils/rescaleCoordinate';
+import { DONE } from '../__constants__/SCAN_STEPS';
 
 class InteractiveStage extends Component {
   state = {
@@ -36,7 +37,7 @@ class InteractiveStage extends Component {
     resetPoints();
   }
 
-  activateScan = () => {
+  play = () => {
     const { activateScan } = this.props;
     this.setState({
       isEditable: false,
@@ -45,10 +46,22 @@ class InteractiveStage extends Component {
     activateScan();
   }
 
+  playAuto = () => {
+    this.play();
+  }
+
+  setEditableCanvas = () => {
+    this.setState({
+      isEditable: true,
+    });
+    this.resetCanvas();
+  }
+
   render() {
     const {
       pointCount,
       clearPoints,
+      scanStep
     } = this.props;
     const { isEditable } = this.state;
     return (
@@ -66,19 +79,12 @@ class InteractiveStage extends Component {
         {pointCount === 0 && (
           <p className="stage__text">Add a point by clicking on the screen!</p>
         )}
-        {isEditable && (
-          <button
-            type="button"
-            data-tool-tip="Clear All"
-            className="btn btn--icon clear-all"
-            onClick={clearPoints}
-          >
-            <svg className="btn--icon__icon">
-              <use href="img/spritesheet.svg#clear-all" />
-            </svg>
-          </button>
-        )}
-        <button onClick={this.activateScan}>Activate Scan</button>
+        <menu className="stage__btn-container">
+          <ToolTipButton purpose="clear-all" onClick={clearPoints} disabled={!isEditable} />
+          <ToolTipButton purpose="play" onClick={this.play} disabled={scanStep !== DONE} />
+          <ToolTipButton purpose="play-auto" onClick={this.playAuto} disabled={scanStep !== DONE} />
+          <ToolTipButton purpose="edit-canvas" onClick={this.setEditableCanvas} disabled={isEditable || scanStep !== DONE} />
+        </menu>
       </main>
     );
   }

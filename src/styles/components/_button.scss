@@ -5,7 +5,12 @@
   justify-content: space-around;
 
   background: none;
+  opacity: 1;
   transition: all 0.3s;
+}
+
+.btn[disabled] {
+  opacity: 0;
 }
 
 .btn:hover,
@@ -15,35 +20,13 @@
 }
 
 /*--------------------------------------------------------
----------------------TEXT-ONLY BUTTONS--------------------
---------------------------------------------------------*/
-
-.btn--text {
-  width: 100%;
-  height: 100%;
-  padding: padding(S) padding(XL);
-
-  border: 2px solid currentColor;
-  background: darken(color(white), 2%);
-  color: lighten(color(primary), 10%);
-  font-size: 2rem;
-  white-space: nowrap;
-}
-
-.btn--text:hover {
-  border: 2px solid lighten(color(primary), 10%);
-  background-color: lighten(color(primary), 10%);
-  box-shadow: $shadow-down;
-  color: darken(color(white), 2%);
-}
-
-/*--------------------------------------------------------
 ---------------------ICON-ONLY BUTTONS--------------------
 --------------------------------------------------------*/
 
 .btn--icon {
-  width: 5rem;
-  height: 5rem;
+  width: 8rem;
+  height: 8rem;
+  margin: 2rem 3rem;
   border-radius: 100%;
 
   &__icon {
@@ -59,7 +42,7 @@
     right: 100%;
     display: inline-block;
 
-    padding: padding(XXS) padding(XS);
+    padding: padding(XS) padding(M);
     background-color: color(white);
     border-radius: $radius-subtle;
     box-shadow: $shadow-down-subtle;
@@ -67,7 +50,7 @@
     color: currentColor;
 
     content: attr(data-tool-tip);
-    font-size: 1.5rem;
+    font-size: 2rem;
     opacity: 0;
     // This property makes it so the button isn't still hovered 
     // while hovering over the before pseudo-element.
@@ -94,20 +77,50 @@
 //---------------SPECIFIC ICON ONLY BUTTONS----------------------
 
 .btn--icon.clear-all {
-  position: absolute;
-  top: 5%;
-  right: 5%;
-
   color: color(secondary);
+
+  &:hover,
+  &[data-focus-visible-added] {
+    // Invert the color scheme of button
+    background-color: color(secondary);
+    color: color(white);
+    transform: $scale-subtle;
+
+    &::before {
+      background-color: color(secondary);
+    }
+  }
 }
 
-.btn--icon.clear-all:hover,
-.btn--icon.clear-all[data-focus-visible-added] {
-  background-color: color(secondary);
-  color: color(white);
-  transform: $scale-subtle;
+.btn--icon.play,
+.btn--icon.play-auto {
+  color: color(primary);
 
-  &::before {
-    background-color: color(secondary);
+  &:hover,
+  &[data-focus-visible-added] {
+    // Invert the color scheme of button
+    background-color: color(primary);
+    color: color(white);
+    transform: $scale-subtle;
+
+    &::before {
+      background-color: color(primary);
+    }
+  }
+}
+
+.btn--icon.edit-canvas, {
+  color: color(tertiary);
+
+  &:hover,
+  &[data-focus-visible-added] {
+    // Invert the color scheme of button
+    background-color: color(tertiary);
+    color: color(white);
+    transform: $scale-subtle;
+
+    &::before {
+      background-color: color(tertiary);
+    }
   }
 }

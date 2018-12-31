@@ -9,12 +9,13 @@ import PropTypes from 'prop-types';
 import KebabCase from '../propTypes/KebabCase';
 import toTitleCase from '../utils/toTitleCase';
 
-const StageButton = ({ purpose, onClick }) => (
+const StageButton = ({ purpose, onClick, disabled }) => (
   <button
     type="button"
     data-tool-tip={toTitleCase(purpose)}
     className={`btn btn--icon ${purpose}`}
     onClick={onClick}
+    disabled={disabled}
   >
     <svg className="btn--icon__icon">
       <use href={`img/spritesheet.svg#${purpose}`} />
