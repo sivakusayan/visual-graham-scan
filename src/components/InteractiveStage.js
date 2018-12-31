@@ -82,7 +82,7 @@ class InteractiveStage extends Component {
         <menu className="stage__btn-container">
           <ToolTipButton purpose="clear-all" onClick={clearPoints} disabled={!isEditable} />
           <ToolTipButton purpose="play" onClick={this.play} disabled={scanStep !== DONE} />
-          <ToolTipButton purpose="play-auto" onClick={this.playAuto} disabled={scanStep !== DONE} />
+          <ToolTipButton purpose="Play Auto" onClick={this.playAuto} disabled={scanStep !== DONE} />
           <ToolTipButton purpose="edit-canvas" onClick={this.setEditableCanvas} disabled={isEditable || scanStep !== DONE} />
         </menu>
       </main>

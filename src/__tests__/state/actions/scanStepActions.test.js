@@ -20,7 +20,7 @@ import {
   DONE,
 } from '../../../__constants__/SCAN_STEPS';
 
-describe('ScanStep Action Generators', () => {
+describe('ScanStep Action Creators', () => {
   it(`should create an action to set algorithm step to ${GET_START_POINT}`, () => {
     const action = {
       type: SET_GET_START_POINT,

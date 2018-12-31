@@ -6,7 +6,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import KebabCase from '../propTypes/KebabCase';
+import KebabCaseString from '../propTypes/KebabCaseString';
 import toTitleCase from '../utils/toTitleCase';
 
 const StageButton = ({ purpose, onClick, disabled }) => (
@@ -24,12 +24,15 @@ const StageButton = ({ purpose, onClick, disabled }) => (
 );
 
 StageButton.propTypes = {
-  purpose: KebabCase,
-  onClick: PropTypes.func.isRequired,
+  purpose: KebabCaseString,
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool,
 };
 
 StageButton.defaultProps = {
-  purpose: 'none',
+  purpose: KebabCaseString,
+  onClick: () => null,
+  disabled: false,
 };
 
 export default StageButton;

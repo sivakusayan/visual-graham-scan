@@ -9,7 +9,7 @@ import {
   CLEAR_LINES,
 } from '../../../state/actionTypes/lineActionTypes';
 
-describe('Line Action Generators', () => {
+describe('Line Action Creators', () => {
   let startPoint;
   let endPoint;
 

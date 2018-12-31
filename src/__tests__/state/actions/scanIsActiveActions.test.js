@@ -7,7 +7,7 @@ import {
   DEACTIVATE_SCAN,
 } from '../../../state/actionTypes/scanIsActiveActionTypes';
 
-describe('ScanIsActive Action Generators', () => {
+describe('ScanIsActive Action Creators', () => {
   it('should create an action to start the scan', () => {
     const action = {
       type: ACTIVATE_SCAN,

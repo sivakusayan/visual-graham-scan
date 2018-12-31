@@ -15,7 +15,7 @@ import {
   RESET_POINTS,
 } from '../../../state/actionTypes/pointActionTypes';
 
-describe('Point Action Generators', () => {
+describe('Point Action Creators', () => {
   it('should create an action to add a point', () => {
     const point = {
       x: 10,
