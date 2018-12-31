@@ -37,7 +37,7 @@ class InteractiveStage extends Component {
     resetPoints();
   }
 
-  play = () => {
+  startScan = () => {
     const { activateScan } = this.props;
     this.setState({
       isEditable: false,
@@ -46,8 +46,16 @@ class InteractiveStage extends Component {
     activateScan();
   }
 
+  play = () => {
+    const { deactivateAuto, isActive } = this.props;
+    deactivateAuto();
+    if (!isActive) this.startScan();
+  }
+
   playAuto = () => {
-    this.play();
+    const { activateScan, activateAuto, isActive } = this.props;
+    activateAuto();
+    if (!isActive) this.startScan();
   }
 
   setEditableCanvas = () => {
@@ -61,7 +69,9 @@ class InteractiveStage extends Component {
     const {
       pointCount,
       clearPoints,
-      scanStep
+      scanStep,
+      isActive,
+      isAuto,
     } = this.props;
     const { isEditable } = this.state;
     return (
@@ -81,8 +91,8 @@ class InteractiveStage extends Component {
         )}
         <menu className="stage__btn-container">
           <ToolTipButton purpose="clear-all" onClick={clearPoints} disabled={!isEditable} />
-          <ToolTipButton purpose="play" onClick={this.play} disabled={scanStep !== DONE} />
-          <ToolTipButton purpose="Play Auto" onClick={this.playAuto} disabled={scanStep !== DONE} />
+          <ToolTipButton purpose="play" onClick={this.play} disabled={!isAuto && isActive} />
+          <ToolTipButton purpose="play-auto" onClick={this.playAuto} disabled={isAuto && isActive} />
           <ToolTipButton purpose="edit-canvas" onClick={this.setEditableCanvas} disabled={isEditable || scanStep !== DONE} />
         </menu>
       </main>
@@ -93,15 +103,27 @@ class InteractiveStage extends Component {
 InteractiveStage.propTypes = {
   addPoint: PropTypes.func,
   clearPoints: PropTypes.func,
+  resetPoints: PropTypes.func,
   clearLines: PropTypes.func,
+  activateScan: PropTypes.func,
+  activateAuto: PropTypes.func,
+  deactivateAuto: PropTypes.func,
   pointCount: PropTypes.number,
+  isActive: PropTypes.bool,
+  isAuto: PropTypes.bool,
 };
 
 InteractiveStage.defaultProps = {
   addPoint: () => null,
   clearPoints: () => null,
+  resetPoints: () => null,
   clearLines: () => null,
+  activateScan: () => null,
+  activateAuto: () => null,
+  deactivateAuto: () => null,
   pointCount: 0,
+  isActive: false,
+  isAuto: false,
 };
 
 export default InteractiveStage;

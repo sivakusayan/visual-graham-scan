@@ -22,20 +22,20 @@ class GrahamScanDriverContainer extends Component {
     nextPointIndex: 0,
     // The points currently on the convex hull
     convexHull: [],
-    // True if the algorithm should play automatically,
-    // and false otherwise.
-    doAuto: true,
   }
 
   componentDidUpdate(prevProps) {
-    const { isActive } = this.props;
-    const { doAuto } = this.state;
+    const { isActive, isAuto } = this.props;
     if (isActive !== prevProps.isActive && isActive) {
       this.init();
       this.getStartPoint();
-      if (doAuto) {
+      if (isAuto) {
         setTimeout(this.nextStep, 100);
       }
+    }
+
+    if (isAuto !== prevProps.isAuto && isAuto) {
+      setTimeout(this.nextStep, 100);
     }
   }
 
@@ -102,13 +102,12 @@ class GrahamScanDriverContainer extends Component {
 
   fixRightTurn = () => {
     const {
-      points,
       rejectPoint,
       setFixRightTurn,
       addLine,
       removeLine,
     } = this.props;
-    const { startPoint, nextPointIndex, convexHull } = this.state;
+    const { convexHull } = this.state;
     // Point before errorPoint
     const originPoint = convexHull[convexHull.length - 3];
     // Point where line made a right turn from
@@ -125,8 +124,8 @@ class GrahamScanDriverContainer extends Component {
   };
 
   nextStep = () => {
-    const { points, step } = this.props;
-    const { convexHull, doAuto, nextPointIndex } = this.state;
+    const { points, step, isAuto } = this.props;
+    const { convexHull, nextPointIndex } = this.state;
     if (step === GET_START_POINT) this.sortPoints();
     if (step === SORT_POINTS) this.addNextPoint();
     if (step === ADD_NEXT_POINT || step === FIX_RIGHT_TURN) {
@@ -137,7 +136,7 @@ class GrahamScanDriverContainer extends Component {
       }
     }
 
-    if (doAuto && nextPointIndex + 1 <= points.length) {
+    if (isAuto && nextPointIndex + 1 <= points.length) {
       setTimeout(this.nextStep, 100);
     }
   };

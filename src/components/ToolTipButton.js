@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import KebabCaseString from '../propTypes/KebabCaseString';
 import toTitleCase from '../utils/toTitleCase';
 
-const StageButton = ({ purpose, onClick, disabled }) => (
+const ToolTipButton = ({ purpose, onClick, disabled }) => (
   <button
     type="button"
     data-tool-tip={toTitleCase(purpose)}
@@ -23,16 +23,16 @@ const StageButton = ({ purpose, onClick, disabled }) => (
   </button>
 );
 
-StageButton.propTypes = {
+ToolTipButton.propTypes = {
   purpose: KebabCaseString,
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
 };
 
-StageButton.defaultProps = {
+ToolTipButton.defaultProps = {
   purpose: KebabCaseString,
   onClick: () => null,
   disabled: false,
 };
 
-export default StageButton;
+export default ToolTipButton;

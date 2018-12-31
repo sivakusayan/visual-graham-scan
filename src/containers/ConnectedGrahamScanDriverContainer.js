@@ -20,6 +20,7 @@ const mapStateToProps = state => ({
   points: state.points,
   isActive: state.scanIsActive,
   step: state.scanStep,
+  isAuto: state.scanIsAuto,
 });
 
 export default connectWithStore(mapStateToProps, {
