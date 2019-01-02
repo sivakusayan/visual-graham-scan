@@ -20,16 +20,16 @@ import SCAN_STEP_DESCRIPTIONS from '../__constants__/SCAN_STEP_DESCRIPTIONS';
 const GrahamScanDriver = ({
   isActive,
   isAuto,
-  scanStep,
+  step,
   clearPoints,
   isEditable,
   activateEdits,
   play,
   playAuto,
 }) => (
-  <section className={`driver ${scanStep === FIX_RIGHT_TURN ? 'error' : ''}`}>
+  <section className={`driver ${step === FIX_RIGHT_TURN ? 'error' : ''}`}>
     <p className="driver__text">
-      {SCAN_STEP_DESCRIPTIONS[scanStep]}
+      {SCAN_STEP_DESCRIPTIONS[step]}
     </p>
     <menu className="driver__btn-container">
       <ToolTipButton purpose="clear-all" onClick={clearPoints} disabled={!isEditable} />
@@ -43,7 +43,7 @@ const GrahamScanDriver = ({
 GrahamScanDriver.propTypes = {
   isActive: PropTypes.bool,
   isAuto: PropTypes.bool,
-  scanStep: PropTypes.oneOf([
+  step: PropTypes.oneOf([
     GET_START_POINT,
     SORT_POINTS,
     ADD_NEXT_POINT,
@@ -55,7 +55,7 @@ GrahamScanDriver.propTypes = {
 GrahamScanDriver.defaultProps = {
   isActive: false,
   isAuto: false,
-  scanStep: DONE,
+  step: DONE,
 };
 
 export default GrahamScanDriver;

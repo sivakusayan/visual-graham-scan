@@ -20,8 +20,6 @@ export default () => {
       // the canvas while the scan is running, or give us a
       // possible way to implement a 'pause' feature.
       scanIsActive: scanIsActiveReducer,
-      // Tells our current step in the Graham Scan algorithm.
-      scanStep: scanStepReducer,
       // Tells us whether the canvas is editable or not.
       isEditable: isEditableReducer,
     }),
