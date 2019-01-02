@@ -5,6 +5,7 @@ import linesReducer from '../reducers/linesReducer';
 import scanIsActiveReducer from '../reducers/scanIsActiveReducer';
 import scanStepReducer from '../reducers/scanStepReducer';
 import scanIsAutoReducer from '../reducers/scanIsAutoReducer';
+import isEditableReducer from '../reducers/isEditableReducer';
 
 export default () => {
   const store = createStore(
@@ -26,6 +27,8 @@ export default () => {
       scanIsAuto: scanIsAutoReducer,
       // Tdlls our current step in the Graham Scan algorithm.
       scanStep: scanStepReducer,
+      // Tells us whether the canvas is editable or not.
+      isEditable: isEditableReducer,
     }),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   );
