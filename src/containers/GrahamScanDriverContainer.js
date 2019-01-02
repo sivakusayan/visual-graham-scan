@@ -49,8 +49,6 @@ class GrahamScanDriverContainer extends Component {
 
   onKeyDownNextStep = e => {
     const { isActive, isAuto } = this.props;
-    console.log('hi');
-    console.log(e.keyCode);
     if (e.keyCode === 32 && isActive && !isAuto) {
       this.nextStep();
     };
@@ -158,14 +156,50 @@ class GrahamScanDriverContainer extends Component {
     }
   };
 
+  resetCanvas =  () => {
+    const { resetPoints, clearLines } = this.props;
+    clearLines();
+    resetPoints();
+  }
+
+  startScan = () => {
+    const { points, activateScan } = this.props;
+    if (points.length < 1) return;
+    this.resetCanvas();
+    activateScan();
+  }
+
+  play = () => {
+    const { deactivateAuto, isActive } = this.props;
+    this.setState({
+      isEditable: false,
+    });
+    deactivateAuto();
+    if (!isActive) this.startScan();
+  }
+
+  playAuto = () => {
+    const { activateAuto, isActive } = this.props;
+    this.setState({
+      isEditable: false,
+    });
+    activateAuto();
+    if (!isActive) this.startScan();
+  }
+
   render() {
-    const { isActive, isAuto, step } = this.props;
+    const { isActive, isAuto, step, clearPoints, isEditable, activateEdits } = this.props;
     return (
       <GrahamScanDriver
         isActive={isActive}
         isAuto={isAuto}
         scanStep={step}
         nextStep={this.nextStep}
+        clearPoints={clearPoints}
+        isEditable={isEditable}
+        activateEdits={activateEdits}
+        play={this.play}
+        playAuto={this.playAuto}
       />
     );
   }

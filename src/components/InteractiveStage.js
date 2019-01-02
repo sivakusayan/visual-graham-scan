@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 import ResponsiveStage from './ResponsiveStage';
 import PointLayerContainer from '../containers/Layers/PointLayerContainer';
 import LineLayerContainer from '../containers/Layers/LineLayerContainer';
-import ToolTipButton from './ToolTipButton';
 
 class InteractiveStage extends Component {
   state = {
@@ -64,12 +63,6 @@ class InteractiveStage extends Component {
           <PointLayerContainer />
         </ResponsiveStage>
         <p className={`stage__text ${pointCount > 0 ? 'fade' : ''}`}>Add a point by clicking on the screen!</p>
-        <menu className="stage__btn-container">
-          <ToolTipButton purpose="clear-all" onClick={clearPoints} disabled={!isEditable} />
-          <ToolTipButton purpose="play" onClick={this.play} disabled={!isAuto && isActive} />
-          <ToolTipButton purpose="play-auto" onClick={this.playAuto} disabled={isAuto && isActive} />
-          <ToolTipButton purpose="edit-canvas" onClick={this.setEditableCanvas} disabled={isEditable || isActive } />
-        </menu>
       </main>
     );
   }
