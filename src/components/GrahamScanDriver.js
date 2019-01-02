@@ -1,6 +1,7 @@
 /**
- * Serves as the component that allows the user to interact
- * with the graham scan algorithm.
+ * @fileoverview Serves as the component that allows the user to interact
+ * with the graham scan algorithm. Displays the step that its higher-order
+ * connected component is currently calculating.
  */
 
 import React from 'react';
@@ -17,19 +18,19 @@ import SCAN_STEP_DESCRIPTIONS from '../__constants__/SCAN_STEP_DESCRIPTIONS';
 
 const GrahamScanDriver = ({
   isActive,
+  isAuto,
   scanStep,
 }) => (
-  <section className="driver">
-    {isActive && (
-      <p className="driver__description">
-        {SCAN_STEP_DESCRIPTIONS[scanStep]}
-      </p>
-    )}
+  <section className={`driver ${scanStep === FIX_RIGHT_TURN ? 'error' : ''} ${!isActive || isAuto ? 'fade' : ''}`}>
+    <p className="driver__text">
+      {SCAN_STEP_DESCRIPTIONS[scanStep]}
+    </p>
   </section>
 );
 
 GrahamScanDriver.propTypes = {
   isActive: PropTypes.bool,
+  isAuto: PropTypes.bool,
   scanStep: PropTypes.oneOf([
     GET_START_POINT,
     SORT_POINTS,
@@ -41,6 +42,7 @@ GrahamScanDriver.propTypes = {
 
 GrahamScanDriver.defaultProps = {
   isActive: false,
+  isAuto: false,
   scanStep: DONE,
 };
 

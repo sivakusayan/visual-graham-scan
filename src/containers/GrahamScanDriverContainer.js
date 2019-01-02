@@ -1,3 +1,7 @@
+/**
+ * @fileoverview Serves as the component that does computations for the
+ * graham scan algorithm.
+ */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
@@ -37,7 +41,20 @@ class GrahamScanDriverContainer extends Component {
     if (isAuto !== prevProps.isAuto && isAuto) {
       setTimeout(this.nextStep, 100);
     }
-  }
+  };
+
+  componentDidMount() {
+    window.addEventListener('keydown', this.onKeyDownNextStep);
+  };
+
+  onKeyDownNextStep = e => {
+    const { isActive, isAuto } = this.props;
+    console.log('hi');
+    console.log(e.keyCode);
+    if (e.keyCode === 32 && isActive && !isAuto) {
+      this.nextStep();
+    };
+  };
 
   init = () => {
     this.setState({
@@ -137,16 +154,18 @@ class GrahamScanDriverContainer extends Component {
     }
 
     if (isAuto && nextPointIndex + 1 <= points.length) {
-      setTimeout(this.nextStep, 100);
+      setTimeout(this.nextStep, 10);
     }
   };
 
   render() {
-    const { isActive, step } = this.props;
+    const { isActive, isAuto, step } = this.props;
     return (
       <GrahamScanDriver
         isActive={isActive}
+        isAuto={isAuto}
         scanStep={step}
+        nextStep={this.nextStep}
       />
     );
   }

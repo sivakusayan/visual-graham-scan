@@ -1,11 +1,26 @@
 .driver {
+  position: absolute;
+  right: 5%;
+  bottom: 5%;
   display: flex;
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: 10%;
   align-items: center;
   justify-content: space-around;
 
-  border-top: 2px solid color(primary);
+  border: 4px solid color(primary);
   background: color(white);
-  box-shadow: $shadow-up-subtle;
+  border-radius: $radius-subtle;
+  box-shadow: $shadow-down;
+  opacity: 0.8;
+  transition: all 0.3s;
+
+  &.error {
+    border: 4px solid color(secondary);
+  }
+
+  &__text {
+    padding: padding(L);
+    font-size: 2rem;
+  }
 }

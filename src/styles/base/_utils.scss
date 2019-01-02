@@ -1,6 +1,6 @@
-// Utility class to fade out element.
-// Be sure to set transition on 
-// element we want to fade.
+// Utility class to fade out element. Be sure to set transition on 
+// the element we want to fade.
 .fade {
   opacity: 0;
+  visibility: hidden;
 }

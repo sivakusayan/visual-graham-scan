@@ -2,8 +2,9 @@
 @import "base/functions";
 @import "base/reset";
 @import "base/base";
-@import "base/utils";
 
 @import "components/button";
 @import "components/driver";
 @import "components/stage";
+
+@import "base/utils"; //Import utils last since we want utils to overwrite component styles
