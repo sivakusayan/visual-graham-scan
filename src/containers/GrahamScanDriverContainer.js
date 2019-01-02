@@ -44,7 +44,7 @@ class GrahamScanDriverContainer extends Component {
   };
 
   componentDidMount() {
-    window.addEventListener('keydown', this.onKeyDownNextStep);
+    document.addEventListener('keydown', this.onKeyDownNextStep);
   };
 
   onKeyDownNextStep = e => {
@@ -170,19 +170,15 @@ class GrahamScanDriverContainer extends Component {
   }
 
   play = () => {
-    const { deactivateAuto, isActive } = this.props;
-    this.setState({
-      isEditable: false,
-    });
+    const { deactivateAuto, isActive, deactivateEdits } = this.props;
+    deactivateEdits();
     deactivateAuto();
     if (!isActive) this.startScan();
   }
 
   playAuto = () => {
-    const { activateAuto, isActive } = this.props;
-    this.setState({
-      isEditable: false,
-    });
+    const { activateAuto, isActive, deactivateEdits } = this.props;
+    deactivateEdits();
     activateAuto();
     if (!isActive) this.startScan();
   }

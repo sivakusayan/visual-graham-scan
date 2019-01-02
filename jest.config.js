@@ -5,7 +5,7 @@ const mocksPath = `${testsPath}/__mocks__`;
 
 module.exports = {
   setupTestFrameworkScriptFile: setupTestsPath,
-  testEnvironment: 'node',
+  testEnvironment: 'jsdom',
   testPathIgnorePatterns: ['/node_modules/', setupTestsPath, constantsPath, mocksPath],
   globals: {
     window: true,

@@ -15,39 +15,10 @@ class InteractiveStage extends Component {
     isEditable: true,
   }
 
-  play = () => {
-    const { deactivateAuto, isActive, startScan } = this.props;
-    this.setState({
-      isEditable: false,
-    });
-    deactivateAuto();
-    if (!isActive) startScan();
-  }
-
-  playAuto = () => {
-    const { activateAuto, isActive, startScan } = this.props;
-    this.setState({
-      isEditable: false,
-    });
-    activateAuto();
-    if (!isActive) startScan();
-  }
-
-  setEditableCanvas = () => {
-    const { resetCanvas } = this.props;
-    this.setState({
-      isEditable: true,
-    });
-    resetCanvas();
-  }
-
   render() {
     const {
       onStageClick,
       pointCount,
-      clearPoints,
-      isActive,
-      isAuto,
     } = this.props;
     const { isEditable } = this.state;
     return (
