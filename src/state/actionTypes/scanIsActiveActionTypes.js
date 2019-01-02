@@ -1,2 +1,0 @@
-export const ACTIVATE_SCAN = 'ACTIVATE_SCAN';
-export const DEACTIVATE_SCAN = 'DEACTIVATE_SCAN';

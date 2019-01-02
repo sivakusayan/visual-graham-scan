@@ -1,4 +1,4 @@
-import { 
+import {
   acceptPoint,
   rejectPoint,
   clearPoints,
@@ -6,7 +6,6 @@ import {
   resetPoints,
 } from '../state/actions/pointActions';
 import { addLine, removeLine, clearLines } from '../state/actions/lineActions';
-import { activateScan, deactivateScan } from '../state/actions/scanIsActiveActions';
 import { activateEdits, deactivateEdits } from '../state/actions/isEditableActions';
 import connectWithStore from '../state/store/connectWithStore';
 
@@ -27,8 +26,6 @@ export default connectWithStore(mapStateToProps, {
   addLine,
   removeLine,
   clearLines,
-  activateScan,
-  deactivateScan,
   activateEdits,
   deactivateEdits,
 })(GrahamScanDriverContainer);

@@ -14,24 +14,24 @@ import SCAN_STEP_DESCRIPTIONS from '../../__constants__/SCAN_STEP_DESCRIPTIONS';
 
 describe('GrahamScanDriver Component', () => {
   describe('Driver Text', () => {
-    it(`should render the correct text during scan step ${GET_START_POINT}`, () => {
-      const wrapper = shallow(<GrahamScanDriver isActive scanStep={GET_START_POINT} />);
+    it(`should render the correct text during step ${GET_START_POINT}`, () => {
+      const wrapper = shallow(<GrahamScanDriver step={GET_START_POINT} />);
       expect(wrapper.find('.driver__text').text()).toMatch(SCAN_STEP_DESCRIPTIONS[GET_START_POINT]);
     });
-    it(`should render the correct text during scan step ${SORT_POINTS}`, () => {
-      const wrapper = shallow(<GrahamScanDriver isActive scanStep={SORT_POINTS} />);
+    it(`should render the correct text during step ${SORT_POINTS}`, () => {
+      const wrapper = shallow(<GrahamScanDriver step={SORT_POINTS} />);
       expect(wrapper.find('.driver__text').text()).toMatch(SCAN_STEP_DESCRIPTIONS[SORT_POINTS]);
     });
-    it(`should render the correct text during scan step ${ADD_NEXT_POINT}`, () => {
-      const wrapper = shallow(<GrahamScanDriver isActive scanStep={ADD_NEXT_POINT} />);
+    it(`should render the correct text during step ${ADD_NEXT_POINT}`, () => {
+      const wrapper = shallow(<GrahamScanDriver step={ADD_NEXT_POINT} />);
       expect(wrapper.find('.driver__text').text()).toMatch(SCAN_STEP_DESCRIPTIONS[ADD_NEXT_POINT]);
     });
-    it(`should render the correct text during scan step ${FIX_RIGHT_TURN}`, () => {
-      const wrapper = shallow(<GrahamScanDriver isActive scanStep={FIX_RIGHT_TURN} />);
+    it(`should render the correct text during step ${FIX_RIGHT_TURN}`, () => {
+      const wrapper = shallow(<GrahamScanDriver step={FIX_RIGHT_TURN} />);
       expect(wrapper.find('.driver__text').text()).toMatch(SCAN_STEP_DESCRIPTIONS[FIX_RIGHT_TURN]);
     });
-    it(`should render the correct text during scan step ${DONE}`, () => {
-      const wrapper = shallow(<GrahamScanDriver isActive scanStep={DONE} />);
+    it(`should render the correct text during step ${DONE}`, () => {
+      const wrapper = shallow(<GrahamScanDriver step={DONE} />);
       expect(wrapper.find('.driver__text').text()).toMatch(SCAN_STEP_DESCRIPTIONS[DONE]);
     });
   });
@@ -70,17 +70,17 @@ describe('GrahamScanDriver Component', () => {
       const button = wrapper.find(ToolTipButton).filterWhere(node => node.prop('purpose') === 'play');
       expect(button).toHaveLength(1);
     });
-    it('should enable the play ToolTipButton while isEditable is true or isActive and isAuto is true', () => {
-      const wrapper = shallow(<GrahamScanDriver />);
+    it(`should enable the play ToolTipButton while isEditable is true or step isn't ${DONE} and isAuto is true`, () => {
+      const wrapper = shallow(<GrahamScanDriver step={DONE} />);
       let button = wrapper.find(ToolTipButton).filterWhere(node => node.prop('purpose') === 'play');
       expect(button.prop('disabled')).toBe(false);
 
-      wrapper.setProps({ isActive: true, isAuto: true });
+      wrapper.setProps({ isEditable: false, isAuto: true, step: GET_START_POINT });
       button = wrapper.find(ToolTipButton).filterWhere(node => node.prop('purpose') === 'play');
       expect(button.prop('disabled')).toBe(false);
     });
-    it('should disable the play ToolTipButton while isActive and !isAuto is true', () => {
-      const wrapper = shallow(<GrahamScanDriver isActive />);
+    it(`should disable the play ToolTipButton while step isn't ${DONE} and isAuto is false`, () => {
+      const wrapper = shallow(<GrahamScanDriver step={GET_START_POINT} />);
       const button = wrapper.find(ToolTipButton).filterWhere(node => node.prop('purpose') === 'play');
       expect(button.prop('disabled')).toBe(true);
     });
@@ -98,17 +98,17 @@ describe('GrahamScanDriver Component', () => {
       const button = wrapper.find(ToolTipButton).filterWhere(node => node.prop('purpose') === 'play-auto');
       expect(button).toHaveLength(1);
     });
-    it('should enable the play-auto ToolTipButton while isEditable is true or isActive and !isAuto is true', () => {
-      const wrapper = shallow(<GrahamScanDriver />);
+    it(`should enable the play-auto ToolTipButton while isEditable is true or step isn't ${DONE} and isAuto is false`, () => {
+      const wrapper = shallow(<GrahamScanDriver step={DONE} />);
       let button = wrapper.find(ToolTipButton).filterWhere(node => node.prop('purpose') === 'play-auto');
       expect(button.prop('disabled')).toBe(false);
 
-      wrapper.setProps({ isActive: true, isAuto: false });
+      wrapper.setProps({ step: GET_START_POINT, isAuto: false });
       button = wrapper.find(ToolTipButton).filterWhere(node => node.prop('purpose') === 'play-auto');
       expect(button.prop('disabled')).toBe(false);
     });
     it('should disable the play-auto ToolTipButton while isActive and isAuto is true', () => {
-      const wrapper = shallow(<GrahamScanDriver isActive isAuto />);
+      const wrapper = shallow(<GrahamScanDriver step={GET_START_POINT} isAuto />);
       const button = wrapper.find(ToolTipButton).filterWhere(node => node.prop('purpose') === 'play-auto');
       expect(button.prop('disabled')).toBe(true);
     });
@@ -121,17 +121,17 @@ describe('GrahamScanDriver Component', () => {
 
       expect(playAutoSpy).toHaveBeenCalled();
     });
-    it('should enable the edit-canvas button if isActive is false and isEditable is false', () => {
-      const wrapper = shallow(<GrahamScanDriver />);
+    it(`should enable the edit-canvas button if step is ${DONE} and isEditable is false`, () => {
+      const wrapper = shallow(<GrahamScanDriver step={DONE} />);
       const button = wrapper.find(ToolTipButton).filterWhere(node => node.prop('purpose') === 'edit-canvas');
       expect(button.prop('disabled')).toBe(false);
     });
-    it('should disable the edit-canvas button if isActive is true or isEditable is true', () => {
-      const wrapper = shallow(<GrahamScanDriver isActive />);
+    it(`should disable the edit-canvas button if step isn't ${DONE} or isEditable is true`, () => {
+      const wrapper = shallow(<GrahamScanDriver step={GET_START_POINT} />);
       let button = wrapper.find(ToolTipButton).filterWhere(node => node.prop('purpose') === 'edit-canvas');
       expect(button.prop('disabled')).toBe(true);
 
-      wrapper.setProps({ isActive: false, isEditable: true });
+      wrapper.setProps({ step: DONE, isEditable: true });
       button = wrapper.find(ToolTipButton).filterWhere(node => node.prop('purpose') === 'edit-canvas');
       expect(button.prop('disabled')).toBe(true);
     });

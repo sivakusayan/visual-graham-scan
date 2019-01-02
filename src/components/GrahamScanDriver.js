@@ -18,7 +18,6 @@ import {
 import SCAN_STEP_DESCRIPTIONS from '../__constants__/SCAN_STEP_DESCRIPTIONS';
 
 const GrahamScanDriver = ({
-  isActive,
   isAuto,
   step,
   clearPoints,
@@ -33,15 +32,14 @@ const GrahamScanDriver = ({
     </p>
     <menu className="driver__btn-container">
       <ToolTipButton purpose="clear-all" onClick={clearPoints} disabled={!isEditable} />
-      <ToolTipButton purpose="play" onClick={play} disabled={!isAuto && isActive} />
-      <ToolTipButton purpose="play-auto" onClick={playAuto} disabled={isAuto && isActive} />
-      <ToolTipButton purpose="edit-canvas" onClick={activateEdits} disabled={isEditable || isActive } />
+      <ToolTipButton purpose="play" onClick={play} disabled={!isAuto && step !== DONE} />
+      <ToolTipButton purpose="play-auto" onClick={playAuto} disabled={isAuto && step !== DONE} />
+      <ToolTipButton purpose="edit-canvas" onClick={activateEdits} disabled={isEditable || step !== DONE} />
     </menu>
   </section>
 );
 
 GrahamScanDriver.propTypes = {
-  isActive: PropTypes.bool,
   isAuto: PropTypes.bool,
   step: PropTypes.oneOf([
     GET_START_POINT,
@@ -53,7 +51,6 @@ GrahamScanDriver.propTypes = {
 };
 
 GrahamScanDriver.defaultProps = {
-  isActive: false,
   isAuto: false,
   step: DONE,
 };
