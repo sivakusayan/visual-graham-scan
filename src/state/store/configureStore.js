@@ -4,7 +4,6 @@ import pointsReducer from '../reducers/pointsReducer';
 import linesReducer from '../reducers/linesReducer';
 import scanIsActiveReducer from '../reducers/scanIsActiveReducer';
 import scanStepReducer from '../reducers/scanStepReducer';
-import scanIsAutoReducer from '../reducers/scanIsAutoReducer';
 import isEditableReducer from '../reducers/isEditableReducer';
 
 export default () => {
@@ -21,11 +20,7 @@ export default () => {
       // the canvas while the scan is running, or give us a
       // possible way to implement a 'pause' feature.
       scanIsActive: scanIsActiveReducer,
-      // Tells us whether the scan should proceed automatically or
-      // if it should go step by step, proceeding only when the user
-      // is ready.
-      scanIsAuto: scanIsAutoReducer,
-      // Tdlls our current step in the Graham Scan algorithm.
+      // Tells our current step in the Graham Scan algorithm.
       scanStep: scanStepReducer,
       // Tells us whether the canvas is editable or not.
       isEditable: isEditableReducer,

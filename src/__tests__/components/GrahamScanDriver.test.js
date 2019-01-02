@@ -93,15 +93,6 @@ describe('GrahamScanDriver Component', () => {
 
       expect(playSpy).toHaveBeenCalled();
     });
-    // it('should pass an onClick to play-auto ToolTipButton that won\'t restart scan while isActive is true', () => {
-    //   const startScanSpy = jest.fn();
-    //   const wrapper = shallow(<GrahamScanDriver isActive startScan={startScanSpy} />);
-
-    //   const button = wrapper.find(ToolTipButton).filterWhere(node => node.prop('purpose') === 'play');
-    //   button.prop('onClick')();
-
-    //   expect(startScanSpy).toHaveBeenCalledTimes(0);
-    // });
     it('should render a play-auto ToolTipButton', () => {
       const wrapper = shallow(<GrahamScanDriver />);
       const button = wrapper.find(ToolTipButton).filterWhere(node => node.prop('purpose') === 'play-auto');
@@ -130,15 +121,6 @@ describe('GrahamScanDriver Component', () => {
 
       expect(playAutoSpy).toHaveBeenCalled();
     });
-    // it('should pass an onClick to play-auto ToolTipButton that won\'t restart scan while isActive is true', () => {
-    //   const startScanSpy = jest.fn();
-    //   const wrapper = shallow(<GrahamScanDriver isActive startScan={startScanSpy} />);
-
-    //   const button = wrapper.find(ToolTipButton).filterWhere(node => node.prop('purpose') === 'play');
-    //   button.prop('onClick')();
-
-    //   expect(startScanSpy).toHaveBeenCalledTimes(0);
-    // });
     it('should enable the edit-canvas button if isActive is false and isEditable is false', () => {
       const wrapper = shallow(<GrahamScanDriver />);
       const button = wrapper.find(ToolTipButton).filterWhere(node => node.prop('purpose') === 'edit-canvas');

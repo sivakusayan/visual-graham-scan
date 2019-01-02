@@ -26,10 +26,13 @@ class GrahamScanDriverContainer extends Component {
     nextPointIndex: 0,
     // The points currently on the convex hull
     convexHull: [],
+    // Whether the scan should run automaticallly or not
+    isAuto: false,
   }
 
   componentDidUpdate(prevProps) {
-    const { isActive, isAuto } = this.props;
+    const { isActive } = this.props;
+    const { isAuto } = this.state;
     if (isActive !== prevProps.isActive && isActive) {
       this.init();
       this.getStartPoint();
@@ -48,7 +51,8 @@ class GrahamScanDriverContainer extends Component {
   };
 
   onKeyDownNextStep = e => {
-    const { isActive, isAuto } = this.props;
+    const { isActive } = this.props;
+    const { isAuto } = this.state;
     if (e.keyCode === 32 && isActive && !isAuto) {
       this.nextStep();
     };
@@ -67,7 +71,6 @@ class GrahamScanDriverContainer extends Component {
       points,
       acceptPoint,
       setGetStartPoint,
-      clearLines,
     } = this.props;
     setGetStartPoint();
     // Note that this getStartPoint is different from the
@@ -139,8 +142,8 @@ class GrahamScanDriverContainer extends Component {
   };
 
   nextStep = () => {
-    const { points, step, isAuto } = this.props;
-    const { convexHull, nextPointIndex } = this.state;
+    const { points, step } = this.props;
+    const { convexHull, isAuto, nextPointIndex } = this.state;
     if (step === GET_START_POINT) this.sortPoints();
     if (step === SORT_POINTS) this.addNextPoint();
     if (step === ADD_NEXT_POINT || step === FIX_RIGHT_TURN) {
@@ -170,21 +173,29 @@ class GrahamScanDriverContainer extends Component {
   }
 
   play = () => {
-    const { deactivateAuto, isActive, deactivateEdits } = this.props;
+    const { isActive, deactivateEdits } = this.props;
     deactivateEdits();
-    deactivateAuto();
+    this.setState({ isAuto: false });
     if (!isActive) this.startScan();
   }
 
   playAuto = () => {
-    const { activateAuto, isActive, deactivateEdits } = this.props;
+    const { isActive, deactivateEdits } = this.props;
     deactivateEdits();
-    activateAuto();
+    this.setState({ isAuto: true })
     if (!isActive) this.startScan();
   }
 
+  activateEdits = () => {
+    const { activateEdits } = this.props;
+    // Reset results of scan
+    this.resetCanvas();
+    // Set redux state isEditable to true
+    activateEdits();
+  }
+
   render() {
-    const { isActive, isAuto, step, clearPoints, isEditable, activateEdits } = this.props;
+    const { isActive, step, clearPoints, isEditable, isAuto } = this.props;
     return (
       <GrahamScanDriver
         isActive={isActive}
@@ -193,7 +204,7 @@ class GrahamScanDriverContainer extends Component {
         nextStep={this.nextStep}
         clearPoints={clearPoints}
         isEditable={isEditable}
-        activateEdits={activateEdits}
+        activateEdits={this.activateEdits}
         play={this.play}
         playAuto={this.playAuto}
       />

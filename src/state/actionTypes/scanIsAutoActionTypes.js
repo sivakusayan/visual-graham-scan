@@ -1,2 +1,0 @@
-export const ACTIVATE_AUTO = 'ACTIVATE_AUTO';
-export const DEACTIVATE_AUTO = 'DEACTIVATE AUTO';

@@ -15,7 +15,6 @@ import {
 } from '../state/actions/scanStepActions';
 import { activateScan, deactivateScan } from '../state/actions/scanIsActiveActions';
 import { activateEdits, deactivateEdits } from '../state/actions/isEditableActions';
-import { activateAuto, deactivateAuto } from '../state/actions/scanIsAutoActions';
 import connectWithStore from '../state/store/connectWithStore';
 
 import GrahamScanDriverContainer from './GrahamScanDriverContainer';
@@ -24,7 +23,6 @@ const mapStateToProps = state => ({
   points: state.points,
   isActive: state.scanIsActive,
   step: state.scanStep,
-  isAuto: state.scanIsAuto,
   isEditable: state.isEditable,
 });
 
@@ -46,6 +44,4 @@ export default connectWithStore(mapStateToProps, {
   setDone,
   activateEdits,
   deactivateEdits,
-  activateAuto,
-  deactivateAuto,
 })(GrahamScanDriverContainer);

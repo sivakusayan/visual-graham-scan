@@ -13,13 +13,8 @@ import InteractiveStage from '../../components/InteractiveStage';
 import ResponsiveStage from '../../components/ResponsiveStage';
 import PointLayerContainer from '../../containers/Layers/PointLayerContainer';
 import LineLayerContainer from '../../containers/Layers/LineLayerContainer';
-import ToolTipButton from '../../components/ToolTipButton';
 
 describe('InteractiveStage Component', () => {
-  it('should initialize isEditable to true', () => {
-    const wrapper = shallow(<InteractiveStage />);
-    expect(wrapper.state('isEditable')).toBe(true);
-  });
   it('should render a ResponsiveStage for its canvas', () => {
     const wrapper = shallow(<InteractiveStage />);
     expect(wrapper.find(ResponsiveStage).exists()).toBe(true);
@@ -34,7 +29,7 @@ describe('InteractiveStage Component', () => {
   });
   it('should respond to users clicks while isEditable is true', () => {
     const onStageClickSpy = jest.fn();
-    const wrapper = shallow(<InteractiveStage onStageClick={onStageClickSpy} />);
+    const wrapper = shallow(<InteractiveStage onStageClick={onStageClickSpy} isEditable />);
     const event = {
       target: {
         getPointerPosition: () => ({
@@ -56,7 +51,6 @@ describe('InteractiveStage Component', () => {
   it('should not respond to users clicks if isEditable is false', () => {
     const onStageClickSpy = jest.fn();
     const wrapper = shallow(<InteractiveStage onStageClick={onStageClickSpy} />);
-    wrapper.setState({ isEditable: false });
     const event = {
       target: {
         getPointerPosition: () => ({
