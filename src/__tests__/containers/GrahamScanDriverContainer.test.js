@@ -1,6 +1,6 @@
 // Note that the testing of the actual algorithm implementation will not be tested
 // here. Rather, we test that the right functions are called and the correct scan
-// step changes are made when nextStep is called. See __tests__/algorithm for tests
+// step changes are made when makeNextStep is called. See __tests__/algorithm for tests
 // on the physical algorithm implementation.
 
 import React from 'react';
@@ -165,7 +165,7 @@ describe('Scan Driver Logic', () => {
       expect(startScanSpy).toHaveBeenCalledTimes(0);
     });
   });
-  describe('nextStep function', () => {
+  describe('makeNextStep function', () => {
     it(`should call sortPoints if current step is ${GET_START_POINT}`, () => {
       const wrapper = shallow(
         <GrahamScanDriverContainer
@@ -174,7 +174,7 @@ describe('Scan Driver Logic', () => {
         />,
       );
       const sortPointsSpy = jest.spyOn(wrapper.instance(), 'sortPoints');
-      wrapper.instance().nextStep();
+      wrapper.instance().makeNextStep();
 
       expect(sortPointsSpy).toHaveBeenCalled();
     });
@@ -186,7 +186,7 @@ describe('Scan Driver Logic', () => {
         />,
       );
       const addNextPointSpy = jest.spyOn(wrapper.instance(), 'addNextPoint');
-      wrapper.instance().nextStep();
+      wrapper.instance().makeNextStep();
 
       expect(addNextPointSpy).toHaveBeenCalled();
     });
@@ -206,7 +206,7 @@ describe('Scan Driver Logic', () => {
         convexHull,
       });
       const addNextPointSpy = jest.spyOn(wrapper.instance(), 'addNextPoint');
-      wrapper.instance().nextStep();
+      wrapper.instance().makeNextStep();
 
       expect(addNextPointSpy).toHaveBeenCalled();
     });
@@ -224,7 +224,7 @@ describe('Scan Driver Logic', () => {
       );
       wrapper.setState({ convexHull });
       const fixRightTurnSpy = jest.spyOn(wrapper.instance(), 'fixRightTurn');
-      wrapper.instance().nextStep();
+      wrapper.instance().makeNextStep();
 
       expect(fixRightTurnSpy).toHaveBeenCalled();
     });
@@ -236,7 +236,7 @@ describe('Scan Driver Logic', () => {
         />,
       );
       const addNextPointSpy = jest.spyOn(wrapper.instance(), 'addNextPoint');
-      wrapper.instance().nextStep();
+      wrapper.instance().makeNextStep();
 
       expect(addNextPointSpy).toHaveBeenCalled();
     });

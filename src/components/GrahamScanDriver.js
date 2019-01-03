@@ -8,6 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ToolTipButton from './ToolTipButton';
+import GrahamScanControlsContainer from '../containers/GrahamScanControlsContainer';
 import {
   GET_START_POINT,
   SORT_POINTS,
@@ -17,25 +18,12 @@ import {
 } from '../__constants__/SCAN_STEPS';
 import SCAN_STEP_DESCRIPTIONS from '../__constants__/SCAN_STEP_DESCRIPTIONS';
 
-const GrahamScanDriver = ({
-  isAuto,
-  step,
-  clearPoints,
-  isEditable,
-  activateEdits,
-  play,
-  playAuto,
-}) => (
-  <section className={`driver ${step === FIX_RIGHT_TURN ? 'error' : ''}`}>
+const GrahamScanDriver = (props) => (
+  <section className={`driver ${props.step === FIX_RIGHT_TURN ? 'error' : ''}`}>
     <p className="driver__text">
-      {SCAN_STEP_DESCRIPTIONS[step]}
+      {SCAN_STEP_DESCRIPTIONS[props.step]}
     </p>
-    <menu className="driver__btn-container">
-      <ToolTipButton purpose="clear-all" onClick={clearPoints} disabled={!isEditable} />
-      <ToolTipButton purpose="play" onClick={play} disabled={!isAuto && step !== DONE} />
-      <ToolTipButton purpose="play-auto" onClick={playAuto} disabled={isAuto && step !== DONE} />
-      <ToolTipButton purpose="edit-canvas" onClick={activateEdits} disabled={isEditable || step !== DONE} />
-    </menu>
+    <GrahamScanControlsContainer {...props}/>
   </section>
 );
 
