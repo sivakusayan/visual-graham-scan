@@ -7,7 +7,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ToolTipButton from './ToolTipButton';
 import GrahamScanControlsContainer from '../containers/GrahamScanControlsContainer';
 import {
   GET_START_POINT,
@@ -18,7 +17,7 @@ import {
 } from '../__constants__/SCAN_STEPS';
 import SCAN_STEP_DESCRIPTIONS from '../__constants__/SCAN_STEP_DESCRIPTIONS';
 
-const GrahamScanDriver = (props) => (
+const GrahamScanDriver = props => (
   <section className={`driver ${props.step === FIX_RIGHT_TURN ? 'error' : ''}`}>
     <p className="driver__text">
       {SCAN_STEP_DESCRIPTIONS[props.step]}
@@ -28,7 +27,6 @@ const GrahamScanDriver = (props) => (
 );
 
 GrahamScanDriver.propTypes = {
-  isAuto: PropTypes.bool,
   step: PropTypes.oneOf([
     GET_START_POINT,
     SORT_POINTS,
@@ -39,7 +37,6 @@ GrahamScanDriver.propTypes = {
 };
 
 GrahamScanDriver.defaultProps = {
-  isAuto: false,
   step: DONE,
 };
 

@@ -9,7 +9,15 @@ import PropTypes from 'prop-types';
 import { DONE } from '../__constants__/SCAN_STEPS';
 import ToolTipButton from './ToolTipButton';
 
-const GrahamScanControls = ({ clearPoints, play, playAuto, activateEdits, isAuto, step, isEditable }) => (
+const GrahamScanControls = ({ 
+  clearPoints, 
+  play, 
+  playAuto, 
+  activateEdits, 
+  isAuto, 
+  step, 
+  isEditable 
+}) => (
   <menu className="driver__btn-container">
     <ToolTipButton purpose="clear-all" onClick={clearPoints} disabled={!isEditable} />
     <ToolTipButton purpose="play" onClick={play} disabled={!isAuto && step !== DONE} />

@@ -11,6 +11,7 @@ import {
   SORT_POINTS,
   ADD_NEXT_POINT,
   FIX_RIGHT_TURN,
+  DONE,
 } from '../../__constants__/SCAN_STEPS';
 import { NULL, ACCEPTED } from '../../__constants__/POINT_STATUSES';
 import UUID_MOCK_ID from '../__constants__/UUID_MOCK_ID';
@@ -51,59 +52,39 @@ describe('Scan Driver Logic', () => {
     });
   });
   describe('Step Changing', () => {
-    it('should call setGetStartPoint when getStartPoint is called', () => {
-      const setGetStartPointSpy = jest.fn();
-      const wrapper = shallow(
-        <GrahamScanDriverContainer
-          setGetStartPoint={setGetStartPointSpy}
-          points={dummyPoints}
-        />,
-      );
+    it(`should set step to be ${GET_START_POINT} when getStartPoint is called`, () => {
+      const wrapper = shallow(<GrahamScanDriverContainer points={dummyPoints} />);
+
       wrapper.instance().getStartPoint();
   
-      expect(setGetStartPointSpy).toHaveBeenCalled();
+      expect(wrapper.state('step')).toBe(GET_START_POINT);
     });
-    it('should call setSortPoints when sortPoints is called', () => {
-      const setSortPointsSpy = jest.fn();
-      const wrapper = shallow(
-        <GrahamScanDriverContainer
-          setSortPoints={setSortPointsSpy}
-          points={dummyPoints}
-        />,
-      );
+    it(`should set step to be ${SORT_POINTS} when sortPoints is called`, () => {
+      const wrapper = shallow(<GrahamScanDriverContainer points={dummyPoints} />);
+
       wrapper.instance().sortPoints();
   
-      expect(setSortPointsSpy).toHaveBeenCalled();
+      expect(wrapper.state('step')).toBe(SORT_POINTS);
     });
-    it('should call setAddNextPoint when addNextPoint is called', () => {
-      const setAddNextPointSpy = jest.fn();
-      const wrapper = shallow(
-        <GrahamScanDriverContainer
-          setAddNextPoint={setAddNextPointSpy}
-          points={dummyPoints}
-        />,
-      );
+    it(`should set step to be ${ADD_NEXT_POINT} when addNextPoint is called`, () => {
+      const wrapper = shallow(<GrahamScanDriverContainer points={dummyPoints} />);
+
       wrapper.instance().addNextPoint();
   
-      expect(setAddNextPointSpy).toHaveBeenCalled();
+      expect(wrapper.state('step')).toBe(ADD_NEXT_POINT);
     });
-    it('should call setFixRightTurn when fixRightTurn is called', () => {
-      const setFixRightTurnSpy = jest.fn();
+    it(`should set step to be ${FIX_RIGHT_TURN} when fixRightTurn is called`, () => {
       const convexHull = [
         { x: 0, y: 0, status: ACCEPTED },
         { x: 1, y: 0, status: ACCEPTED },
         { x: 1, y: 1, status: ACCEPTED },
       ];
-      const wrapper = shallow(
-        <GrahamScanDriverContainer
-          setFixRightTurn={setFixRightTurnSpy}
-          points={dummyPoints}
-        />,
-      );
+      const wrapper = shallow(<GrahamScanDriverContainer points={dummyPoints} />);
+
       wrapper.setState({ convexHull });
       wrapper.instance().fixRightTurn();
   
-      expect(setFixRightTurnSpy).toHaveBeenCalled();
+      expect(wrapper.state('step')).toBe(FIX_RIGHT_TURN);
     });
   });
   describe('State Boundary Conditions', () => {
@@ -117,75 +98,31 @@ describe('Scan Driver Logic', () => {
 
       expect(newValue).toBe(originalValue + 2);
     });
-    it('should call setDone after addNextPoint is called and nextPointIndex equal to the number of points', () => {
-      const setDoneSpy = jest.fn();
-      const wrapper = shallow(
-        <GrahamScanDriverContainer
-          setDone={setDoneSpy}
-          points={dummyPoints}
-        />,
-      );
+    it(`should set step to be ${DONE} after addNextPoint is called and nextPointIndex can't go higher`, () => {
+      const wrapper = shallow(<GrahamScanDriverContainer points={dummyPoints} />);
   
       wrapper.instance().addNextPoint();
       wrapper.instance().addNextPoint();
       wrapper.instance().addNextPoint();
   
-      expect(setDoneSpy).toHaveBeenCalled();
-    });
-  });
-  describe('Play Functions', () => {
-    it('should deactivate edits when play is called', () => {
-      const deactivateEditsSpy = jest.fn();
-      const wrapper = shallow(<GrahamScanDriverContainer deactivateEdits={deactivateEditsSpy} />);
-
-      wrapper.instance().play();
-      expect(deactivateEditsSpy).toHaveBeenCalled();
-    });
-    it('calling play won\'t restart the scan while isActive is true', () => {
-      const wrapper = shallow(<GrahamScanDriverContainer isActive />);
-      const startScanSpy = jest.spyOn(wrapper.instance(), 'startScan');
-
-      wrapper.instance().play();
-
-      expect(startScanSpy).toHaveBeenCalledTimes(0);
-    });
-    it('should deactivate edits when playAuto is called', () => {
-      const deactivateEditsSpy = jest.fn();
-      const wrapper = shallow(<GrahamScanDriverContainer deactivateEdits={deactivateEditsSpy} />);
-
-      wrapper.instance().playAuto();
-      expect(deactivateEditsSpy).toHaveBeenCalled();
-    });
-    it('calling playAuto won\'t restart the scan while isActive is true', () => {
-      const wrapper = shallow(<GrahamScanDriverContainer isActive />);
-      const startScanSpy = jest.spyOn(wrapper.instance(), 'startScan');
-
-      wrapper.instance().playAuto();
-
-      expect(startScanSpy).toHaveBeenCalledTimes(0);
+      expect(wrapper.state('step')).toBe(DONE);
     });
   });
   describe('makeNextStep function', () => {
     it(`should call sortPoints if current step is ${GET_START_POINT}`, () => {
-      const wrapper = shallow(
-        <GrahamScanDriverContainer
-          points={dummyPoints}
-          step={GET_START_POINT}
-        />,
-      );
+      const wrapper = shallow(<GrahamScanDriverContainer points={dummyPoints} />);
       const sortPointsSpy = jest.spyOn(wrapper.instance(), 'sortPoints');
+
+      wrapper.setState({ step: GET_START_POINT })
       wrapper.instance().makeNextStep();
 
       expect(sortPointsSpy).toHaveBeenCalled();
     });
     it(`should call addNextPoint if current step is ${SORT_POINTS}`, () => {
-      const wrapper = shallow(
-        <GrahamScanDriverContainer
-          points={dummyPoints}
-          step={SORT_POINTS}
-        />,
-      );
+      const wrapper = shallow(<GrahamScanDriverContainer points={dummyPoints} />);
       const addNextPointSpy = jest.spyOn(wrapper.instance(), 'addNextPoint');
+
+      wrapper.setState({ step: SORT_POINTS });
       wrapper.instance().makeNextStep();
 
       expect(addNextPointSpy).toHaveBeenCalled();
@@ -196,16 +133,10 @@ describe('Scan Driver Logic', () => {
         { x: 1, y: 0, status: ACCEPTED },
         { x: 1, y: -1, status: ACCEPTED },
       ];
-      const wrapper = shallow(
-        <GrahamScanDriverContainer
-          points={dummyPoints}
-          step={ADD_NEXT_POINT}
-        />,
-      );
-      wrapper.setState({
-        convexHull,
-      });
+      const wrapper = shallow(<GrahamScanDriverContainer points={dummyPoints} />);
       const addNextPointSpy = jest.spyOn(wrapper.instance(), 'addNextPoint');
+
+      wrapper.setState({ convexHull, step: ADD_NEXT_POINT });
       wrapper.instance().makeNextStep();
 
       expect(addNextPointSpy).toHaveBeenCalled();
@@ -216,26 +147,19 @@ describe('Scan Driver Logic', () => {
         { x: 1, y: 0, status: ACCEPTED },
         { x: 1, y: 1, status: ACCEPTED },
       ];
-      const wrapper = shallow(
-        <GrahamScanDriverContainer
-          points={dummyPoints}
-          step={ADD_NEXT_POINT}
-        />,
-      );
-      wrapper.setState({ convexHull });
+      const wrapper = shallow(<GrahamScanDriverContainer points={dummyPoints} />);
       const fixRightTurnSpy = jest.spyOn(wrapper.instance(), 'fixRightTurn');
+
+      wrapper.setState({ convexHull, step: ADD_NEXT_POINT });
       wrapper.instance().makeNextStep();
 
       expect(fixRightTurnSpy).toHaveBeenCalled();
     });
     it(`should call addNextPoint if current step is ${FIX_RIGHT_TURN}`, () => {
-      const wrapper = shallow(
-        <GrahamScanDriverContainer
-          points={dummyPoints}
-          step={FIX_RIGHT_TURN}
-        />,
-      );
+      const wrapper = shallow(<GrahamScanDriverContainer points={dummyPoints} />);
       const addNextPointSpy = jest.spyOn(wrapper.instance(), 'addNextPoint');
+
+      wrapper.setState({ step: FIX_RIGHT_TURN });
       wrapper.instance().makeNextStep();
 
       expect(addNextPointSpy).toHaveBeenCalled();
