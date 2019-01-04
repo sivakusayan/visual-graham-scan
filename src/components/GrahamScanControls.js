@@ -43,7 +43,7 @@ GrahamScanControls.defaultProps = {
   playAuto: () => null,
   activateEdits: () => null,
   isAuto: false,
-  isEditable: true,
+  isEditable: false,
   step: DONE,
 };
 

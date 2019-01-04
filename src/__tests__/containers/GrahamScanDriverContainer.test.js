@@ -51,6 +51,37 @@ describe('Scan Driver Logic', () => {
       expect(global.document.addEventListener).toHaveBeenCalledWith('keydown', onKeyDownNextStep);
     });
   });
+  describe('Starting and Exiting Scan', () => {
+    it('should disable edits after startScan is called', () => {
+      const deactivateEditsSpy = jest.fn()
+      const wrapper = shallow(
+        <GrahamScanDriverContainer
+          points={dummyPoints}
+          deactivateEdits={deactivateEditsSpy} 
+        />,
+      );
+
+      wrapper.instance().startScan();
+
+      expect(deactivateEditsSpy).toHaveBeenCalled();
+    });
+    it('should initialize state after startScan is called', () => {
+      const wrapper = shallow(<GrahamScanDriverContainer points={dummyPoints} />);
+      const initSpy = jest.spyOn(wrapper.instance(), 'init');
+
+      wrapper.instance().startScan();
+
+      expect(initSpy).toHaveBeenCalled();
+    });
+    it('should enable edits after endScan is called', () => {
+      const activateEditsSpy = jest.fn()
+      const wrapper = shallow(<GrahamScanDriverContainer activateEdits={activateEditsSpy} />);
+
+      wrapper.instance().endScan();
+
+      expect(activateEditsSpy).toHaveBeenCalled();
+    });
+  });
   describe('Step Changing', () => {
     it(`should set step to be ${GET_START_POINT} when getStartPoint is called`, () => {
       const wrapper = shallow(<GrahamScanDriverContainer points={dummyPoints} />);
@@ -87,7 +118,7 @@ describe('Scan Driver Logic', () => {
       expect(wrapper.state('step')).toBe(FIX_RIGHT_TURN);
     });
   });
-  describe('State Boundary Conditions', () => {
+  describe('NextPointIndex Manipulation', () => {
     it('should increment nextPointIndex by 1 whenever addNextPoint is called', () => {
       const wrapper = shallow(<GrahamScanDriverContainer points={dummyPoints} />);
 
@@ -98,14 +129,15 @@ describe('Scan Driver Logic', () => {
 
       expect(newValue).toBe(originalValue + 2);
     });
-    it(`should set step to be ${DONE} after addNextPoint is called and nextPointIndex can't go higher`, () => {
+    it('should call endScan after addNextPoint is called and nextPointIndex can\'t go higher', () => {
       const wrapper = shallow(<GrahamScanDriverContainer points={dummyPoints} />);
+      const endScanSpy = jest.spyOn(wrapper.instance(), 'endScan');
   
       wrapper.instance().addNextPoint();
       wrapper.instance().addNextPoint();
       wrapper.instance().addNextPoint();
   
-      expect(wrapper.state('step')).toBe(DONE);
+      expect(endScanSpy).toHaveBeenCalled();
     });
   });
   describe('makeNextStep function', () => {
