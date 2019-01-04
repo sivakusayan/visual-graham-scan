@@ -114,9 +114,7 @@ class GrahamScanDriverContainer extends Component {
     addLine(prevPoint, nextPoint);
 
     // Do this check before setState since setState isn't synchronous
-    if (nextPointIndex + 1 === points.length) {
-      this.setState({ step: DONE });
-    }
+    if (nextPointIndex + 1 === points.length) this.endScan();
     this.setState(prevState => ({
       nextPointIndex: prevState.nextPointIndex + 1,
       convexHull: prevState.convexHull.concat(nextPoint),
@@ -172,7 +170,15 @@ class GrahamScanDriverContainer extends Component {
     }
   };
 
+  endScan = () => {
+    const { activateEdits } = this.props;
+    this.setState({ step: DONE });
+    activateEdits();
+  }
+
   startScan = () => {
+    const { deactivateEdits } = this.props;
+    deactivateEdits();
     this.init();
     this.getStartPoint();
   }

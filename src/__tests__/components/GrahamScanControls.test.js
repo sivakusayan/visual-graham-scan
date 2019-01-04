@@ -26,14 +26,14 @@ describe('GrahamScan Controls', () => {
     const button = wrapper.find(ToolTipButton).filterWhere(node => node.prop('purpose') === 'clear-all');
     expect(button.prop('disabled')).toBe(true);
   });
-  it('should pass an onClick to clear-all ToolTipButton which clears all points on the canvas', () => {
-    const clearPointsSpy = jest.fn();
-    const wrapper = shallow(<GrahamScanControls clearPoints={clearPointsSpy} />);
+  it('should pass an onClick to clear-all ToolTipButton which clears all canvas entities', () => {
+    const clearAllSpy = jest.fn();
+    const wrapper = shallow(<GrahamScanControls clearAll={clearAllSpy} />);
 
     const button = wrapper.find(ToolTipButton).filterWhere(node => node.prop('purpose') === 'clear-all');
     button.simulate('click');
 
-    expect(clearPointsSpy).toHaveBeenCalled();
+    expect(clearAllSpy).toHaveBeenCalled();
   });
   it('should render a play ToolTipButton', () => {
     const wrapper = shallow(<GrahamScanControls />);

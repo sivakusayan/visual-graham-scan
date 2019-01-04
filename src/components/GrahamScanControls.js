@@ -10,7 +10,7 @@ import { DONE } from '../__constants__/SCAN_STEPS';
 import ToolTipButton from './ToolTipButton';
 
 const GrahamScanControls = ({ 
-  clearPoints, 
+  clearAll, 
   play, 
   playAuto, 
   activateEdits, 
@@ -19,7 +19,7 @@ const GrahamScanControls = ({
   isEditable 
 }) => (
   <menu className="controls">
-    <ToolTipButton purpose="clear-all" onClick={clearPoints} disabled={!isEditable} />
+    <ToolTipButton purpose="clear-all" onClick={clearAll} disabled={!isEditable} />
     <ToolTipButton purpose="play" onClick={play} disabled={!isAuto && step !== DONE} />
     <ToolTipButton purpose="play-auto" onClick={playAuto} disabled={isAuto && step !== DONE} />
     <ToolTipButton purpose="edit-canvas" onClick={activateEdits} disabled={isEditable || step !== DONE} />

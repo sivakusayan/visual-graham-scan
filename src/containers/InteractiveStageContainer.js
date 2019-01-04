@@ -1,4 +1,5 @@
-import { addPoint } from '../state/actions/pointActions';
+import { addPoint, resetPoints } from '../state/actions/pointActions';
+import { clearLines } from '../state/actions/lineActions';
 import InteractiveStage from '../components/InteractiveStage';
 import connectWithStore from '../state/store/connectWithStore';
 import rescaleCoordinates from '../utils/rescaleCoordinates';
@@ -6,17 +7,39 @@ import rescaleCoordinates from '../utils/rescaleCoordinates';
 const mapStateToProps = state => ({
   pointCount: state.points.length,
   isEditable: state.isEditable,
+  didScan: state.lines.length > 0,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mergeProps = (stateProps, dispatchProps, ownProps) => ({
+  ...stateProps,
+  ...dispatchProps,
+  ...ownProps,
   onStageClick: (event) => {
-    const stage = event.target;
-    const pointerPosition = stage.getPointerPosition();
+    const { isEditable, didScan, step } = stateProps;
+    const {
+      addPoint,
+      resetPoints,
+      clearLines,
+    } = dispatchProps;
 
-    const point = rescaleCoordinates(stage, pointerPosition);
+    if (isEditable) {
+      // Use additional didScan check to make sure we don't
+      if (didScan) {
+        resetPoints();
+        clearLines();
+      }
+      const stage = event.target;
+      const pointerPosition = stage.getPointerPosition();
 
-    dispatch(addPoint(point));
+      const point = rescaleCoordinates(stage, pointerPosition);
+
+      addPoint(point);
+    }
   },
 });
 
-export default connectWithStore(mapStateToProps, mapDispatchToProps)(InteractiveStage);
+export default connectWithStore(mapStateToProps, {
+  addPoint,
+  resetPoints,
+  clearLines,
+}, mergeProps)(InteractiveStage);
