@@ -208,6 +208,8 @@ GrahamScanDriverContainer.propTypes = {
   sortPoints: PropTypes.func,
   addLine: PropTypes.func,
   removeLine: PropTypes.func,
+  activateEdits: PropTypes.func,
+  deactivateEdits: PropTypes.func,
 };
 
 GrahamScanDriverContainer.defaultProps = {
@@ -217,6 +219,8 @@ GrahamScanDriverContainer.defaultProps = {
   sortPoints: () => null,
   addLine: () => null,
   removeLine: () => null,
+  activateEdits: () => null,
+  deactivateEdits: () => null,
 };
 
 export default GrahamScanDriverContainer;

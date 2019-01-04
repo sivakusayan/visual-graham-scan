@@ -14,9 +14,8 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
   ...stateProps,
   ...ownProps,
   clearAll: () => {
-    const { clearPoints, clearLines } = dispatchProps;
-    clearPoints();
-    clearLines();
+    dispatchProps.clearPoints();
+    dispatchProps.clearLines();
   },
   play: () => {
     const { step, deactivateAuto, startScan } = ownProps;
