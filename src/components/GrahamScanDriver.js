@@ -18,8 +18,8 @@ import {
 import SCAN_STEP_DESCRIPTIONS from '../__constants__/SCAN_STEP_DESCRIPTIONS';
 
 const GrahamScanDriver = props => (
-  <section className={`driver ${props.step === FIX_RIGHT_TURN ? 'error' : ''}`}>
-    <p className="driver__text">
+  <section className="driver">
+    <p className={`driver__text  ${props.step === FIX_RIGHT_TURN ? 'error' : ''}`}>
       {SCAN_STEP_DESCRIPTIONS[props.step]}
     </p>
     <GrahamScanControlsContainer {...props}/>

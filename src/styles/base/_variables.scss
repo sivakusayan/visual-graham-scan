@@ -55,12 +55,16 @@
     black: #272D2D,
   );
 
+  $shadow-left-subtle: -1px 0 5px rgba(#272D2D, 0.1);
+  $shadow-left: -2px 0 5px rgba(#272D2D, 0.15);
+  $shadow-right-subtle: 1px 0 5px rgba(#272D2D, 0.1);
+  $shadow-right: 2px 0 5px rgba(#272D2D, 0.15);
   $shadow-down-subtle: 0 1px 5px rgba(#272D2D, 0.1);
   $shadow-down: 0 2px 5px rgba(#272D2D, 0.15);
   $shadow-up-subtle: 0 -1px 5px rgba(#272D2D, 0.1);
   $shadow-up: 0 -2px 5px rgba(#272D2D, 0.15);
   
-  $radius-subtle: 10px;
+  $radius-subtle: 5px;
 
   $scale-subtle: scale(1.05);
   

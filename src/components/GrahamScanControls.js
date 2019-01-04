@@ -18,7 +18,7 @@ const GrahamScanControls = ({
   step, 
   isEditable 
 }) => (
-  <menu className="driver__btn-container">
+  <menu className="controls">
     <ToolTipButton purpose="clear-all" onClick={clearPoints} disabled={!isEditable} />
     <ToolTipButton purpose="play" onClick={play} disabled={!isAuto && step !== DONE} />
     <ToolTipButton purpose="play-auto" onClick={playAuto} disabled={isAuto && step !== DONE} />

@@ -1,26 +1,28 @@
 .driver {
-  position: absolute;
-  right: 5%;
-  bottom: 5%;
   display: flex;
-  width: 50%;
-  height: 10%;
+  // When changing this width, be sure to change the height in
+  // _stage.scss as well.
+  width: 25%;
+  height: 100%;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 
-  border: 4px solid color(primary);
   background: color(white);
-  border-radius: $radius-subtle;
-  box-shadow: $shadow-down;
+  box-shadow: $shadow-left;
   opacity: 0.8;
   transition: all 0.3s;
+}
+
+.driver__text {
+  width: 100%;
+  height: 40%;
+  padding: padding(L);
+
+  border-left: 4px solid color(primary);
+  font-size: 2rem;
 
   &.error {
-    border: 4px solid color(secondary);
-  }
-
-  &__text {
-    padding: padding(L);
-    font-size: 2rem;
+    border-left: 4px solid color(secondary);
   }
 }

@@ -10,7 +10,8 @@
 }
 
 .btn[disabled] {
-  opacity: 0;
+  opacity: 0.1;
+  pointer-events: none;
 }
 
 .btn:hover,
@@ -24,13 +25,12 @@
 --------------------------------------------------------*/
 
 .btn--icon {
-  width: 8rem;
-  height: 8rem;
-  margin: margin(XS) margin(XL);
+  width: 100%; 
+  height: 25%;
 
   &__icon {
-    width: 100%;
-    height: 100%;
+    width: 60%;
+    height: 60%;
 
     // Inherit the color from .btn--icon since we want the icons and text to have the same color
     fill: currentColor;
@@ -38,36 +38,33 @@
 
   &::before {
     position: absolute;
-    right: 100%;
+    left: 30%;
     display: inline-block;
+    width: 2rem;
 
     padding: padding(XS) padding(M);
-    background-color: color(white);
-    border-radius: $radius-subtle;
-    box-shadow: $shadow-down-subtle;
     // Inherit the color from .btn--icon since we want the icons and text to have the same color
     color: currentColor;
-
     content: attr(data-tool-tip);
     font-size: 2rem;
     opacity: 0;
-    // This property makes it so the button isn't still hovered 
-    // while hovering over the before pseudo-element.
-    pointer-events: none; 
     // Don't define transition for color, since right now color
     // goes off computed color. This means that the text will 'flash'
     // colors if we enable transition for that property.
-    transition: background-color 0.3s, opacity 0.3s, right 0.3s, visibility 0.3s;
+    transition: background-color 0.3s, opacity 0.3s, left 0.3s, visibility 0.3s;
     visibility: hidden;
-    white-space: nowrap;
   }
 }
 
 .btn--icon:hover,
 .btn--icon[data-focus-visible-added] {
+  width: 110%;
+  margin-left: -10%;
+  border-bottom-left-radius: $radius-subtle;
+  border-top-left-radius: $radius-subtle;
 
   &::before {
-    right: 110%;
+    left: 10%;
     opacity: 1;
     visibility: visible;
   }
@@ -75,51 +72,10 @@
 
 //---------------SPECIFIC ICON ONLY BUTTONS----------------------
 
-.btn--icon.clear-all {
-  color: color(secondary);
+.btn--icon.clear-all { @include button-color-scheme(color(secondary)) }
 
-  &:hover,
-  &[data-focus-visible-added] {
-    // Invert the color scheme of button
-    background-color: color(secondary);
-    color: color(white);
-    transform: $scale-subtle;
+.btn--icon.play { @include button-color-scheme(color(primary)) }
 
-    &::before {
-      background-color: color(secondary);
-    }
-  }
-}
+.btn--icon.play-auto { @include button-color-scheme(darken(color(primary), 10%)) }
 
-.btn--icon.play,
-.btn--icon.play-auto {
-  color: color(primary);
-
-  &:hover,
-  &[data-focus-visible-added] {
-    // Invert the color scheme of button
-    background-color: color(primary);
-    color: color(white);
-    transform: $scale-subtle;
-
-    &::before {
-      background-color: color(primary);
-    }
-  }
-}
-
-.btn--icon.edit-canvas, {
-  color: color(tertiary);
-
-  &:hover,
-  &[data-focus-visible-added] {
-    // Invert the color scheme of button
-    background-color: color(tertiary);
-    color: color(white);
-    transform: $scale-subtle;
-
-    &::before {
-      background-color: color(tertiary);
-    }
-  }
-}
+.btn--icon.edit-canvas { @include button-color-scheme(color(tertiary)) }
