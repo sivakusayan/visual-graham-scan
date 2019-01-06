@@ -15,7 +15,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
   ...dispatchProps,
   ...ownProps,
   onStageClick: (event) => {
-    const { isEditable, didScan, step } = stateProps;
+    const { isEditable, didScan } = stateProps;
     const {
       addPoint,
       resetPoints,
@@ -32,6 +32,8 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
       const pointerPosition = stage.getPointerPosition();
 
       const point = rescaleCoordinates(stage, pointerPosition);
+      console.log('Pointer Position: ', pointerPosition);
+      console.log('Point: ', point);
 
       addPoint(point);
     }

@@ -78,4 +78,4 @@
 
 .btn--icon.play-auto { @include button-color-scheme(darken(color(primary), 10%)) }
 
-.btn--icon.edit-canvas { @include button-color-scheme(color(tertiary)) }
+.btn--icon.generate-points { @include button-color-scheme(color(tertiary)) }

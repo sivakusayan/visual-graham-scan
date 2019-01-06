@@ -14,16 +14,16 @@ const GrahamScanControls = ({
   clearAll,
   play,
   playAuto,
-  activateEdits,
+  generatePoints,
   isAuto,
   step,
   isEditable,
 }) => (
   <menu className="controls">
     <ToolTipButton purpose="clear-all" onClick={clearAll} disabled={!isEditable} />
+    <ToolTipButton purpose="generate-points" onClick={generatePoints} />
     <ToolTipButton purpose="play" onClick={play} disabled={!isAuto && step !== DONE} />
     <ToolTipButton purpose="play-auto" onClick={playAuto} disabled={isAuto && step !== DONE} />
-    <ToolTipButton purpose="edit-canvas" onClick={activateEdits} disabled={isEditable || step !== DONE} />
   </menu>
 );
 
@@ -31,7 +31,7 @@ GrahamScanControls.propTypes = {
   clearAll: PropTypes.func,
   play: PropTypes.func,
   playAuto: PropTypes.func,
-  activateEdits: PropTypes.func,
+  generatePoints: PropTypes.func,
   isAuto: PropTypes.bool,
   isEditable: PropTypes.bool,
   step: Step,
@@ -41,7 +41,7 @@ GrahamScanControls.defaultProps = {
   clearAll: () => null,
   play: () => null,
   playAuto: () => null,
-  activateEdits: () => null,
+  generatePoints: () => null,
   isAuto: false,
   isEditable: false,
   step: DONE,

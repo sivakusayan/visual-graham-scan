@@ -53,7 +53,7 @@ class GrahamScanDriverContainer extends Component {
 
   onKeyDownNextStep = (e) => {
     const { isAuto } = this.state;
-    if (e.keyCode === 32 && this.isActive() && !isAuto) {
+    if (e.keyCode === 78 && this.isActive() && !isAuto) {
       this.makeNextStep();
     }
   };

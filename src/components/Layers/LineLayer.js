@@ -12,6 +12,8 @@ const LineLayer = ({ lines = [] }) => (
         x={0}
         y={0}
         points={[line.startPoint.x, line.startPoint.y, line.endPoint.x, line.endPoint.y]}
+        hitGraphEnabled={false}
+        useCache
         key={line.name}
       />
     ))}
