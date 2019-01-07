@@ -8,6 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import PreparationControlsContainer from '../containers/PreparationControlsContainer';
+import ScanControlsContainer from '../containers/ScanControlsContainer';
 import { FIX_RIGHT_TURN, DONE } from '../__constants__/SCAN_STEPS';
 import SCAN_STEP_DESCRIPTIONS from '../__constants__/SCAN_STEP_DESCRIPTIONS';
 import Step from '../propTypes/Step';
@@ -31,6 +32,12 @@ const Driver = ({
       deactivateAuto={deactivateAuto}
       activateAuto={activateAuto}
       startScan={startScan}
+    />
+    <ScanControlsContainer
+      step={step}
+      isAuto={isAuto}
+      deactivateAuto={deactivateAuto}
+      activateAuto={activateAuto}
       makeNextStep={makeNextStep}
     />
   </section>

@@ -30,9 +30,12 @@ describe('Scan Controls', () => {
 
     expect(makeNextStepSpy).toHaveBeenCalled();
   });
-  it(`should disable the next-step ToolTipButton while step is ${DONE}`, () => {
+  it(`should disable the next-step ToolTipButton while step is ${DONE} or isAuto is true`, () => {
     const wrapper = shallow(<ScanControls step={DONE} />);
     const button = wrapper.find(ToolTipButton).filterWhere(node => node.prop('purpose') === 'next-step');
+    expect(button.prop('disabled')).toBe(true);
+
+    wrapper.setProps({ step: GET_START_POINT, isAuto: true });
     expect(button.prop('disabled')).toBe(true);
   });
   it(`should enable the next-step ToolTipButton while step isn't ${DONE}`, () => {
@@ -49,7 +52,7 @@ describe('Scan Controls', () => {
     const switchModeSpy = jest.fn();
     const wrapper = shallow(<ScanControls switchMode={switchModeSpy} />);
 
-    const button = wrapper.find(ToolTipButton).filterWhere(node => node.prop('purpose') === 'next-step');
+    const button = wrapper.find(ToolTipButton).filterWhere(node => node.prop('purpose') === 'switch-mode');
     button.simulate('click');
 
     expect(switchModeSpy).toHaveBeenCalled();

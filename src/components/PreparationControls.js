@@ -15,9 +15,6 @@ const PreparationControls = ({
   play,
   playAuto,
   generatePoints,
-  switchMode,
-  makeNextStep,
-  isAuto,
   step,
 }) => (
   <>
@@ -27,10 +24,6 @@ const PreparationControls = ({
       <ToolTipButton purpose="clear-all" onClick={clearAll} disabled={step !== DONE} />
       <ToolTipButton purpose="generate-points" onClick={generatePoints} disabled={step !== DONE} />
     </menu>
-    <menu className={`controls ${step !== DONE ? '' : 'fade'}`}>
-      <ToolTipButton purpose="next-step" onClick={makeNextStep} disabled={isAuto || step === DONE} />
-      <ToolTipButton purpose="switch-mode" onClick={switchMode} disabled={step === DONE} />
-    </menu>
   </>
 );
 
@@ -39,7 +32,6 @@ PreparationControls.propTypes = {
   play: PropTypes.func,
   playAuto: PropTypes.func,
   generatePoints: PropTypes.func,
-  isAuto: PropTypes.bool,
   step: Step,
 };
 
@@ -48,7 +40,6 @@ PreparationControls.defaultProps = {
   play: () => null,
   playAuto: () => null,
   generatePoints: () => null,
-  isAuto: false,
   step: DONE,
 };
 
