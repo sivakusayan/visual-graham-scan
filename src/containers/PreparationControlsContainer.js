@@ -5,7 +5,7 @@ import { CANVAS_WIDTH, CANVAS_HEIGHT } from '../__constants__/CANVAS_BOUNDARIES'
 import generatePoint from '../utils/generatePoint';
 import { addPoint, clearPoints, resetPoints } from '../state/actions/pointActions';
 import { clearLines } from '../state/actions/lineActions';
-import GrahamScanControls from '../components/GrahamScanControls';
+import PreparationControls from '../components/PreparationControls';
 
 const mapStateToProps = state => ({
   points: state.points,
@@ -80,4 +80,4 @@ export default connectWithStore(mapStateToProps, {
   clearPoints,
   resetPoints,
   clearLines,
-}, mergeProps)(GrahamScanControls);
+}, mergeProps)(PreparationControls);

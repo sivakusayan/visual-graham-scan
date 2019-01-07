@@ -8,12 +8,12 @@ import './styles/main.scss';
 import focusVisible from 'focus-visible';
 
 import InteractiveStageContainer from './containers/InteractiveStageContainer';
-import ConnectedGrahamScanDriverContainer from './containers/ConnectedGrahamScanDriverContainer';
+import ConnectedDriverContainer from './containers/ConnectedDriverContainer';
 
 const App = () => (
   <>
     <InteractiveStageContainer />
-    <ConnectedGrahamScanDriverContainer />
+    <ConnectedDriverContainer />
   </>
 );
 

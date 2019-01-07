@@ -10,7 +10,7 @@ import { DONE } from '../__constants__/SCAN_STEPS';
 import Step from '../propTypes/Step';
 import ToolTipButton from './ToolTipButton';
 
-const GrahamScanControls = ({
+const PreparationControls = ({
   clearAll,
   play,
   playAuto,
@@ -35,7 +35,7 @@ const GrahamScanControls = ({
   </>
 );
 
-GrahamScanControls.propTypes = {
+PreparationControls.propTypes = {
   clearAll: PropTypes.func,
   play: PropTypes.func,
   playAuto: PropTypes.func,
@@ -45,7 +45,7 @@ GrahamScanControls.propTypes = {
   step: Step,
 };
 
-GrahamScanControls.defaultProps = {
+PreparationControls.defaultProps = {
   clearAll: () => null,
   play: () => null,
   playAuto: () => null,
@@ -55,4 +55,4 @@ GrahamScanControls.defaultProps = {
   step: DONE,
 };
 
-export default GrahamScanControls;
+export default PreparationControls;

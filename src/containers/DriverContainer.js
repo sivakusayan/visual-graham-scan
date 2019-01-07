@@ -14,10 +14,10 @@ import {
 } from '../__constants__/SCAN_STEPS';
 import getStartPoint from '../algorithm/helpers/getStartPoint';
 import hasRightTurn from '../algorithm/helpers/hasRightTurn';
-import GrahamScanDriver from '../components/GrahamScanDriver';
+import Driver from '../components/Driver';
 import Point from '../propTypes/Point';
 
-class GrahamScanDriverContainer extends Component {
+class DriverContainer extends Component {
   state = {
     // The start point of the algorithm.
     startPoint: null,
@@ -190,7 +190,7 @@ class GrahamScanDriverContainer extends Component {
   render() {
     const { isAuto, step } = this.state;
     return (
-      <GrahamScanDriver
+      <Driver
         isAuto={isAuto}
         step={step}
         activateAuto={this.activateAuto}
@@ -202,7 +202,7 @@ class GrahamScanDriverContainer extends Component {
   }
 }
 
-GrahamScanDriverContainer.propTypes = {
+DriverContainer.propTypes = {
   points: PropTypes.arrayOf(Point),
   acceptPoint: PropTypes.func,
   rejectPoint: PropTypes.func,
@@ -213,7 +213,7 @@ GrahamScanDriverContainer.propTypes = {
   deactivateEdits: PropTypes.func,
 };
 
-GrahamScanDriverContainer.defaultProps = {
+DriverContainer.defaultProps = {
   points: [],
   acceptPoint: () => null,
   rejectPoint: () => null,
@@ -224,4 +224,4 @@ GrahamScanDriverContainer.defaultProps = {
   deactivateEdits: () => null,
 };
 
-export default GrahamScanDriverContainer;
+export default DriverContainer;
