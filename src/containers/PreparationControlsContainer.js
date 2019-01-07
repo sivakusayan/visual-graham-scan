@@ -19,10 +19,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
     dispatchProps.clearLines();
   },
   play: () => {
-    const { step, deactivateAuto, startScan } = ownProps;
-
-    // We don't want the user to play scan if there are no points
-    if (stateProps.points.length < 1) return;
+    const { deactivateAuto, startScan } = ownProps;
 
     // Setup for manual play
     deactivateAuto();
@@ -33,9 +30,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
     startScan();
   },
   playAuto: () => {
-    const { step, activateAuto, startScan } = ownProps;
-    // We don't want the user to play scan if there are no points
-    if (stateProps.points.length < 1) return;
+    const { activateAuto, startScan } = ownProps;
 
     // Setup for auto play
     activateAuto();

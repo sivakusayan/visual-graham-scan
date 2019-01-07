@@ -177,7 +177,10 @@ class DriverContainer extends Component {
   }
 
   startScan = () => {
-    const { deactivateEdits } = this.props;
+    const { points, deactivateEdits } = this.props;
+    // We don't want the user to play scan if there are no points
+    if (points.length < 1) return;
+    
     deactivateEdits();
     this.init();
     this.getStartPoint();

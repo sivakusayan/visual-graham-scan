@@ -5,7 +5,7 @@ import PreparationControls from '../../components/PreparationControls';
 import ToolTipButton from '../../components/ToolTipButton';
 import { GET_START_POINT, DONE } from '../../__constants__/SCAN_STEPS';
 
-describe('GrahamScan Controls', () => {
+describe('Preparation Controls', () => {
   it(`should not have the fade class while step is ${DONE}`, () => {
     const wrapper = shallow(<PreparationControls step={DONE} />);
     const menu = wrapper.find('menu.controls');
