@@ -42,6 +42,7 @@ Driver.propTypes = {
   deactivateAuto: PropTypes.func,
   activateAuto: PropTypes.func,
   startScan: PropTypes.func,
+  makeNextStep: PropTypes.func,
 };
 
 Driver.defaultProps = {
@@ -50,6 +51,7 @@ Driver.defaultProps = {
   deactivateAuto: () => null,
   activateAuto: () => null,
   startScan: () => null,
+  makeNextStep: () => null,
 };
 
 export default Driver;

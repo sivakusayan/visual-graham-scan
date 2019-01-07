@@ -9,7 +9,6 @@ import PreparationControls from '../components/PreparationControls';
 
 const mapStateToProps = state => ({
   points: state.points,
-  isEditable: state.isEditable,
 });
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => ({
@@ -28,16 +27,10 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
     // Setup for manual play
     deactivateAuto();
 
-    // We use this check since we don't know if we are starting the
-    // scan from the beginning, or if we are switching from auto to
-    // manual mid-scan. We do this check to startScan if there is no
-    // scan taking place.
-    if (step === DONE) {
-      // Clear board for new scan
-      dispatchProps.resetPoints();
-      dispatchProps.clearLines();
-      startScan();
-    }
+    // Clear board for new scan
+    dispatchProps.resetPoints();
+    dispatchProps.clearLines();
+    startScan();
   },
   playAuto: () => {
     const { step, activateAuto, startScan } = ownProps;
@@ -47,16 +40,9 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
     // Setup for auto play
     activateAuto();
 
-    // We use this check since we don't know if we are starting the
-    // scan from the beginning, or if we are switching from manual to
-    // auto mid-scan. We do this check to startScan if there is no
-    // scan taking place.
-    if (step === DONE) {
-      // Clear board for new scan
-      dispatchProps.resetPoints();
-      dispatchProps.clearLines();
-      startScan();
-    }
+    dispatchProps.resetPoints();
+    dispatchProps.clearLines();
+    startScan();
   },
   generatePoints: () => {
     const POINT_COUNT = 50;
@@ -70,8 +56,11 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
   },
   switchMode: () => {
     const { isAuto, activateAuto, deactivateAuto } = ownProps;
-    if (isAuto) return deactivateAuto();
-    activateAuto();
+    if (isAuto) {
+      deactivateAuto();
+    } else {
+      activateAuto();
+    }
   },
 });
 
