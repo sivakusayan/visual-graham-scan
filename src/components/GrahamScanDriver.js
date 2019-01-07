@@ -14,9 +14,11 @@ import Step from '../propTypes/Step';
 
 const GrahamScanDriver = ({
   step,
+  isAuto,
   deactivateAuto,
   activateAuto,
   startScan,
+  makeNextStep,
 }) => (
   <section className="driver">
     <p className={`driver__text  ${step === FIX_RIGHT_TURN ? 'error' : ''}`}>
@@ -25,15 +27,18 @@ const GrahamScanDriver = ({
     </p>
     <GrahamScanControlsContainer
       step={step}
+      isAuto={isAuto}
       deactivateAuto={deactivateAuto}
       activateAuto={activateAuto}
       startScan={startScan}
+      makeNextStep={makeNextStep}
     />
   </section>
 );
 
 GrahamScanDriver.propTypes = {
   step: Step,
+  isAuto: PropTypes.bool,
   deactivateAuto: PropTypes.func,
   activateAuto: PropTypes.func,
   startScan: PropTypes.func,
@@ -41,6 +46,7 @@ GrahamScanDriver.propTypes = {
 
 GrahamScanDriver.defaultProps = {
   step: DONE,
+  isAuto: false,
   deactivateAuto: () => null,
   activateAuto: () => null,
   startScan: () => null,

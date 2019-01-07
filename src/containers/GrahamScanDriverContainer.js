@@ -196,6 +196,7 @@ class GrahamScanDriverContainer extends Component {
         activateAuto={this.activateAuto}
         deactivateAuto={this.deactivateAuto}
         startScan={this.startScan}
+        makeNextStep={this.makeNextStep}
       />
     );
   }

@@ -68,6 +68,11 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
       dispatchProps.addPoint(point);
     }
   },
+  switchMode: () => {
+    const { isAuto, activateAuto, deactivateAuto } = ownProps;
+    if (isAuto) return deactivateAuto();
+    activateAuto();
+  },
 });
 
 export default connectWithStore(mapStateToProps, {
