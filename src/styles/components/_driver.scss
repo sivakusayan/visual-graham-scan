@@ -13,6 +13,11 @@
   box-shadow: shadow(left);
   opacity: 0.8;
   transition: all 0.3s;
+
+  @include bp(small) {
+    width: 100%;
+    height: 40%;
+  }
 }
 
 .driver__text {
@@ -29,7 +34,17 @@
   line-height: 3.5rem;
   transition: border-left 0.3s;
 
+  @include bp(small) {
+    border-top: 4px solid color(primary);
+    border-left: none;
+  }
+
   &.error {
     border-left: 4px solid color(secondary);
+
+    @include bp(small) {
+      border-top: 4px solid color(secondary);
+      border-left: none;
+    }
   }
 }

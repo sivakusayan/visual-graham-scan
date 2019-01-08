@@ -6,7 +6,7 @@
 import { ACCEPTED, REJECTED } from './POINT_STATUSES';
 
 export default {
-  RADIUS: 7,
+  RADIUS: window.innerWidth > 600 ? 7 : 5,
   fillLinearGradientStartPoint: { x: -50, y: -50 },
   fillLinearGradientEndPoint: { x: 50, y: 50 },
   GET_GRADIENT_FILL: (status) => {

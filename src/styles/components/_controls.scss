@@ -15,4 +15,10 @@
   align-items: center;
   justify-content: space-around;
   transition: all 0.3s;
+
+  @include bp(small) {
+    // We put buttons in reverse since most users are right-handed, and so 
+    // we put the most-used buttons on the right-hand side.
+    flex-wrap: wrap-reverse;
+  }
 }

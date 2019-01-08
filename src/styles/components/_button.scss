@@ -33,6 +33,11 @@
   align-items: center;
   justify-content: center;
 
+  @include bp(small) {
+    width: 50%;
+    min-height: 50%;
+  }
+
   &__icon {
     height: 5rem;
 
@@ -65,6 +70,12 @@
   border-bottom-left-radius: $radius-subtle;
   border-top-left-radius: $radius-subtle;
 
+  @include bp(small) {
+    width: 50%;
+    margin-left: 0%;
+    border-radius: 0;
+  }
+
   .btn--icon__icon {
     opacity: 0.3;
   }
@@ -86,6 +97,16 @@
 
 .btn--icon.spawn-points { @include button-color-scheme(color(tertiary)) }
 
-.btn--icon.next-step { @include button-color-scheme(color(primary)) }
+.btn--icon.next-step { 
+  @include button-color-scheme(color(primary)) 
+  @include bp(small) {
+    height: 100%;
+  }
+}
 
-.btn--icon.switch-mode { @include button-color-scheme(color(tertiary)) }
+.btn--icon.switch-mode { 
+  @include button-color-scheme(color(tertiary)) 
+  @include bp(small) {
+    height: 100%;
+  }
+}

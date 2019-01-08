@@ -26,6 +26,8 @@ body {
   height: 100%;
   align-items: center;
   justify-content: end;
+
+  @include bp(small) { flex-direction: column }
 }
 
 button {
