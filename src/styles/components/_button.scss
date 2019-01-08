@@ -1,14 +1,14 @@
 .btn {
   position: relative;
   display: flex;
+  // Fixes weird empty space below bottom-most button on Chrome
+  overflow: hidden;
   flex-grow: 1;
   align-items: center;
   justify-content: space-around;
 
   background: none;
   opacity: 1;
-  // Fixes weird empty space below bottom-most button on Chrome
-  overflow-y: hidden;
   transition: all 0.3s;
 }
 
@@ -44,6 +44,10 @@
     // Inherit the color from .btn--icon since we want the icons and text to have the same color
     fill: currentColor;
     transition: all 0.3s;
+
+    @include bp(small) {
+      transform: translateX(20%);
+    }
   }
 
   &::before {
@@ -59,31 +63,49 @@
     opacity: 0;
     transition: all 0.3s;
     visibility: hidden;
+
+    @include bp(small) {
+      left: 20%;
+      opacity: 1;
+      visibility: visible;
+    }
   }
 }
 
-.btn--icon:hover,
-.btn--icon[data-focus-visible-added] {
-  width: 110%;
-  // Balance out extra width and prevent horizontal overflow
-  margin-left: -10%;
-  border-bottom-left-radius: $radius-subtle;
-  border-top-left-radius: $radius-subtle;
+@include if-hover() {
+  .btn--icon:hover,
+  .btn--icon[data-focus-visible-added] {
+    width: 110%;
+    // Balance out extra width and prevent horizontal overflow
+    margin-left: -10%;
+    border-bottom-left-radius: $radius-subtle;
+    border-top-left-radius: $radius-subtle;
 
-  @include bp(small) {
-    width: 50%;
-    margin-left: 0%;
-    border-radius: 0;
-  }
+    @include bp(small) {
+      z-index: z(top);
+      width: 50%;
+      margin-left: 0%;
+      border-radius: 0;
+    }
 
-  .btn--icon__icon {
-    opacity: 0.3;
-  }
+    .btn--icon__icon {
+      opacity: 0.3;
 
-  &::before {
-    left: 20%;
-    opacity: 1;
-    visibility: visible;
+      @include bp(small) {
+        opacity: 1;
+        transform: translateX(20%) scale(1.2);
+      }
+    }
+
+    &::before {
+      left: 20%;
+      opacity: 1;
+      visibility: visible;
+
+      @include bp(small) {
+        transform: scale(1.2);
+      }
+    }
   }
 }
 

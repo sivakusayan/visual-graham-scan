@@ -42,7 +42,8 @@ class ResponsiveStage extends Component {
   componentDidMount() {
     this.resizeCanvas();
     window.addEventListener('resize', this.resizeCanvas);
-    window.addEventListener('deviceorientation', this.resizeCanvas);
+    window.addEventListener('orientationchange', this.resizeCanvas);
+    window.addEventListener('fullscreenchange', this.resizeCanvas);
   }
 
   resizeCanvas = () => {

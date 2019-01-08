@@ -1,14 +1,10 @@
 @mixin button-color-scheme($main-color) {
   background-color: $main-color;
   color: color(white);
+}
 
-  &:hover,
-  &[data-focus-visible-added] {
-
-    &::before {
-      background-color: $main-color;
-    }
-  }
+@mixin if-hover() {
+  @media (hover: hover) {@content}
 }
 
 @mixin bp($breakpoint) {

@@ -22,8 +22,8 @@ const Driver = ({
   makeNextStep,
 }) => (
   <section className="driver">
-    <p className={`driver__text  ${step === FIX_RIGHT_TURN ? 'error' : ''}`}>
-      {SCAN_STEP_DESCRIPTIONS[step]}
+    <p className={`driver__text  ${!isAuto && step === FIX_RIGHT_TURN ? 'error' : ''}`}>
+      {!isAuto && SCAN_STEP_DESCRIPTIONS[step]}
     </p>
     <div className="controls-container">
       <PreparationControlsContainer

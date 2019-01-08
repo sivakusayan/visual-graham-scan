@@ -32,8 +32,6 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
       const pointerPosition = stage.getPointerPosition();
 
       const point = rescaleCoordinates(stage, pointerPosition);
-      console.log('Pointer Position: ', pointerPosition);
-      console.log('Point: ', point);
 
       addPoint(point);
     }
