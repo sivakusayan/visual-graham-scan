@@ -22,13 +22,23 @@ class WrappedModal extends Component {
     const { isEditable } = this.props;
     return (
       <div className={`modal-container ${!isEditable ? 'fade' : ''}`}>
-        <button className="btn btn--modal" onClick={this.openModal}>?</button>
+        <button
+          type="button"
+          aria-label="Help"
+          className="btn btn--modal"
+          onClick={this.openModal}
+        >?</button>
         <Modal
           isOpen={isOpen}
           onRequestClose={this.closeModal}
           contentLabel="Example Modal"
         >
-          <button className="btn btn--modal" onClick={this.closeModal}>X</button>
+          <button
+            type="button"
+            aria-label="Close Help"
+            className="btn btn--modal"
+            onClick={this.closeModal}
+          >X</button>
           <h2>What is the Convex Hull?</h2>
           <p>
             The convex hull, is vaguely speaking, the collection of

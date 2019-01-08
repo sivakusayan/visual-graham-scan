@@ -12,6 +12,7 @@ import toTitleCase from '../utils/toTitleCase';
 const ToolTipButton = ({ purpose, onClick, disabled }) => (
   <button
     type="button"
+    aria-label={toTitleCase(purpose)}
     data-tool-tip={toTitleCase(purpose)}
     className={`btn btn--driver ${purpose}`}
     onClick={onClick}
