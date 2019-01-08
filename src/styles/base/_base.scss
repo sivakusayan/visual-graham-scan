@@ -10,6 +10,10 @@ html {
 
   background-image: url(img/vintage-leaves.jpg);
   font-size: 62.5%;
+
+  @include bp(large) { font-size: 50% }
+  @include bp(medium) { font-size: 40% }
+  // @media only screen and (max-width: 1200px) { font-size: 25% }
 }
 
 body {

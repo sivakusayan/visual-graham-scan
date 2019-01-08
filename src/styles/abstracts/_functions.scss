@@ -2,34 +2,46 @@
   POSITION
   ------------------------------------------------------------------*/
 
-  @function z($level) {
-    @return map-get($stacking-levels, $level );
-  }
+@function z($level) {
+  @return map-get($stacking-levels, $level );
+}
   
-  /*------------------------------------------------------------------
-    LAYOUT
-    ------------------------------------------------------------------*/
-  
-  @function margin($size) {
-    @return map-get($margin-sizes, $size ) *  0.5rem;
-  }
-  
-  @function padding($size) {
-    @return map-get($padding-sizes, $size ) * 0.5rem;
-  }
-  
-  /*------------------------------------------------------------------
-    DECORATIONS
-    ------------------------------------------------------------------*/
-  
-  @function color($color) {
-    @return map-get($colors, $color );
-  }
+/*------------------------------------------------------------------
+  LAYOUT
+  ------------------------------------------------------------------*/
+
+@function margin($size) {
+  @return map-get($margin-sizes, $size ) *  0.5rem;
+}
+
+@function padding($size) {
+  @return map-get($padding-sizes, $size ) * 0.5rem;
+}
+
+/*------------------------------------------------------------------
+  DECORATIONS
+  ------------------------------------------------------------------*/
+
+@function color($color) {
+  @return map-get($colors, $color );
+}
+
+@function shadow($shadow) {
+  @return map-get($shadows, $shadow);
+}
+
+/*------------------------------------------------------------------
+  BREAKPOINTS
+  ------------------------------------------------------------------*/
+
+@function breakpoint($breakpoint) {
+  @return map-get($breakpoints, $breakpoint);
+}
 
 /*------------------------------------------------------------------
   UTILS
   ------------------------------------------------------------------*/
 @function em($pixels) {
-  @return #{$pixels/16}em;
+  @return $pixels/16px * 1em;
 }
   

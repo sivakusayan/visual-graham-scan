@@ -2,69 +2,80 @@
   POSITION
   ------------------------------------------------------------------*/
 
-  $stacking-levels: (
-    bottom-most: -100,
-    bottom: -10,
-    top: 10,
-    top-most: 100,
-  );
+$stacking-levels: (
+  bottom-most: -100,
+  bottom: -10,
+  top: 10,
+  top-most: 100,
+);
   
-  /*------------------------------------------------------------------
-    LAYOUT
-    ------------------------------------------------------------------*/
-  
-  // Defined in multiples of a base value. Say base value = 0.5rem.
-  // EX: margin(XXS) = 1 * 0.5rem = 0.5rem
-  // EX: margin(M) = 4 * 0.5rem = 2rem
-  //
-  // NOTE: Actual base value is seen in _functions.scss
-  $margin-sizes: (
-    XXS: 1,
-    XS: 2,
-    S: 3,
-    M: 4,
-    L: 5,
-    XL: 6,
-    XXL: 7,
-  );
-  
-  // Defined in multiples of a base value. Say base value = 0.5rem.
-  // EX: padding(XXS) = 1 * 0.5rem = 0.5rem
-  // EX: padding(M) = 4 * 0.5rem = 2rem
-  //
-  // NOTE: Actual base value is seen in _functions.scss
-  $padding-sizes: (
-    XXS: 1,
-    XS: 2,
-    S: 3,
-    M: 4,
-    L: 5,
-    XL: 6,
-    XXL: 7,
-  );
-  
-  /*------------------------------------------------------------------
-    DECORATIONS
-    ------------------------------------------------------------------*/
-  
-  $colors: (
-    tertiary: #8152A5,
-    secondary: #FF6F59,
-    primary: #23CE6B,
-    white: #FCFCFC,
-    black: #272D2D,
-  );
+/*------------------------------------------------------------------
+  LAYOUT
+  ------------------------------------------------------------------*/
 
-  $shadow-left-subtle: -1px 0 5px rgba(#272D2D, 0.1);
-  $shadow-left: -2px 0 5px rgba(#272D2D, 0.15);
-  $shadow-right-subtle: 1px 0 5px rgba(#272D2D, 0.1);
-  $shadow-right: 2px 0 5px rgba(#272D2D, 0.15);
-  $shadow-down-subtle: 0 1px 5px rgba(#272D2D, 0.1);
-  $shadow-down: 0 2px 5px rgba(#272D2D, 0.15);
-  $shadow-up-subtle: 0 -1px 5px rgba(#272D2D, 0.1);
-  $shadow-up: 0 -2px 5px rgba(#272D2D, 0.15);
+// Defined in multiples of a base value. Say base value = 0.5rem.
+// EX: margin(XXS) = 1 * 0.5rem = 0.5rem
+// EX: margin(M) = 4 * 0.5rem = 2rem
+//
+// NOTE: Actual base value is seen in _functions.scss
+$margin-sizes: (
+  XXS: 1,
+  XS: 2,
+  S: 3,
+  M: 4,
+  L: 5,
+  XL: 6,
+  XXL: 7,
+);
   
-  $radius-subtle: 5px;
+// Defined in multiples of a base value. Say base value = 0.5rem.
+// EX: padding(XXS) = 1 * 0.5rem = 0.5rem
+// EX: padding(M) = 4 * 0.5rem = 2rem
+//
+// NOTE: Actual base value is seen in _functions.scss
+$padding-sizes: (
+  XXS: 1,
+  XS: 2,
+  S: 3,
+  M: 4,
+  L: 5,
+  XL: 6,
+  XXL: 7,
+);
+  
+/*------------------------------------------------------------------
+  DECORATIONS
+  ------------------------------------------------------------------*/
 
-  $scale-subtle: scale(1.05);
-  
+$colors: (
+  tertiary: #8152A5,
+  secondary: #FF6F59,
+  primary: #23CE6B,
+  white: #FCFCFC,
+  black: #272D2D,
+);
+
+$shadows: (
+  left-subtle: -1px 0 5px rgba(#272D2D, 0.1),
+  left: -2px 0 5px rgba(#272D2D, 0.15),
+  right-subtle: 1px 0 5px rgba(#272D2D, 0.1),
+  right: 2px 0 5px rgba(#272D2D, 0.15),
+  down-subtle: 0 1px 5px rgba(#272D2D, 0.1),
+  down: 0 2px 5px rgba(#272D2D, 0.15),
+  up-subtle: 0 -1px 5px rgba(#272D2D, 0.1),
+  up: 0 -2px 5px rgba(#272D2D, 0.15),
+);
+
+$radius-subtle: 5px;
+
+$scale-subtle: scale(1.05);
+
+/*------------------------------------------------------------------
+  BREAKPOINTS
+  ------------------------------------------------------------------*/
+
+$breakpoints: (
+  large: 1200px,
+  medium: 900px,
+  small: 600px,
+);
