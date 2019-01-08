@@ -18,3 +18,14 @@ const App = () => (
 );
 
 render(<App />, document.getElementById('app'));
+
+var docHeight = document.documentElement.offsetHeight;
+
+[].forEach.call(
+  document.querySelectorAll('*'),
+  function(el) {
+    if (el.offsetHeight > docHeight) {
+      console.log(el);
+    }
+  }
+);

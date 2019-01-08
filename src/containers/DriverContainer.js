@@ -47,7 +47,7 @@ class DriverContainer extends Component {
     const secondScenario = isAuto !== prevState.isAuto && isAuto;
 
     if (firstScenario || secondScenario) {
-      setTimeout(this.makeNextStep, 100);
+      setTimeout(this.makeNextStep, 10);
     }
   }
 
@@ -166,7 +166,7 @@ class DriverContainer extends Component {
 
     // Recursively call itself to run scan automatically
     if (isAuto && nextPointIndex + 1 <= points.length) {
-      setTimeout(this.makeNextStep, 100);
+      setTimeout(this.makeNextStep, 10);
     }
   };
 

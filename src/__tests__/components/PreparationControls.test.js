@@ -93,20 +93,20 @@ describe('Preparation Controls', () => {
 
     expect(playAutoSpy).toHaveBeenCalled();
   });
-  it('should render a generate-points ToolTipButton', () => {
+  it('should render a spawn-points ToolTipButton', () => {
     const wrapper = shallow(<PreparationControls />);
-    const button = wrapper.find(ToolTipButton).filterWhere(node => node.prop('purpose') === 'generate-points');
+    const button = wrapper.find(ToolTipButton).filterWhere(node => node.prop('purpose') === 'spawn-points');
 
     expect(button.exists()).toBe(true);
   });
-  it(`should enable the generate-points button if step is ${DONE}`, () => {
+  it(`should enable the spawn-points button if step is ${DONE}`, () => {
     const wrapper = shallow(<PreparationControls step={DONE} />);
-    const button = wrapper.find(ToolTipButton).filterWhere(node => node.prop('purpose') === 'generate-points');
+    const button = wrapper.find(ToolTipButton).filterWhere(node => node.prop('purpose') === 'spawn-points');
     expect(button.prop('disabled')).toBe(false);
   });
-  it(`should disable the generate-points button if step isn't ${DONE}`, () => {
+  it(`should disable the spawn-points button if step isn't ${DONE}`, () => {
     const wrapper = shallow(<PreparationControls step={GET_START_POINT} />);
-    const button = wrapper.find(ToolTipButton).filterWhere(node => node.prop('purpose') === 'generate-points');
+    const button = wrapper.find(ToolTipButton).filterWhere(node => node.prop('purpose') === 'spawn-points');
     expect(button.prop('disabled')).toBe(true);
   });
 });

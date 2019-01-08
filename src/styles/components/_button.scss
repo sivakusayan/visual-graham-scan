@@ -7,6 +7,8 @@
 
   background: none;
   opacity: 1;
+  // Fixes weird empty space below bottom-most button on Chrome
+  overflow-y: hidden;
   transition: all 0.3s;
 }
 
@@ -26,32 +28,31 @@
 --------------------------------------------------------*/
 
 .btn--icon {
+  display: flex;
   width: 100%; 
+  align-items: center;
+  justify-content: center;
 
   &__icon {
-    width: 60%;
-    height: 60%;
+    height: 5rem;
 
     // Inherit the color from .btn--icon since we want the icons and text to have the same color
     fill: currentColor;
+    transition: all 0.3s;
   }
 
   &::before {
     position: absolute;
     left: 30%;
     display: inline-block;
-    width: 2rem;
+    width: 3rem;
 
-    padding: padding(XS) padding(M);
     // Inherit the color from .btn--icon since we want the icons and text to have the same color
     color: currentColor;
     content: attr(data-tool-tip);
-    font-size: 2rem;
+    font-size: 2.5rem;
     opacity: 0;
-    // Don't define transition for color, since right now color
-    // goes off computed color. This means that the text will 'flash'
-    // colors if we enable transition for that property.
-    transition: background-color 0.3s, opacity 0.3s, left 0.3s, visibility 0.3s;
+    transition: all 0.3s;
     visibility: hidden;
   }
 }
@@ -59,12 +60,17 @@
 .btn--icon:hover,
 .btn--icon[data-focus-visible-added] {
   width: 110%;
+  // Balance out extra width and prevent horizontal overflow
   margin-left: -10%;
   border-bottom-left-radius: $radius-subtle;
   border-top-left-radius: $radius-subtle;
 
+  .btn--icon__icon {
+    opacity: 0.3;
+  }
+
   &::before {
-    left: 10%;
+    left: 20%;
     opacity: 1;
     visibility: visible;
   }
@@ -78,7 +84,7 @@
 
 .btn--icon.play-auto { @include button-color-scheme(darken(color(primary), 10%)) }
 
-.btn--icon.generate-points { @include button-color-scheme(color(tertiary)) }
+.btn--icon.spawn-points { @include button-color-scheme(color(tertiary)) }
 
 .btn--icon.next-step { @include button-color-scheme(color(primary)) }
 

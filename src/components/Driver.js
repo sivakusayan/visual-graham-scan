@@ -24,22 +24,23 @@ const Driver = ({
   <section className="driver">
     <p className={`driver__text  ${step === FIX_RIGHT_TURN ? 'error' : ''}`}>
       {SCAN_STEP_DESCRIPTIONS[step]}
-      <span className="driver__directions">Press 'N' on your keyboard for the next move.</span>
     </p>
-    <PreparationControlsContainer
-      step={step}
-      isAuto={isAuto}
-      deactivateAuto={deactivateAuto}
-      activateAuto={activateAuto}
-      startScan={startScan}
-    />
-    <ScanControlsContainer
-      step={step}
-      isAuto={isAuto}
-      deactivateAuto={deactivateAuto}
-      activateAuto={activateAuto}
-      makeNextStep={makeNextStep}
-    />
+    <div className="controls-container">
+      <PreparationControlsContainer
+        step={step}
+        isAuto={isAuto}
+        deactivateAuto={deactivateAuto}
+        activateAuto={activateAuto}
+        startScan={startScan}
+      />
+      <ScanControlsContainer
+        step={step}
+        isAuto={isAuto}
+        deactivateAuto={deactivateAuto}
+        activateAuto={activateAuto}
+        makeNextStep={makeNextStep}
+      />
+    </div>
   </section>
 );
 

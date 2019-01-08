@@ -1,6 +1,7 @@
-@import "base/variables";
-@import "base/functions";
-@import "base/mixins";
+@import "abstracts/variables";
+@import "abstracts/functions";
+@import "abstracts/mixins";
+
 @import "base/reset";
 @import "base/base";
 

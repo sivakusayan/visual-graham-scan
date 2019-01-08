@@ -16,12 +16,18 @@
 }
 
 .driver__text {
+  display: flex;
   width: 100%;
   height: 40%;
+  align-items: center;
+  justify-content: center;
   padding: padding(L);
 
   border-left: 4px solid color(primary);
-  font-size: 2rem;
+  color: color(black);
+  font-size: 2.5rem;
+  line-height: 3.5rem;
+  transition: border-left 0.3s;
 
   &.error {
     border-left: 4px solid color(secondary);

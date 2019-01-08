@@ -14,7 +14,7 @@ const PreparationControls = ({
   clearAll,
   play,
   playAuto,
-  generatePoints,
+  spawnPoints,
   step,
 }) => (
   <>
@@ -22,7 +22,7 @@ const PreparationControls = ({
       <ToolTipButton purpose="play" onClick={play} disabled={step !== DONE} />
       <ToolTipButton purpose="play-auto" onClick={playAuto} disabled={step !== DONE} />
       <ToolTipButton purpose="clear-all" onClick={clearAll} disabled={step !== DONE} />
-      <ToolTipButton purpose="generate-points" onClick={generatePoints} disabled={step !== DONE} />
+      <ToolTipButton purpose="spawn-points" onClick={spawnPoints} disabled={step !== DONE} />
     </menu>
   </>
 );
@@ -31,7 +31,7 @@ PreparationControls.propTypes = {
   clearAll: PropTypes.func,
   play: PropTypes.func,
   playAuto: PropTypes.func,
-  generatePoints: PropTypes.func,
+  spawnPoints: PropTypes.func,
   step: Step,
 };
 
@@ -39,7 +39,7 @@ PreparationControls.defaultProps = {
   clearAll: () => null,
   play: () => null,
   playAuto: () => null,
-  generatePoints: () => null,
+  spawnPoints: () => null,
   step: DONE,
 };
 

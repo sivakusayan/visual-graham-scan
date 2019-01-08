@@ -39,7 +39,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
     dispatchProps.clearLines();
     startScan();
   },
-  generatePoints: () => {
+  spawnPoints: () => {
     const POINT_COUNT = 50;
     dispatchProps.clearPoints();
     dispatchProps.clearLines();
