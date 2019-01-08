@@ -10,23 +10,14 @@ import svgxuse from 'svgxuse';
 
 import InteractiveStageContainer from './containers/InteractiveStageContainer';
 import ConnectedDriverContainer from './containers/ConnectedDriverContainer';
+import WrappedModal from './components/WrappedModal';
 
 const App = () => (
   <>
+    <WrappedModal />
     <InteractiveStageContainer />
     <ConnectedDriverContainer />
   </>
 );
 
 render(<App />, document.getElementById('app'));
-
-var docHeight = document.documentElement.offsetHeight;
-
-[].forEach.call(
-  document.querySelectorAll('*'),
-  function(el) {
-    if (el.offsetHeight > docHeight) {
-      console.log(el);
-    }
-  }
-);
