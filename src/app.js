@@ -10,11 +10,9 @@ import svgxuse from 'svgxuse';
 
 import InteractiveStageContainer from './containers/InteractiveStageContainer';
 import ConnectedDriverContainer from './containers/ConnectedDriverContainer';
-import WrappedModal from './components/WrappedModal';
 
 const App = () => (
   <>
-    <WrappedModal />
     <InteractiveStageContainer />
     <ConnectedDriverContainer />
   </>

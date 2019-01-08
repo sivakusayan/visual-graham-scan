@@ -8,6 +8,7 @@
 @import "components/button";
 @import "components/controls";
 @import "components/driver";
+@import "components/modal";
 @import "components/stage";
 
 @import "base/utils"; //Import utils last since we want utils to overwrite component styles

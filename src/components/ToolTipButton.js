@@ -13,11 +13,11 @@ const ToolTipButton = ({ purpose, onClick, disabled }) => (
   <button
     type="button"
     data-tool-tip={toTitleCase(purpose)}
-    className={`btn btn--icon ${purpose}`}
+    className={`btn btn--driver ${purpose}`}
     onClick={onClick}
     disabled={disabled}
   >
-    <svg className="btn--icon__icon">
+    <svg className="btn--driver__icon">
       <use xlinkHref={`img/spritesheet.svg#${purpose}`} />
     </svg>
   </button>

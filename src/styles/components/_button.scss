@@ -24,10 +24,30 @@
 }
 
 /*--------------------------------------------------------
----------------------ICON-ONLY BUTTONS--------------------
+---------------------STAGE BUTTONS--------------------
 --------------------------------------------------------*/
 
-.btn--icon {
+.btn--modal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: padding(S);
+  margin: margin(M);
+
+  border: 2px solid color(black);
+  background: color(white);
+  border-radius: $radius-subtle;
+  font-size: 2rem;
+  font-weight: 600;
+  opacity: 0.5;
+}
+
+
+/*--------------------------------------------------------
+---------------------DRIVER BUTTONS--------------------
+--------------------------------------------------------*/
+
+.btn--driver {
   display: flex;
   width: 100%; 
   align-items: center;
@@ -41,7 +61,7 @@
   &__icon {
     height: 5rem;
 
-    // Inherit the color from .btn--icon since we want the icons and text to have the same color
+    // Inherit the color from .btn--driver since we want the icons and text to have the same color
     fill: currentColor;
     transition: all 0.3s;
 
@@ -56,7 +76,7 @@
     display: inline-block;
     width: 3rem;
 
-    // Inherit the color from .btn--icon since we want the icons and text to have the same color
+    // Inherit the color from .btn--driver since we want the icons and text to have the same color
     color: currentColor;
     content: attr(data-tool-tip);
     font-size: 2.5rem;
@@ -73,8 +93,8 @@
 }
 
 @include if-hover() {
-  .btn--icon:hover,
-  .btn--icon[data-focus-visible-added] {
+  .btn--driver:hover,
+  .btn--driver[data-focus-visible-added] {
     width: 110%;
     // Balance out extra width and prevent horizontal overflow
     margin-left: -10%;
@@ -88,7 +108,7 @@
       border-radius: 0;
     }
 
-    .btn--icon__icon {
+    .btn--driver__icon {
       opacity: 0.3;
 
       @include bp(small) {
@@ -109,24 +129,24 @@
   }
 }
 
-//---------------SPECIFIC ICON ONLY BUTTONS----------------------
+//---------------SPECIFIC DRIVER BUTTONS----------------------
 
-.btn--icon.clear-all { @include button-color-scheme(color(secondary)) }
+.btn--driver.clear-all { @include button-color-scheme(color(secondary)) }
 
-.btn--icon.play { @include button-color-scheme(color(primary)) }
+.btn--driver.play { @include button-color-scheme(color(primary)) }
 
-.btn--icon.play-auto { @include button-color-scheme(darken(color(primary), 10%)) }
+.btn--driver.play-auto { @include button-color-scheme(darken(color(primary), 10%)) }
 
-.btn--icon.spawn-points { @include button-color-scheme(color(tertiary)) }
+.btn--driver.spawn-points { @include button-color-scheme(color(tertiary)) }
 
-.btn--icon.next-step { 
+.btn--driver.next-step { 
   @include button-color-scheme(color(primary)) 
   @include bp(small) {
     height: 100%;
   }
 }
 
-.btn--icon.switch-mode { 
+.btn--driver.switch-mode { 
   @include button-color-scheme(color(tertiary)) 
   @include bp(small) {
     height: 100%;

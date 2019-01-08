@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import ResponsiveStage from './ResponsiveStage';
 import PointLayerContainer from '../containers/Layers/PointLayerContainer';
 import LineLayerContainer from '../containers/Layers/LineLayerContainer';
+import WrappedModal from './WrappedModal';
 
 const InteractiveStage = ({ onStageClick, pointCount, isEditable }) => (
   <main className="stage">
@@ -22,6 +23,7 @@ const InteractiveStage = ({ onStageClick, pointCount, isEditable }) => (
       <LineLayerContainer />
       <PointLayerContainer />
     </ResponsiveStage>
+    <WrappedModal isEditable={isEditable} />
     <p className={`stage__text ${pointCount > 0 ? 'fade' : ''}`}>Add a point by clicking on the screen!</p>
   </main>
 );
