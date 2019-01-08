@@ -16,7 +16,7 @@ const PointLayer = ({ points = [], scale }) => (
           x: POINT_CONFIG.RADIUS / scale.x,
           y: POINT_CONFIG.RADIUS / scale.y,
         }}
-        fillLinearGradientColorStops={POINT_CONFIG.GET_GRADIENT_FILL(point.status)}
+        fill={POINT_CONFIG.GET_FILL(point.status)}
         stroke={POINT_CONFIG.GET_STROKE(point.status)}
         key={point.name}
       />

@@ -18,7 +18,7 @@ const ToolTipButton = ({ purpose, onClick, disabled }) => (
     disabled={disabled}
   >
     <svg className="btn--icon__icon">
-      <use href={`img/spritesheet.svg#${purpose}`} />
+      <use xlinkHref={`img/spritesheet.svg#${purpose}`} />
     </svg>
   </button>
 );

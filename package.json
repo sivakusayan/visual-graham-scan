@@ -25,6 +25,7 @@
     "react-redux": "5.1.1",
     "redux": "^4.0.1",
     "svgo": "^1.1.1",
+    "svgxuse": "^1.2.6",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
