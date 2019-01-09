@@ -12,7 +12,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'konva': path.resolve(__dirname, './custom-konva.js'),
+      konva: path.resolve(__dirname, './custom-konva.js'),
     },
   },
   module: {

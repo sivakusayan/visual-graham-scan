@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 
+import MODAL_COPY from '../__constants__/MODAL_COPY';
+
 Modal.setAppElement('#app');
 
 class WrappedModal extends Component {
@@ -40,23 +42,24 @@ class WrappedModal extends Component {
             onClick={this.closeModal}
           >X</button>
           <h2>What is the Convex Hull?</h2>
-          <p>
-            The convex hull, is vaguely speaking, the collection of
-            points that you need to 'surround' all the other points. It
-            is perhaps bext explained with pictures.
-          </p>
+          {MODAL_COPY.WHAT}
           <h2>What can it be used for?</h2>
-          <p>
-            The convex hull has a wide variety of applications, such as
-            checking for collisions, robot motion planning, and image processing.
-            One can also try to find the convex hull of a 3D point set, which gives
-            us a nice way to compute Delaunay Triangulations.
-          </p>
+          {MODAL_COPY.WHY}
           <h2>Credits</h2>
+          <h2>Resources</h2>
+          {MODAL_COPY.RESOURCES}
         </Modal>
       </div>
     );
   }
 }
+
+WrappedModal.propTypes = {
+  isEditable: PropTypes.bool,
+};
+
+WrappedModal.defaultProps = {
+  isEditable: false,
+};
 
 export default WrappedModal;

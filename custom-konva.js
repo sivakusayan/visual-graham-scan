@@ -5,11 +5,11 @@
  *
  * https://github.com/konvajs/react-konva/issues/35
  */
-var Konva = require("./node_modules/konva/src/Core");
+const Konva = require('./node_modules/konva/src/Core');
 
-require("./node_modules/konva/src/Animation");
+require('./node_modules/konva/src/Animation');
 
-require("./node_modules/konva/src/shapes/Ellipse");
-require("./node_modules/konva/src/shapes/Line");
+require('./node_modules/konva/src/shapes/Ellipse');
+require('./node_modules/konva/src/shapes/Line');
 
 module.exports = Konva;
