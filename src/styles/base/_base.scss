@@ -12,8 +12,10 @@ html {
   font-size: 62.5%;
 
   @include bp(large) { font-size: 50% }
-  @include bp(medium) { font-size: 40% }
-  // @media only screen and (max-width: 1200px) { font-size: 25% }
+  @include bp(medium) { font-size: 45% }
+
+  // We want sizing up to take priority on tall but thin screens
+  @include bpVert(large) { font-size: 80% }
 }
 
 body {

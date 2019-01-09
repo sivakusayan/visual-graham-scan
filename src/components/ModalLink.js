@@ -6,6 +6,7 @@ const ModalLink = ({ href, children }) => (
     target="_blank"
     rel="noopener noreferrer"
     href={href}
+    className="modal-link"
   >
     {children}
   </a>

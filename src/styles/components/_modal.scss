@@ -1,7 +1,123 @@
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
 .modal-container {
   position: absolute;
-  z-index: z(top);
   top: 0;
   right: 0;
   transition: all 0.3s;
+}
+
+.modal {
+  position: absolute;
+  top: 4rem;
+  right: 4rem;
+  bottom: 4rem;
+  left: 4rem;
+  display: flex;
+  overflow: auto;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+
+  background: color(white);
+  border-radius: $radius-subtle;
+  box-shadow: shadow(down);
+
+  @include bp(large) {
+    top: 8rem;
+    bottom: 8rem;
+  }
+  
+  @include bp(medium) {
+    right: 6rem;
+    left: 6rem;
+  }
+
+  @include bp(small) {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+.modal-copy {
+  display: flex;
+  width: 80%;
+  height: 80%;
+  flex-direction: column;
+  justify-content: space-around;
+
+  @include bp(medium) {
+    width: 90%;
+    height: 95%;
+  }
+
+  @include bp(verySmall) {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.modal-heading {
+  margin: margin(S) 0;
+  font-size: 3rem;
+}
+
+.modal-text {
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+}
+
+.modal-icon {
+  display: block;
+  height: 11rem;
+  margin: 2rem auto 0 auto;
+
+  @include bp(small) {
+    width: 35rem;
+    height: 10rem;
+    margin: 1rem auto 0 auto;
+  }
+}
+
+.modal-misc {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  @include bp(small) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.modal-link {
+  display: inline-block;
+  color: color(primary);
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.modal-link:hover {
+  color: darken(color(primary), 10%);
+  transform: scale(1.02);
+}
+
+.modal-list__item:not(:last-child) {
+  margin-bottom: 0.75rem;
+  @include bp(small) {
+    margin-bottom: 0.5rem;
+  }
 }

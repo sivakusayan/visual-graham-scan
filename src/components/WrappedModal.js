@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 
-import MODAL_COPY from '../__constants__/MODAL_COPY';
+import MODAL_MARKUP from '../__constants__/MODAL_MARKUP';
 
 Modal.setAppElement('#app');
 
@@ -22,6 +22,11 @@ class WrappedModal extends Component {
   render() {
     const { isOpen } = this.state;
     const { isEditable } = this.props;
+    const style = {
+      overlay: {
+        backgroundColor: 'rgba(0,0,0,0.35)',
+      }
+    };
     return (
       <div className={`modal-container ${!isEditable ? 'fade' : ''}`}>
         <button
@@ -31,9 +36,13 @@ class WrappedModal extends Component {
           onClick={this.openModal}
         >?</button>
         <Modal
+          style={style}
           isOpen={isOpen}
           onRequestClose={this.closeModal}
-          contentLabel="Example Modal"
+          contentLabel="Help Modal"
+          // Works together with _modal.scss to properly define fade transition
+          closeTimeoutMS={300}
+          className="modal"
         >
           <button
             type="button"
@@ -41,13 +50,26 @@ class WrappedModal extends Component {
             className="btn btn--modal"
             onClick={this.closeModal}
           >X</button>
-          <h2>What is the Convex Hull?</h2>
-          {MODAL_COPY.WHAT}
-          <h2>What can it be used for?</h2>
-          {MODAL_COPY.WHY}
-          <h2>Credits</h2>
-          <h2>Resources</h2>
-          {MODAL_COPY.RESOURCES}
+          <section className="modal-copy">
+            <div>
+              <h2 className="modal-heading">What is the Convex Hull?</h2>
+              {MODAL_MARKUP.WHAT}
+            </div>
+            <div>
+              <h2 className="modal-heading">What can it be used for?</h2>
+              {MODAL_MARKUP.WHY}
+            </div>
+            <div className="modal-misc">
+              <div>
+                <h2 className="modal-heading">Credits</h2>
+                {MODAL_MARKUP.CREDITS}
+              </div>
+              <div>
+                <h2 className="modal-heading">Resources</h2>
+                {MODAL_MARKUP.RESOURCES}
+              </div>
+            </div>
+          </section>
         </Modal>
       </div>
     );

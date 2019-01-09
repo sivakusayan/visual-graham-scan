@@ -1,5 +1,7 @@
 import {
   ADD_LINE,
+  SET_ERROR_LINE,
+  CLEAR_ERROR_LINES,
   REMOVE_LINE,
   CLEAR_LINES,
 } from '../actionTypes/lineActionTypes';
