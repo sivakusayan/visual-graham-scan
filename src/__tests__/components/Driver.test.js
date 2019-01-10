@@ -33,5 +33,9 @@ describe('Driver Component', () => {
       const wrapper = shallow(<Driver justStarted={false} step={DONE} />);
       expect(wrapper.find('.driver__text').text()).toMatch(SCAN_STEP_DESCRIPTIONS[DONE]);
     });
+    it('should not render any text while isAuto is true', () => {
+      const wrapper = shallow(<Driver justStarted={false} isAuto />);
+      expect(wrapper.find('.driver__text').text()).toMatch('');
+    });
   });
 });

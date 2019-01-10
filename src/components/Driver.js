@@ -25,7 +25,7 @@ const Driver = ({
   <section className="driver">
     <p className={`driver__text  ${!isAuto && step === FIX_RIGHT_TURN ? 'error' : ''}`}>
       {justStarted && 'This app gives a visualization of the Graham Scan algorithm to compute Convex Hulls. Add some points to get started!'}
-      {!justStarted && SCAN_STEP_DESCRIPTIONS[step]}
+      {(!isAuto && !justStarted) && SCAN_STEP_DESCRIPTIONS[step]}
     </p>
     <div className="controls-container">
       <PreparationControlsContainer
