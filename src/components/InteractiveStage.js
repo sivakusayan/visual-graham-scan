@@ -16,6 +16,8 @@ const InteractiveStage = ({ onStageClick, pointCount, isEditable }) => (
     <ResponsiveStage
       className="canvas"
       onClick={isEditable ? onStageClick : null}
+      // Note that without onTap, React-Konva will not listen to touch events on mobile
+      onTap={isEditable ? onStageClick : null}
     >
       {/* Note that with how React-Konva works, PointLayer MUST come after
       LineLayer if we want the z-index of PointLayer to be higher. See:

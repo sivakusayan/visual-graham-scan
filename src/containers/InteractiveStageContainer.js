@@ -30,7 +30,6 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
       }
       const stage = event.target;
       const pointerPosition = stage.getPointerPosition();
-
       const point = rescaleCoordinates(stage, pointerPosition);
 
       addPoint(point);
