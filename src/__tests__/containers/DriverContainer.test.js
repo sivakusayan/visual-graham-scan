@@ -11,6 +11,7 @@ import {
   SORT_POINTS,
   ADD_NEXT_POINT,
   FIX_RIGHT_TURN,
+  DONE,
 } from '../../__constants__/SCAN_STEPS';
 import { NULL, ACCEPTED } from '../../__constants__/POINT_STATUSES';
 import UUID_MOCK_ID from '../__constants__/UUID_MOCK_ID';
@@ -41,7 +42,23 @@ describe('Scan Driver Logic', () => {
     });
     it('should initialize the startPoint to null', () => {
       const wrapper = shallow(<DriverContainer />);
-      expect(wrapper.state('startPoint')).toEqual(null);
+      expect(wrapper.state('startPoint')).toBe(null);
+    });
+    it('should initialize the justStarted to true', () => {
+      const wrapper = shallow(<DriverContainer />);
+      expect(wrapper.state('justStarted')).toBe(true);
+    });
+    it('should initialize the isAuto to false', () => {
+      const wrapper = shallow(<DriverContainer />);
+      expect(wrapper.state('isAuto')).toBe(false);
+    });
+    it('should initialize the convexHull to be empty', () => {
+      const wrapper = shallow(<DriverContainer />);
+      expect(wrapper.state('convexHull')).toEqual([]);
+    });
+    it(`should initialize the step to ${DONE}`, () => {
+      const wrapper = shallow(<DriverContainer />);
+      expect(wrapper.state('step')).toEqual(DONE);
     });
     it('should bind onKeyNextStep to the keydown listener', () => {
       global.document.addEventListener = jest.fn();

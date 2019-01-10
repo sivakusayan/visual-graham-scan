@@ -16,6 +16,7 @@ import Step from '../propTypes/Step';
 const Driver = ({
   step,
   isAuto,
+  justStarted,
   deactivateAuto,
   activateAuto,
   startScan,
@@ -23,7 +24,8 @@ const Driver = ({
 }) => (
   <section className="driver">
     <p className={`driver__text  ${!isAuto && step === FIX_RIGHT_TURN ? 'error' : ''}`}>
-      {!isAuto && SCAN_STEP_DESCRIPTIONS[step]}
+      {justStarted && 'This app gives a visualization of the Graham Scan algorithm to compute Convex Hulls. Add some points to get started!'}
+      {!justStarted && SCAN_STEP_DESCRIPTIONS[step]}
     </p>
     <div className="controls-container">
       <PreparationControlsContainer
@@ -47,6 +49,7 @@ const Driver = ({
 Driver.propTypes = {
   step: Step,
   isAuto: PropTypes.bool,
+  justStarted: PropTypes.bool,
   deactivateAuto: PropTypes.func,
   activateAuto: PropTypes.func,
   startScan: PropTypes.func,
@@ -55,6 +58,7 @@ Driver.propTypes = {
 
 Driver.defaultProps = {
   step: DONE,
+  justStarted: true,
   isAuto: false,
   deactivateAuto: () => null,
   activateAuto: () => null,

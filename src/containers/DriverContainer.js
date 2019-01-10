@@ -30,6 +30,8 @@ class DriverContainer extends Component {
     isAuto: false,
     // The current step we are at in the scan
     step: DONE,
+    // Checks if this is the users first scan or not
+    justStarted: true,
   }
 
   componentDidMount() {
@@ -174,7 +176,7 @@ class DriverContainer extends Component {
 
   endScan = () => {
     const { activateEdits } = this.props;
-    this.setState({ step: DONE });
+    this.setState({ step: DONE, isAuto: false });
     activateEdits();
   }
 
@@ -184,6 +186,7 @@ class DriverContainer extends Component {
     if (points.length < 1) return;
 
     deactivateEdits();
+    this.setState({ justStarted: false });
     this.init();
     this.getStartPoint();
   }
@@ -193,11 +196,12 @@ class DriverContainer extends Component {
   deactivateAuto = () => this.setState({ isAuto: false })
 
   render() {
-    const { isAuto, step } = this.state;
+    const { isAuto, step, justStarted } = this.state;
     return (
       <Driver
         isAuto={isAuto}
         step={step}
+        justStarted={justStarted}
         activateAuto={this.activateAuto}
         deactivateAuto={this.deactivateAuto}
         startScan={this.startScan}
