@@ -1,14 +1,12 @@
 import {
   addLine,
   setErrorLine,
-  removeLine,
   clearErrorLines,
   clearLines,
 } from '../../../state/actions/lineActions';
 import {
   ADD_LINE,
   SET_ERROR_LINE,
-  REMOVE_LINE,
   CLEAR_ERROR_LINES,
   CLEAR_LINES,
 } from '../../../state/actionTypes/lineActionTypes';
@@ -44,14 +42,6 @@ describe('Line Action Creators', () => {
       endPoint,
     };
     expect(setErrorLine(startPoint, endPoint)).toEqual(expectedAction);
-  });
-  it('should create an action to remove the specified line', () => {
-    const expectedAction = {
-      type: REMOVE_LINE,
-      startPoint,
-      endPoint,
-    };
-    expect(removeLine(startPoint, endPoint)).toEqual(expectedAction);
   });
   it('should create an action to clear all error lines', () => {
     const expectedAction = {

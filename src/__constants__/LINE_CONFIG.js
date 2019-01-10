@@ -3,8 +3,14 @@
  * the stage.
  */
 
+import { ERROR } from './LINE_STATUSES';
+
 
 export default {
-  stroke: '#272D2D',
+  GET_STROKE: (line) => {
+    if (line.status === ERROR) return '#FF6F59';
+    return '#272D2D';
+  },
   fill: '#272D2D',
+  dash: [33, 10],
 };

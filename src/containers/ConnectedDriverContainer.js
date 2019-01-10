@@ -12,7 +12,7 @@ import {
   sortPoints,
   resetPoints,
 } from '../state/actions/pointActions';
-import { addLine, removeLine, clearLines } from '../state/actions/lineActions';
+import { addLine, setErrorLine, clearErrorLines } from '../state/actions/lineActions';
 import { activateEdits, deactivateEdits } from '../state/actions/isEditableActions';
 import connectWithStore from '../state/store/connectWithStore';
 
@@ -31,8 +31,8 @@ export default connectWithStore(mapStateToProps, {
   sortPoints,
   resetPoints,
   addLine,
-  removeLine,
-  clearLines,
+  setErrorLine,
+  clearErrorLines,
   activateEdits,
   deactivateEdits,
 })(DriverContainer);

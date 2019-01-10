@@ -29,11 +29,6 @@ const linesReducer = (state = initialState, action) => {
           status: ERROR,
         };
       });
-    case REMOVE_LINE:
-      return state.filter((line) => {
-        return line.startPoint.name !== action.startPoint.name
-            && line.endPoint.name !== action.endPoint.name;
-      });
     case CLEAR_ERROR_LINES:
       return state.filter(line => line.status !== ERROR);
     case CLEAR_LINES:

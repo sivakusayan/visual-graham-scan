@@ -1,7 +1,6 @@
 import reducer from '../../../state/reducers/linesReducer';
 import {
   ADD_LINE,
-  REMOVE_LINE,
   CLEAR_LINES,
   SET_ERROR_LINE,
   CLEAR_ERROR_LINES,
@@ -56,17 +55,6 @@ describe('Points Reducer', () => {
       ...line,
       status: ERROR,
     }];
-
-    expect(reducer(initialState, action)).toEqual(finalState);
-  });
-  it('should handle REMOVE_LINE', () => {
-    const action = {
-      type: REMOVE_LINE,
-      startPoint,
-      endPoint,
-    };
-    const initialState = [line];
-    const finalState = [];
 
     expect(reducer(initialState, action)).toEqual(finalState);
   });

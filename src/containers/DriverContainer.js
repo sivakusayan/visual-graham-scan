@@ -125,7 +125,7 @@ class DriverContainer extends Component {
     const {
       rejectPoint,
       addLine,
-      removeLine,
+      setErrorLine,
     } = this.props;
     const { convexHull } = this.state;
 
@@ -140,19 +140,21 @@ class DriverContainer extends Component {
     rejectPoint(errorPoint.name);
     // Remove error point from hull
     convexHull.splice(convexHull.length - 2, 1);
-    removeLine(errorPoint, endPoint);
-    removeLine(originPoint, errorPoint);
+    setErrorLine(errorPoint, endPoint);
+    setErrorLine(originPoint, errorPoint);
     addLine(originPoint, endPoint);
   };
 
   makeNextStep = () => {
-    const { points } = this.props;
+    const { points, clearErrorLines } = this.props;
     const {
       convexHull,
       isAuto,
       nextPointIndex,
       step,
     } = this.state;
+    // Clear any lingering lines from fixRightTurn
+    clearErrorLines();
 
     if (step === GET_START_POINT) this.sortPoints();
     if (step === SORT_POINTS) this.addNextPoint();
@@ -180,7 +182,7 @@ class DriverContainer extends Component {
     const { points, deactivateEdits } = this.props;
     // We don't want the user to play scan if there are no points
     if (points.length < 1) return;
-    
+
     deactivateEdits();
     this.init();
     this.getStartPoint();
@@ -211,7 +213,8 @@ DriverContainer.propTypes = {
   rejectPoint: PropTypes.func,
   sortPoints: PropTypes.func,
   addLine: PropTypes.func,
-  removeLine: PropTypes.func,
+  setErrorLine: PropTypes.func,
+  clearErrorLines: PropTypes.func,
   activateEdits: PropTypes.func,
   deactivateEdits: PropTypes.func,
 };
@@ -222,7 +225,8 @@ DriverContainer.defaultProps = {
   rejectPoint: () => null,
   sortPoints: () => null,
   addLine: () => null,
-  removeLine: () => null,
+  setErrorLine: () => null,
+  clearErrorLines: () => null,
   activateEdits: () => null,
   deactivateEdits: () => null,
 };

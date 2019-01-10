@@ -4,8 +4,6 @@ import Modal from 'react-modal';
 
 import MODAL_MARKUP from '../__constants__/MODAL_MARKUP';
 
-Modal.setAppElement('#app');
-
 class WrappedModal extends Component {
   state = {
     isOpen: false,
@@ -25,7 +23,7 @@ class WrappedModal extends Component {
     const style = {
       overlay: {
         backgroundColor: 'rgba(0,0,0,0.35)',
-      }
+      },
     };
     return (
       <div className={`modal-container ${!isEditable ? 'fade' : ''}`}>
