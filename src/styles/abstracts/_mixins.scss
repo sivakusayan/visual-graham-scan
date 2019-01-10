@@ -4,7 +4,12 @@
 }
 
 @mixin if-hover() {
-  @media (hover: hover) {@content}
+  // IE11 doesn't recognize (hover: hover), so check that case too
+  @media (hover: hover), (-ms-high-contrast: active), (-ms-high-contrast: none) {@content}
+}
+
+@mixin if-ie() {
+  @media (-ms-high-contrast: active), (-ms-high-contrast: none) {@content}
 }
 
 @mixin bp($breakpoint) {

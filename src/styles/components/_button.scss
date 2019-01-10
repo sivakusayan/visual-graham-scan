@@ -98,6 +98,10 @@
       opacity: 1;
       visibility: visible;
     }
+
+    @include if-ie() {
+      top: 40%;
+    }
   }
 }
 

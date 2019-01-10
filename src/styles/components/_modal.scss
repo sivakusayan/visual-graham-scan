@@ -1,5 +1,7 @@
 .ReactModal__Overlay {
   opacity: 0;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
   transition: all 0.3s;
 }
 
@@ -15,6 +17,8 @@
   position: absolute;
   top: 0;
   right: 0;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
   transition: all 0.3s;
 }
 
@@ -24,15 +28,26 @@
   right: 4rem;
   bottom: 4rem;
   left: 4rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   overflow: auto;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   padding: 2rem;
 
   background: color(white);
-  border-radius: $radius-subtle;
-  box-shadow: shadow(down);
+  -webkit-border-radius: $radius-subtle;
+          border-radius: $radius-subtle;
+  -webkit-box-shadow: shadow(down);
+          box-shadow: shadow(down);
 
   @include bp(large) {
     top: 8rem;
@@ -53,11 +68,20 @@
 }
 
 .modal-copy {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   width: 80%;
   height: 80%;
-  flex-direction: column;
-  justify-content: space-around;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
 
   @include bp(medium) {
     width: 90%;
@@ -93,26 +117,56 @@
 }
 
 .modal-misc {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 
   @include bp(small) {
-    flex-direction: column;
-    align-items: flex-start;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+            align-items: flex-start;
   }
+}
+
+.modal-link[data-focus-visible-added] {
+  outline: none;
 }
 
 .modal-link {
   display: inline-block;
+  border-bottom: 2px solid transparent;
   color: color(primary);
   text-decoration: none;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
   transition: all 0.3s;
 }
 
-.modal-link:hover {
+.modal-link:hover,
+.modal-link:active,
+.modal-link[data-focus-visible-added] {
+  border-bottom: 2px solid darken(color(primary), 10%);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
   color: darken(color(primary), 10%);
-  transform: scale(1.02);
+  -webkit-transform: scale(1.02);
+      -ms-transform: scale(1.02);
+          transform: scale(1.02);
 }
 
 .modal-list__item:not(:last-child) {

@@ -1,6 +1,5 @@
 import connectWithStore from '../state/store/connectWithStore';
 
-import { DONE } from '../__constants__/SCAN_STEPS';
 import { CANVAS_WIDTH, CANVAS_HEIGHT } from '../__constants__/CANVAS_BOUNDARIES';
 import generatePoint from '../utils/generatePoint';
 import { addPoint, clearPoints, resetPoints } from '../state/actions/pointActions';
@@ -40,7 +39,10 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
     startScan();
   },
   spawnPoints: () => {
-    const POINT_COUNT = 100;
+    // We detect  if the user browser is Firefox, as Firefox seems to have
+    // slower performance with React-Konva.
+    // https://stackoverflow.com/questions/9847580/how-to-detect-safari-chrome-ie-firefox-and-opera-browser/9851769
+    const POINT_COUNT = typeof InstallTrigger !== 'undefined' ? 30 : 100;
     dispatchProps.clearPoints();
     dispatchProps.clearLines();
 
