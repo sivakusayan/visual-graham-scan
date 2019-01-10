@@ -23,6 +23,22 @@ export const addLine = (startPoint, endPoint) => ({
 });
 
 /**
+ * Creates an action to set a line's status to error
+ *
+ * @param startPoint
+ *  The point on the canvas the line starts from
+ * @param endPoint
+ *  The point on the canvas the line ends at
+ *
+ * @return {type: SET_ERROR_LINE, startPoint: Point, endPoint: Point}
+ */
+export const setErrorLine = (startPoint, endPoint) => ({
+  type: SET_ERROR_LINE,
+  startPoint,
+  endPoint,
+});
+
+/**
  * Creates an action to remove a line
  *
  * @param startPoint
@@ -36,6 +52,15 @@ export const removeLine = (startPoint, endPoint) => ({
   type: REMOVE_LINE,
   startPoint,
   endPoint,
+});
+
+/**
+ * Creates an action to clear all Error lines
+ *
+ * @returns {{ type: CLEAR_ERROR_LINES }}
+ */
+export const clearErrorLines = () => ({
+  type: CLEAR_ERROR_LINES,
 });
 
 /**

@@ -15,7 +15,7 @@ import { Stage } from 'react-konva';
 class ResponsiveStage extends Component {
   // These values are only used as a reference to
   // calculate new sizes.
-  
+
   // We would normally use the width of .stage main element,
   // but it won't be loaded in time. Instead use window width
   // as our basis for the coordinate system.
