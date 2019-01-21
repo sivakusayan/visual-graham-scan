@@ -13,19 +13,14 @@ import { Stage } from 'react-konva';
 
 
 class ResponsiveStage extends Component {
-  // These values are only used as a reference to
-  // calculate new sizes.
-
-  // We would normally use the width of .stage main element,
-  // but it won't be loaded in time. Instead use window width
-  // as our basis for the coordinate system.
+  // Note: Notice how even though we use the incorrect size here,
+  // the stage gets immediately resized anyway, so choosing window
+  // sizes has no real impact on the UI. Instead, one should think
+  // of this as fixing a coordinate system on the canvas, due to how
+  // the responsiveness of this wrapper works.
   //
-  // Note: We could use the actual width of .stage for this,
-  // which would end up multiplying default width by 0.75
-  // However, this would introduce too much hard-coding into
-  // the system which would be a head-ache to correct. Since
-  // the coordinate system we use is arbitrary, might as well
-  // go for the more maintainable option.
+  // See CANVAS_BOUNDARIES in src/_constants_/CANVAS_BOUNDARIES
+  // and generatePoint in src/utils/generatePoint for more context.
   defaultWidth = window.innerWidth;
 
   defaultHeight = window.innerHeight;
