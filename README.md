@@ -1,5 +1,7 @@
 # Visual Graham Scan
-A web application that provides a visualization of the Graham Scan algorithm. The user can manually add points or randomly generate a collection of points. Afterwards, the animation can be played automatically or step-by-step at the user's pace. The live app can be found [here](https://www.visualgrahamscan.com/).
+A web application that provides a visualization of the Graham Scan algorithm. The user can manually add points or randomly generate a collection of points. Afterwards, the animation can be played automatically or step-by-step at the user's pace. 
+
+The live app can be found [here](https://www.visualgrahamscan.com/).
 
 ![Graham Scan Algorithm](https://media.giphy.com/media/9oI4Z7wqpuLKfqfWBY/giphy.gif)
 
