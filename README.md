@@ -25,6 +25,8 @@ overview of how the algorithm works.
 ## Technologies Used
 * [React](https://reactjs.org/) (Library for building UIs)
 * [Redux](https://redux.js.org/) (State Management Tool)
+* [Enzyme](https://github.com/airbnb/enzyme) (Testing React Components)
+* [Jest](https://jestjs.io/) (Testing Algorithm)
 * [SASS](https://sass-lang.com/) (CSS Preprocessor)
 ## Running Locally
 ### Prequisites
